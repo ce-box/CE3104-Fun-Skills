@@ -60,16 +60,19 @@ Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](ht
 
 ## Authors 
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
+_This project has an excellent development group formed by ITCR computer engineering students_
 
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
+* **Esteban Alvarado** - *Software/Hardware Developer* - [@estalvgs1999](https://github.com/estalvgs1999)
+* **Sahid Rojas** - *Software/Hardware Developer* - [@reds98](https://github.com/estalvgs1999)
+* **Erick Barrantes** - *Software Developer* - [@ErickCR12](https://github.com/ErickCR12)
+* **María José Zamora** - *Software Developer* - [@mjosezam](https://github.com/mjosezam)
+* **Jessica Espinoza** - *Software Developer* - [@jespinoza1703](https://github.com/jespinoza1703)
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
+_Project developed at the Technological Institute of Costa Rica, Cartago, 2019_
 
 ## Licence 📄
 
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+This project is under License (GNU General Public License) - see the file [LICENSE.md](https://github.com/estalvgs1999/CE3104-Fun-Skills/blob/master/LICENSE) for details
 
 ---
 
