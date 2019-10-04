@@ -1,8 +1,21 @@
-
 # 𝗙𝘂𝗻 𝗦𝗸𝗶𝗹𝗹𝘀™ 🧩
-"Gross motor therapy for children"
 ***
-#CE3104-Fun Skills 
+
+
+<p align=center><img src="https://cutt.ly/ieulNTo" width="300"></p>
+
+<p align="center">
+  <img
+       src="https://camo.githubusercontent.com/a3469255f3fcdead1593919251ab6f438744e9be/68747470733a2f2f63692e6170707665796f722e636f6d2f6170692f70726f6a656374732f7374617475732f346f3338706c743078626f31756263382f6272616e63682f6d61737465723f7376673d74727565">
+  
+  <img src = "https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20osx--64%20%7C%20win--64-lightgrey">
+  
+  <img src= "https://img.shields.io/badge/python-v3.7-blue">
+  <img src= "https://img.shields.io/badge/status-stable-brightgreen">
+ 
+  <img src="https://img.shields.io/badge/license-GPL-blue">
+</p>
+
 
 _Acá va un párrafo que describa lo que es el proyecto_
 
@@ -68,11 +81,15 @@ This project has an excellent development group formed by ITCR computer engineer
 * **María José Zamora** - *Software Developer* - [@mjosezam](https://github.com/mjosezam)
 * **Jessica Espinoza** - *Software Developer* - [@jespinoza1703](https://github.com/jespinoza1703)
 
-Project developed at the Technological Institute of Costa Rica, Cartago, 2019
+
+<p align="center"> Project developed at the <b>Technological Institute of Costa Rica</b> | 2019 🄯</p>
+
 
 ## Licence 📄
 
 This project is under License (GNU General Public License) - see the file [LICENSE.md](https://github.com/estalvgs1999/CE3104-Fun-Skills/blob/master/LICENSE) for details
 
 ---
-
+<p align="center">
+<img src="https://cutt.ly/Ueul1gR" width="200"/>
+</p>
