@@ -2,7 +2,7 @@
 # 𝗙𝘂𝗻 𝗦𝗸𝗶𝗹𝗹𝘀™ 🧩
 "Gross motor therapy for children"
 ***
-**CE3104-Fun Skills TEC CR**
+#CE3104-Fun Skills 
 
 _Acá va un párrafo que describa lo que es el proyecto_
 
@@ -47,20 +47,20 @@ _Agrega notas adicionales sobre como hacer deploy_
 
 ## Built With
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+For the development of this project we use the following resources
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+* [Python Lex Yacc](https://www.dabeaz.com/ply/) - The Lexical Compiler Analyzer
+* [Processing](https://processing.org/) - Graphic Interface Development
+* [Python](https://www.python.org/) - Business Logic Development
 
 
 ## Docs 📖
 
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
+You can find much more about how to use this project in our [documentation section](https://github.com/tu/proyecto/wiki)
 
 ## Authors 
 
-_This project has an excellent development group formed by ITCR computer engineering students_
+This project has an excellent development group formed by ITCR computer engineering students
 
 * **Esteban Alvarado** - *Software/Hardware Developer* - [@estalvgs1999](https://github.com/estalvgs1999)
 * **Sahid Rojas** - *Software/Hardware Developer* - [@reds98](https://github.com/estalvgs1999)
@@ -68,7 +68,7 @@ _This project has an excellent development group formed by ITCR computer enginee
 * **María José Zamora** - *Software Developer* - [@mjosezam](https://github.com/mjosezam)
 * **Jessica Espinoza** - *Software Developer* - [@jespinoza1703](https://github.com/jespinoza1703)
 
-_Project developed at the Technological Institute of Costa Rica, Cartago, 2019_
+Project developed at the Technological Institute of Costa Rica, Cartago, 2019
 
 ## Licence 📄
 
