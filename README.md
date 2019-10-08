@@ -1,5 +1,4 @@
 # 𝗙𝘂𝗻 𝗦𝗸𝗶𝗹𝗹𝘀™ 🧩
-***
 
 
 <p align=center><img src="https://cutt.ly/ieulNTo" width="300"></p>
@@ -15,6 +14,8 @@
  
   <img src="https://img.shields.io/badge/license-GPL-blue">
 </p>
+
+***
 
 
 _Acá va un párrafo que describa lo que es el proyecto_
