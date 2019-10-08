@@ -10,9 +10,12 @@
   <img src = "https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20osx--64%20%7C%20win--64-lightgrey">
   
   <img src= "https://img.shields.io/badge/python-v3.7-blue">
+  <br/>
   <img src= "https://img.shields.io/badge/status-stable-brightgreen">
  
   <img src="https://img.shields.io/badge/license-GPL-blue">
+  <img src="https://img.shields.io/badge/Made%20with-Python-1f425f.svg">
+  <img src="https://readthedocs.org/projects/ansicolortags/badge/?version=latest">
 </p>
 
 ***
@@ -93,4 +96,7 @@ This project is under License (GNU General Public License) - see the file [LICEN
 ---
 <p align="center">
 <img src="https://cutt.ly/Ueul1gR" width="200"/>
+  <br/>
+<img src="https://licensebuttons.net/l/by-nc/3.0/88x31.png" width="60"/>
+  
 </p>
