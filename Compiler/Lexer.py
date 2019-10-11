@@ -38,7 +38,7 @@ reserved = {
     'main': 'MAIN',
     'balloon': 'BALLOON',
     'random': 'RANDOM',
-    'telaaraña': 'TELARAÑA',
+    'telaarana': 'TELAARANA',
     'forasignword':'FORASIGNWORD',
     'asignword':'ASIGNWORD',
     'object': 'OBJECT',
@@ -50,10 +50,10 @@ tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'PLUS', 'MINUS', 'MULT', 'DIVI
           'RESERVED'] \
          + list(reserved.values())
 
+
 def t_GAME(t):
     r'(?i)GAME[0-4]'
     return t
-
 
 
 def t_ID(t):
