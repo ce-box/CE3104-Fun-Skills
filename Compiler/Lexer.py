@@ -7,7 +7,10 @@
 import ply.lex as lex
 
 # Regular expression rules for simple tokens
-t_OPERATOR = r'\+ | \- | \* | \/'
+t_PLUS = r'\+'
+t_MINUS = r'\-'
+t_MULT = r'\*'
+t_DIVIDE = r'\/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_SEMICOLON = r'\;'
@@ -34,7 +37,7 @@ reserved = {
 }
 
 # List of tokens
-tokens = ['LPAREN', 'RPAREN', 'OPERATOR', 'ID', 'NUMBER', 'SEMICOLON'] + list(reserved.values())
+tokens = ['LPAREN', 'RPAREN', 'PLUS', 'MINUS', 'MULT', 'DIVIDE', 'ID', 'NUMBER', 'SEMICOLON'] + list(reserved.values())
 
 
 # Definition for variables
@@ -44,7 +47,7 @@ def t_ID(t):
     return t
 
 
-# A regular expression rule for numbers
+# A regular expression rule with some action code
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
@@ -76,16 +79,12 @@ def t_COMMENT(t):
 
 # Build the lexer
 lexer = lex.lex()
-
-
 # Test it out
 data = '''
-poop_&-@555 555 5popo a
+poop_&-@555 555 5popo + - / *
 '''
-
 # Give the lexer some input
 lexer.input(data)
-
 # Tokenize
 while True:
     tok = lexer.token()
