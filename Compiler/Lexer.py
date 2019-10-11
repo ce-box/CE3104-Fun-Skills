@@ -50,6 +50,10 @@ tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'PLUS', 'MINUS', 'MULT', 'DIVI
           'RESERVED'] \
          + list(reserved.values())
 
+def t_GAME(t):
+    r'(?i)GAME[0-4]'
+    return t
+
 
 
 def t_ID(t):
@@ -109,6 +113,12 @@ FOr
 fOR
 Begin
 begin
+BeGiN
+bEgIn
+BEgIN
+BeGIN
+bEGIN
+Game1
 asdasas
 aFDEC
 a899Ddas@&-_
