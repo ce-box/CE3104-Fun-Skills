@@ -17,7 +17,7 @@ t_SEMICOLON = r'\;'
 t_LBRACE = r'{'
 t_RBRACE = r'}'
 
-# Reserved tokens (terminals
+# Reserved tokens (terminals)
 reserved = {
     'if': 'IF',
     'then': 'THEN',
@@ -35,13 +35,21 @@ reserved = {
     'texto': 'TEXTO',
     'times': 'TIMES',
     'using': 'USING',
-    'main': 'MAIN'
+    'main': 'MAIN',
+    'balloon': 'BALLOON',
+    'random': 'RANDOM',
+    'telaaraña': 'TELARAÑA',
+    'forasignword':'FORASIGNWORD',
+    'asignword':'ASIGNWORD',
+    'object': 'OBJECT',
+
 }
 
 # List of tokens
 tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE', 'ID', 'NUMBER', 'SEMICOLON', 'GAME',
           'RESERVED'] \
          + list(reserved.values())
+
 
 
 def t_ID(t):
