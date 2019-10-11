@@ -28,7 +28,9 @@ reserved = {
     'int': 'INT',
     'texto': 'TEXTO',
     'times': 'TIMES',
-    'using': 'USING'
+    'using': 'USING',
+    'game': 'GAME',
+    'main': 'MAIN'
 }
 
 # List of tokens
@@ -41,14 +43,15 @@ def t_ID(t):
     t.type = reserved.get(t.value, 'ID')  # Check for reserved words
     return t
 
-# A regular expression rule with some action code
+
+# A regular expression rule for numbers
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
 
-# Define a rule so we can track line numbers
+# Define a rule for tracking line numbers
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
@@ -64,13 +67,20 @@ def t_error(t):
     t.lexer.skip(1)
 
 
+# A function that ignores commentaries
+def t_COMMENT(t):
+ r'\//.*'
+ pass
+ # No return value. Token discarded
+
+
 # Build the lexer
 lexer = lex.lex()
 
 
 # Test it out
 data = '''
-poop_&-@555 555 5popo
+poop_&-@555 555 5popo a
 '''
 
 # Give the lexer some input
