@@ -14,6 +14,8 @@ t_DIVIDE = r'\/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_SEMICOLON = r'\;'
+t_LBRACE = r'{'
+t_RBRACE = r'}'
 
 # Reserved tokens (terminals
 reserved = {
@@ -27,23 +29,32 @@ reserved = {
     'forend': 'FOREND',
     'do': 'DO',
     'fend': 'FEND',
+    'begin': 'BEGIN',
     'end': 'END',
     'int': 'INT',
     'texto': 'TEXTO',
     'times': 'TIMES',
     'using': 'USING',
-    'game': 'GAME',
     'main': 'MAIN'
 }
 
 # List of tokens
-tokens = ['LPAREN', 'RPAREN', 'PLUS', 'MINUS', 'MULT', 'DIVIDE', 'ID', 'NUMBER', 'SEMICOLON'] + list(reserved.values())
+tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE', 'ID', 'NUMBER', 'SEMICOLON', 'GAME',
+          'RESERVED'] \
+         + list(reserved.values())
 
 
-# Definition for variables
 def t_ID(t):
     r'[a-z][a-zA-Z_0-9_&-@]*'
-    t.type = reserved.get(t.value, 'ID')  # Check for reserved words
+    value = t.value.lower()
+    t.type = reserved.get(value, 'ID')
+    return t
+
+
+def t_RESERVED(t):
+    r'[a-zA-Z]+'
+    value = t.value.lower()
+    t.type = reserved.get(value, 'ID')
     return t
 
 
@@ -72,16 +83,27 @@ def t_error(t):
 
 # A function that ignores commentaries
 def t_COMMENT(t):
- r'\//.*'
- pass
- # No return value. Token discarded
+    r'\//.*'
+    pass
+    # No return value. Token discarded
 
 
 # Build the lexer
 lexer = lex.lex()
 # Test it out
 data = '''
-poop_&-@555 555 5popo + - / *
+For
+FOR
+for
+fOr
+FoR
+FOr
+fOR
+Begin
+begin
+asdasas
+aFDEC
+a899Ddas@&-_
 '''
 # Give the lexer some input
 lexer.input(data)
