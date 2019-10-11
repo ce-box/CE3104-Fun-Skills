@@ -11,11 +11,13 @@ t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_MULT = r'\*'
 t_DIVIDE = r'\/'
+t_EQUAL = r'='
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_SEMICOLON = r'\;'
 t_LBRACE = r'{'
 t_RBRACE = r'}'
+t_COMMA = r','
 
 # Reserved tokens (terminals)
 reserved = {
@@ -46,9 +48,8 @@ reserved = {
 }
 
 # List of tokens
-tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE', 'ID', 'NUMBER', 'SEMICOLON', 'GAME',
-          'RESERVED'] \
-         + list(reserved.values())
+tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE', 'EQUAL', 'ID', 'NUMBER', 'SEMICOLON',
+          'GAME', 'RESERVED', 'COMMA'] + list(reserved.values())
 
 
 def t_GAME(t):
@@ -57,7 +58,7 @@ def t_GAME(t):
 
 
 def t_ID(t):
-    r'[a-z][a-zA-Z_0-9_&-@]*'
+    r'[a-z]([a-zA-Z]|[0-9]|&|-|@)*'
     value = t.value.lower()
     t.type = reserved.get(value, 'ID')
     return t
@@ -104,24 +105,31 @@ def t_COMMENT(t):
 lexer = lex.lex()
 # Test it out
 data = '''
-For
-FOR
-for
-fOr
-FoR
-FOr
-fOR
-Begin
-begin
-BeGiN
-bEgIn
-BEgIN
-BeGIN
-bEGIN
-Game1
-asdasas
-aFDEC
-a899Ddas@&-_
+BEGIN
+Main{
+    Game1()
+    Game2()
+    Game3()
+    Game4()
+}
+
+Game1{
+    Int alt = 2
+    int lat = 4
+    
+    Balloon (alt, lat)
+    Balloon (2,4)
+    int cantidad=5
+    
+    Dow (cantidad)
+        Balloon (alt,lat)
+        Inc (alt, 1)
+        Dec (lat, 2)
+}
+game2{}
+GAME3{}
+Game4{}
+END
 '''
 # Give the lexer some input
 lexer.input(data)
