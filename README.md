@@ -21,7 +21,11 @@
 ***
 
 
-_Acá va un párrafo que describa lo que es el proyecto_
+<p align='justify'>
+𝗙𝘂𝗻 𝗦𝗸𝗶𝗹𝗹𝘀™ corresponds to the final project of the CE-3104 course on languages, interpreters and compilers. It consists of a device that helps children in their <b>gross motor therapy</b>. For this, a <b>five-game suite (VR)</b> has been developed that encourages the child to perform stimulation exercises while playing.</br>
+  To connect the real world with the software, we have implemented the microsoft <b>kinect</b>, from which we can read and interpret the signals and thus detect the movements and reflect them on the screen. The games seek to stimulate the basic movements of children: A, B and C.</br>
+In addition, a <b>command language</b> has been created to configure the game. This language is interpreted by a "small compiler" that we have developed with the knowledge acquired throughout the course. <i>Python</i> and its <i>PLY</i> library have been used to make the compiler.
+</p>
 
 ## Getting Started 🚀
 
@@ -73,7 +77,7 @@ For the development of this project we use the following resources
 
 ## Docs 📖
 
-You can find much more about how to use this project in our [documentation section](https://github.com/tu/proyecto/wiki)
+You can find much more about how to use this project in our [documentation section](https://github.com/estalvgs1999/CE3104-Fun-Skills/tree/master/docs)
 
 ## Authors 
 
