@@ -15,6 +15,21 @@ import src.LexicalAnalizer.Lexer as Lexer
 #                       TESTS
 # -------------------------------------------------
 
+def test_lexer_main():
+    data = """
+        BEGIN   
+        Main{
+        }
+        End;
+        """
+
+    analyzed_tok_list = Lexer.analyzeData(data)
+    expected_tok_list = [("BEGIN", "BEGIN"),
+                         ("Main", "MAIN"), ('{', 'LBRACE'),
+                         ('}', 'RBRACE'),
+                         ("End", "END"), (';', 'SEMICOLON')]
+    assert analyzed_tok_list == expected_tok_list
+
 
 def test_lexer_game1():
     data = """
