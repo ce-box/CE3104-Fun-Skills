@@ -1,10 +1,20 @@
 # ------------------------------------------------------------
-# calclex.py
+# File: Lexer.py
+# Developed by: Errick Barrantes, Jessica Espinoza
+# Project: FunSkills-Compiler
+# version: 1.2
 #
-# tokenizer for a simple expression evaluator for
+# Description: Tokenizer for a simple expression evaluator for
 # numbers and +,-,*,/
+#
+# TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
+
 import ply.lex as lex
+
+# ---------------------------------------------------
+#   REGULAR EXPRESSIONS-KEYWORDS-TOKENS DATABASE
+# ---------------------------------------------------
 
 # Regular expression rules for simple tokens
 t_PLUS = r'\+'
@@ -45,12 +55,15 @@ reserved = {
     'asignword':'ASIGNWORD',
     'object': 'OBJECT',
 
-}
+}       
 
 # List of tokens
 tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE', 'EQUAL', 'ID', 'NUMBER', 'SEMICOLON',
           'GAME', 'RESERVED', 'COMMA'] + list(reserved.values())
 
+# ---------------------------------------------------
+#               REGULAR EXPRESSIONS RULES
+# ---------------------------------------------------
 
 def t_GAME(t):
     r'(?i)GAME[0-4]'
@@ -101,6 +114,9 @@ def t_COMMENT(t):
     # No return value. Token discarded
 
 
+# -------------------------------------------------
+#                       TESTS
+# -------------------------------------------------
 # Build the lexer
 lexer = lex.lex()
 # Test it out
