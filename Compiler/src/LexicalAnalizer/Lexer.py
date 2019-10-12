@@ -27,7 +27,10 @@ t_RPAREN = r'\)'
 t_SEMICOLON = r'\;'
 t_LBRACE = r'{'
 t_RBRACE = r'}'
+t_LBRACKET = r'\['
+t_RBRACKET = r'\]'
 t_COMMA = r','
+t_QUOTE = r'\" | \''
 
 # Reserved tokens (terminals)
 reserved = {
@@ -51,15 +54,16 @@ reserved = {
     'balloon': 'BALLOON',
     'random': 'RANDOM',
     'telaarana': 'TELAARANA',
-    'forasignword':'FORASIGNWORD',
-    'asignword':'ASIGNWORD',
+    'forasignword': 'FORASIGNWORD',
+    'asignword': 'ASIGNWORD',
     'object': 'OBJECT',
 
-}       
+}
 
 # List of tokens
-tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE', 'EQUAL', 'ID', 'NUMBER', 'SEMICOLON',
-          'GAME', 'RESERVED', 'COMMA'] + list(reserved.values())
+tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'QUOTE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE',
+          'EQUAL', 'ID', 'NUMBER', 'SEMICOLON', 'GAME', 'RESERVED', 'COMMA'] + list(reserved.values())
+
 
 # ---------------------------------------------------
 #               REGULAR EXPRESSIONS RULES
@@ -114,44 +118,18 @@ def t_COMMENT(t):
     # No return value. Token discarded
 
 
-# -------------------------------------------------
-#                       TESTS
-# -------------------------------------------------
-# Build the lexer
-lexer = lex.lex()
-# Test it out
-data = '''
-BEGIN
-Main{
-    Game1()
-    Game2()
-    Game3()
-    Game4()
-}
-
-Game1{
-    Int alt = 2
-    int lat = 4
-    
-    Balloon (alt, lat)
-    Balloon (2,4)
-    int cantidad=5
-    
-    Dow (cantidad)
-        Balloon (alt,lat)
-        Inc (alt, 1)
-        Dec (lat, 2)
-}
-game2{}
-GAME3{}
-Game4{}
-END
-'''
-# Give the lexer some input
-lexer.input(data)
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break  # No more input
-    print(tok)
+# Main function to analyze a received data (source code string) and returns a list with tuples, containing
+# the token value and the token type for each lexeme found.
+def analyzeData(data):
+    # Build the lexer
+    lexer = lex.lex()
+    # Give the lexer some input
+    lexer.input(data)
+    # Tokenize
+    tok_list = []
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        tok_list.append((tok.value, tok.type))
+    return tok_list
