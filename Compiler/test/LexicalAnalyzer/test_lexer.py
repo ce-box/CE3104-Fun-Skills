@@ -1,10 +1,11 @@
 # ------------------------------------------------------------
 # File: test_lexer.py
-# Developed by: Errick Barrantes
-# Project: FunSkills-Compiler
-# version: 1.2
+# Developed by: Erick Barrantes
+# Project: FunSkills- [Compiler]
+# version: 1.0
+# last edited by: Erick Barrantes:: 10/12/19 14.30
 #
-# Description: Test functions fot Lexer.py
+# Description: Test functions for Lexer.py
 #
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
@@ -14,6 +15,7 @@ import src.LexicalAnalizer.Lexer as Lexer
 # -------------------------------------------------
 #                       TESTS
 # -------------------------------------------------
+
 
 def test_lexer_main():
     data = """
@@ -86,7 +88,6 @@ def test_lexer_game2():
     """
 
     analyzed_tok_list = Lexer.analyzeData(data)
-    print(analyzed_tok_list)
     expected_tok_list = [('GAME2', 'GAME'), ('{', 'LBRACE'),
                          ('texto', 'TEXTO'), ('(', 'LPAREN'), (10, 'NUMBER'), (')', 'RPAREN'), ('Color', 'ID'), ('[', 'LBRACKET'), (10, 'NUMBER'), (']', 'RBRACKET'), (';', 'SEMICOLON'),
                          ('int', 'INT'), ('puntaje', 'ID'), ('[', 'LBRACKET'), (10, 'NUMBER'), (']', 'RBRACKET'), (';', 'SEMICOLON'),
@@ -125,7 +126,6 @@ def test_lexer_game3():
     """
 
     analyzed_tok_list = Lexer.analyzeData(data)
-    print(analyzed_tok_list)
     expected_tok_list = [('game3', 'GAME'), ('{', 'LBRACE'),
                          ('int', 'INT'), ('MiFila', 'ID'), ('=', 'EQUAL'), (5, 'NUMBER'), (';', 'SEMICOLON'),
                          ('int', 'INT'), ('MiCol', 'ID'), ('=', 'EQUAL'), (5, 'NUMBER'), (';', 'SEMICOLON'),
