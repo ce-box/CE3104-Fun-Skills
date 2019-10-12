@@ -3,6 +3,14 @@
 Hey! What a pleasure you are contributing to our project. 
 So that there are no problems and we can **maintain a clean and efficient code** , we ask that you follow the following guidelines:
 
+<p align="center">
+  <a href="#files">Files</a> •
+  <a href="#variables-and-functions">Variables & Functions</a> •
+  <a href="#comments">Comments</a> •
+  <a href="#other-important-things">Others</a> 
+</p>
+---
+
 ### Files
 
 <p align='justify'>In this project we are using two programming languages: Python and Java. 
@@ -19,7 +27,7 @@ We ask you to follow this and <b>not put files in other programming languages</b
   </div>
 </div>  
 
-### Variables & Functions
+### Variables and Functions
 
 <p align='justify'>For the names of variables and functions please use <code>underscore_case</code>, the underscore 
 version <b>much easier to read</b>.
