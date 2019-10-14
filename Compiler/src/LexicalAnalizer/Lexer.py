@@ -1,8 +1,9 @@
 # ------------------------------------------------------------
 # File: Lexer.py
-# Developed by: Errick Barrantes, Jessica Espinoza
-# Project: FunSkills-Compiler
+# Developed by: Erick Barrantes, Jessica Espinoza
+# Project: FunSkills-[Compiler]
 # version: 1.2
+# last edited by: Erick Barrantes:: 13/10/19 22.24
 #
 # Description: Tokenizer for a simple expression evaluator for
 # numbers and +,-,*,/
@@ -107,7 +108,7 @@ t_ignore = ' \t'
 
 # Error handling rule
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print("SYNTAX ERROR: Invalid character", t.value[0], "at line number", t.lexer.lineno)
     t.lexer.skip(1)
 
 

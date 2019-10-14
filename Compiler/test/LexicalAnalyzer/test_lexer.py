@@ -1,9 +1,9 @@
 # ------------------------------------------------------------
 # File: test_lexer.py
 # Developed by: Erick Barrantes
-# Project: FunSkills- [Compiler]
+# Project: FunSkills-[Compiler]
 # version: 1.0
-# last edited by: Erick Barrantes:: 10/12/19 14.30
+# last edited by: Erick Barrantes:: 12/10/19 14.30
 #
 # Description: Test functions for Lexer.py
 #
