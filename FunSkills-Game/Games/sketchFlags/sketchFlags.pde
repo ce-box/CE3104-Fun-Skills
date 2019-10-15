@@ -10,27 +10,36 @@
  * TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
  * ------------------------------------------------------------*/
 
-String colors[] = {"Verde","Amarillo","Azul","Rojo","Naranja"};
+import java.util.Map;
+
+HashMap<Integer,String> color_dict = new HashMap<Integer,String>();
+ArrayList<Integer> color_seq = new ArrayList<Integer>();
+
+int color_amt = 2;
+
+
+
 void setup() {
   size(800,600);
+  init_dict();
+  println("Map: "+color_dict);
+
+  for(int i = 0; i < 5; i++){
+    generate_random_sequence();
+    decode_sequence();
+  }
+    
 }
 
 void draw(){
   background(255);
-  flags();
-}
-
-void sequence_Colors() {
-  textAlign(CENTER);
-  for (int i=0;i<5;i++){
-     //text(colors[int(random(colors.length)-1)], height/2, width/2);
-  }
-  
- 
+  draw_flags();
 }
 
 
-void flags(){
+
+void draw_flags(){
+
   line(0, height/2, width, height/2);
   
   fill(#e60000);
@@ -47,4 +56,44 @@ void flags(){
   
   fill(#1a1aff);
   rect(650, height/2, 100, 170);
+
+}
+
+
+/* -----------------------------------
+ *           OTHER FUNCTIONS
+ * -----------------------------------*/
+
+/**
+ * @brief - Enter the colors to the dictionary
+ */
+void init_dict(){
+  color_dict.put(0,"red");
+  color_dict.put(1,"green");
+  color_dict.put(2,"blue");
+  color_dict.put(3,"yellow");
+  color_dict.put(4,"orange");
+}
+
+/**
+ * @brief -Function that randomly generates an 
+ *         incremental color pattern
+ */
+void generate_random_sequence(){
+
+  for(int cnt = 0; cnt<color_amt;cnt++){
+    int r_num = int(random(0, 4));; // Btw 0-4
+    color_seq.add(r_num);
+  }
+}
+
+/**
+ * @brief -This function decodes the random number 
+ *         pattern list generated
+ */
+void decode_sequence(){
+  for(int x:color_seq){
+    println("color: ",color_dict.get(x));
+  }
+  println("---");
 }
