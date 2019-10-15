@@ -1,14 +1,14 @@
-/****************************************
-File: sketchFlags.pde
-Developed by: María José Zamora Vargas
-Project: FunSkills - [Game]
-version: 1.0
-last edited: María José:: 16.20
-
-Description: Flags Game Basic GUI
-
-TEC 2019 | Lenguajes, compiladores e interpretes
-****************************************/
+/* ------------------------------------------------------------
+ * File: sketchFlags.pde
+ * Developed by: María José Zamora Vargas
+ * Project: FunSkills - [Game]
+ * version: 1.0
+ * last edited: Esteban Alvarado:: 23.20
+ * 
+ * Description: Flags Game Basic GUI
+ * 
+ * TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+ * ------------------------------------------------------------*/
 
 String colors[] = {"Verde","Amarillo","Azul","Rojo","Naranja"};
 void setup() {
