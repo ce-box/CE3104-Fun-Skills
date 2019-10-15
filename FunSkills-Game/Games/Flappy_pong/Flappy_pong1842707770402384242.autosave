@@ -14,32 +14,22 @@
  * ------------------------------------------------------------*/
 
 // According to its status is the screen that runs
-// 0: Initial Screen
-// 1: Game Screen
-// 2: Game-over Screen
-int game_Screen = 0;
-
-int ball_X,ball_Y;
-int ball_Size = 40;
-int ball_Color = color(214, 36, 63);
+int gameScreen = 0;
 
 void setup(){
-  size(500,500,P3D);
-
-  ball_X = width/4;
-  ball_Y = height/5;
+  size(500,500);
 }
 
 
 void draw(){
   
   // Game Screen Selector
-  if(game_Screen == 0){
-    init_Screen();
-  } else if(game_Screen == 1){
-    game_Screen();
-  } else if(game_Screen == 2){
-    game_Over_Screen();
+  if(gameScreen == 0){
+    initScreen();
+  } else if(gameScreen == 1){
+    gameScreen();
+  } else if(gameScreen == 2){
+    gameOverScreen();
   }
   
 }
@@ -48,21 +38,15 @@ void draw(){
  *                    SCREEN CONTENTS
  * -----------------------------------------------------*/
 
-void init_Screen(){
-  background(0);
-  textAlign(CENTER);
-  text("Click to Start", height/2, width/2);
+void initScreen(){
+  System.out.println("GAME BEGINS");
 }
 
-void game_Screen(){
-
-  background(255);
-
-  draw_Ball();
+void gameScreen(){
 
 }
 
-void game_Over_Screen(){
+void gameOverScreen(){
 
 }
 
@@ -75,8 +59,8 @@ void game_Over_Screen(){
  *  be adapted to the kinect inputs
  */
 public void mousePressed(){
-  if(game_Screen == 0){
-    start_Game();
+  if(gameScreen == 0){
+    startGame();
   }
 }
 
@@ -84,25 +68,9 @@ public void mousePressed(){
  *                    OTHER FUNCTIONS
  * -----------------------------------------------------*/
 
-void draw_Ball(){
-
-  fill(ball_Color);
-  // Function to create "spheres"
-  //ellipse(ball_X, ball_Y, ball_Size, ball_Size);
-  
-  noStroke();
-  
-  lights();
-  translate(ball_X, ball_X, 0);
-  lightSpecular(255, 255, 255);
-  specular(255,255,255);
-  
-  sphere(ball_Size);
-}
-
 /** 
  * @brief :Sets the necessary variables to start the game
  */ 
-void start_Game(){
-  game_Screen = 1;
+void startGame(){
+  gameScreen = 1;
 }
