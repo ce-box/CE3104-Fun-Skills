@@ -30,11 +30,7 @@ float ball_Speed_Vert = 0;
 float air_Friction = 0.0001;
 float friction = 0.1;
 
-// Bat
-color bat_Color = color(0);
-float bat_Width = 100;
-float bat_Height = 10;
-int bat_Bounce_Rate = 20;
+int reached = 0; // Indicates if the balloon has been reached by the kid
 
 void setup(){
   size(500,500,P3D);
@@ -71,11 +67,10 @@ void game_Screen(){
 
   background(255);
 
-  draw_Bat();
   draw_Ball();
-
+  
   apply_Gravity();
-  racket_Bounce();
+  
   keep_In_Screen();
 
 }
@@ -96,23 +91,15 @@ public void mousePressed(){
   if(game_Screen == 0){
     start_Game();
   }
+
+  if(reached == 0){
+    reached = 1;
+  }
 }
 
 /* ------------------------------------------------------
  *                    OTHER FUNCTIONS
  * -----------------------------------------------------*/
-
-/**
- * @brief :Method in charge of drawing the bat in the 
- *         current positions
- */
-void draw_Bat(){
-
-  fill(bat_Color); 
-  rectMode(CENTER);
-  rect(mouseX,mouseY,bat_Width,bat_Height);
-}
-
 
 /**
  * @brief :Method in charge of drawing the balloon in the 
@@ -158,30 +145,17 @@ void make_Bounce_Top(float surface) {
   ball_Speed_Vert -= (ball_Speed_Vert*friction);
 }
 
-void racket_Bounce(){
-  float overhead = mouseY - pmouseY;
-
-  if((ball_X+(ball_Size/2) > mouseX -(bat_Width/2)) && (ball_X-(ball_Size/2) < mouseX +(bat_Width/2))){
-    if(dist(ball_X, ball_Y, ball_X,mouseY) <= (ball_Size/2)+abs(overhead)){
-      make_Bounce_Bottom(mouseY);
-
-      if(overhead < 0){
-        ball_Y+=overhead;
-        ball_Speed_Vert+=overhead;
-      }
-    }
-  }
-}
-
 void keep_In_Screen(){
   // ball hits floor
   if (ball_Y+(ball_Size/2) > height) { 
     make_Bounce_Bottom(height);
+    reached = 0;
   }
   // ball hits ceiling
   if (ball_Y-(ball_Size/2) < 0) {
     make_Bounce_Top(0);
 
+    reached = 0;
   }
 }
 
