@@ -11,7 +11,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-from src.IDE.IDE import display_IDE_window
+from src.ide.IDE import display_IDE_window
 
 
 def main():

@@ -13,10 +13,10 @@
 # ------------------------------------------------------------
 
 from tkinter import DISABLED, END, Button
-from src.IDE.TkWidgets.TkWindow import *
-from src.IDE.TkWidgets.TkFrame import *
-from src.IDE.TkWidgets.TkTextScroll import *
-from src.LexicalAnalizer.Lexer import analyzeData
+from src.ide.tkwidgets.TkWindow import *
+from src.ide.tkwidgets.TkFrame import *
+from src.ide.tkwidgets.TkTextScroll import *
+from src.lexer.Lexer import analyzeData
 
 
 def display_IDE_window():

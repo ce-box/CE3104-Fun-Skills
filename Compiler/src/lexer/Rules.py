@@ -1,7 +1,7 @@
 # Simple rules for regular expresions
 
 
-from Compiler.lexer.Tokens import *
+from src.lexer.Tokens import *
 
 def t_GAME(t):
     r'(?i)GAME[0-4]'
@@ -9,7 +9,7 @@ def t_GAME(t):
 
 
 def t_ID(t):
-    r'[a-z][a-zA-Z_0-9_&-@]*'
+    r'[a-z]([a-zA-Z]|[0-9]|&|-|@)*'
     value = t.value.lower()
     t.type = reserved.get(value, 'ID')
     return t
@@ -41,7 +41,7 @@ t_ignore = ' \t'
 
 # Error handling rule
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print("SYNTAX ERROR: Invalid character", t.value[0], "at line number", t.lexer.lineno)
     t.lexer.skip(1)
 
 
