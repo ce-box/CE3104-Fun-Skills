@@ -20,7 +20,7 @@ class TkWindow:
     def __init__(self, width, height, title):
         self.window = Tk()
         self.window.title(title)
-        self.window.config(width=width, height=height)
+        self.window.config(width = width, height = height)
         self.window.resizable(False, False)
         self.menu_bar = None
 
@@ -31,13 +31,13 @@ class TkWindow:
     #           option in the drop down sub menu.
     def set_menu_bar(self, cascade_list, labels, commands):
         self.menu_bar = Menu(self.window)
-        self.window.config(menu=self.menu_bar)
+        self.window.config(menu = self.menu_bar)
         file_menu = Menu(self.menu_bar)
 
         for cascade, label_list, command_list in zip(cascade_list, labels, commands):
-            self.menu_bar.add_cascade(label=cascade, menu=file_menu)
+            self.menu_bar.add_cascade(label = cascade, menu = file_menu)
             for label, command in zip(label_list, command_list):
-                file_menu.add_command(label=label, command=eval("self." + command))
+                file_menu.add_command(label = label, command = eval("self." + command))
 
     # onExit command: Closes the window when activated.
     def onExit(self):

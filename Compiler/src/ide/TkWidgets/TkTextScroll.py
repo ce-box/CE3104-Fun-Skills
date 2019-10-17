@@ -20,27 +20,27 @@ class TkTextScroll():
     def __init__(self, master, height, width, x_pos, y_pos, with_line_numbers):
         self.text_frame = self.set_frame_container(master, height, width, x_pos, y_pos)
         self.scroll_text = self.set_scroll_text()
-        self.line_numbers = TextLineNumbers(self.text_frame, width=15)
+        self.line_numbers = TextLineNumbers(self.text_frame, width = 15)
         self.line_numbers.attach(self.scroll_text)
         if with_line_numbers:
             self.set_line_numbers()
 
     def set_frame_container(self, master, height, width, x_pos, y_pos):
-        text_frame = Frame(master, height=height, width=width)
-        text_frame.grid_rowconfigure(0, weight=1)
-        text_frame.grid_columnconfigure(0, weight=1)
+        text_frame = Frame(master, height = height, width = width)
+        text_frame.grid_rowconfigure(0, weight = 1)
+        text_frame.grid_columnconfigure(0, weight = 1)
         text_frame.grid_propagate(False)
-        text_frame.place(x=x_pos, y=y_pos)
+        text_frame.place(x = x_pos, y = y_pos)
         return text_frame
 
     def set_scroll_text(self):
         scroll_text = CustomText(self.text_frame)
 
-        self.text_frame.columnconfigure(0, weight=0)
-        self.text_frame.columnconfigure(1, weight=1)
-        scroll_text.grid(row=0, column=1, sticky="nsew")
-        scrollbar = ttk.Scrollbar(self.text_frame, command=scroll_text.yview)
-        scrollbar.grid(row=0, column=2, sticky="nsew")
+        self.text_frame.columnconfigure(0, weight = 0)
+        self.text_frame.columnconfigure(1, weight = 1)
+        scroll_text.grid(row = 0, column = 1, sticky = "nsew")
+        scrollbar = ttk.Scrollbar(self.text_frame, command = scroll_text.yview)
+        scrollbar.grid(row = 0, column = 2, sticky = "nsew")
         scroll_text['yscrollcommand'] = scrollbar.set
 
         scroll_text.bind("<<Change>>", self._on_change)
@@ -50,10 +50,10 @@ class TkTextScroll():
         return scroll_text
 
     def set_line_numbers(self):
-        self.line_numbers.grid(row=0, column=0, sticky="nsew")
+        self.line_numbers.grid(row = 0, column = 0, sticky = "nsew")
 
     def set_font(self, font, size):
-        self.scroll_text.config(font=(font, size), undo=True, wrap='word')
+        self.scroll_text.config(font = (font, size), undo = True, wrap = 'word')
 
     def _on_change(self, event):
         self.line_numbers.redraw()
@@ -77,7 +77,7 @@ class TextLineNumbers(Canvas):
             if d_line is None: break
             y = d_line[1]
             line_num = str(i).split(".")[0]
-            self.create_text(2,y,anchor="nw", text=line_num)
+            self.create_text(2 ,y, anchor = "nw", text = line_num)
             i = self.text_widget.index("%s+1line" % i)
 
 
@@ -107,7 +107,7 @@ class CustomText(Text):
             args[0:2] == ("yview", "moveto") or
             args[0:2] == ("yview", "scroll")
         ):
-            self.event_generate("<<Change>>", when="tail")
+            self.event_generate("<<Change>>", when = "tail")
 
         # return what the actual widget returned
         return result

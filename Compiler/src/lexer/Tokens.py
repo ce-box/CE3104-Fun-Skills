@@ -1,5 +1,16 @@
-# Regular expression rules for tokens
+# ------------------------------------------------------------
+# File: Tokens.py
+# Developed by: Errick Barrantes, Jessica Espinoza
+# Project: FunSkills-Compiler
+# version: 1.2
+#
+# Description: Definition for simple tokens and reserved words
+#
+# TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+# ------------------------------------------------------------
 
+
+# Regular expression rules for tokens
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_MULT = r'\*'

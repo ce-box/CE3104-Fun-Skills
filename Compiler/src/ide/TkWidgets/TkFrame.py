@@ -17,5 +17,5 @@ class TkFrame:
 
     # TkFrame constructor. Configures the tkinter window to its initial status.
     def __init__(self, master, width, height, x_pos, y_pos, background):
-        self.frame = Frame(master, width=width, height=height, bg=background)
-        self.frame.place(x=x_pos, y=y_pos)
+        self.frame = Frame(master, width = width, height = height, bg = background)
+        self.frame.place(x = x_pos, y = y_pos)

@@ -1,5 +1,5 @@
 # ------------------------------------------------------------
-# File: IDE.py
+# File: ide.py
 # Developed by: Erick Barrantes
 # Project: FunSkills-[Compiler]
 # version: 1.0
@@ -7,16 +7,16 @@
 #
 # Description: Contains the functions that creates and puts
 #              together all the necessary widgets and commands
-#              for the compiler IDE.
+#              for the compiler ide.
 #
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
 from tkinter import DISABLED, END, Button
-from src.ide.tkwidgets.TkWindow import *
-from src.ide.tkwidgets.TkFrame import *
-from src.ide.tkwidgets.TkTextScroll import *
-from src.lexer.Lexer import analyzeData
+from Compiler.src.ide.TkWidgets.TkWindow import *
+from Compiler.src.ide.TkWidgets.TkFrame import *
+from Compiler.src.ide.TkWidgets.TkTextScroll import *
+from Compiler.src.lexer.Lexer import analyzeData
 
 
 def display_IDE_window():
@@ -26,11 +26,11 @@ def display_IDE_window():
 
     source_code_text = TkTextScroll(main_frame.frame, 400, 1000, 50, 50, True)
     app_output_text = TkTextScroll(main_frame.frame, 150, 1000, 50, 470, False)
-    app_output_text.scroll_text.config(state=DISABLED)
+    app_output_text.scroll_text.config(state = DISABLED)
 
-    run_button = Button(main_frame.frame, text="Run",
-                        command=lambda source_code=source_code_text: compile_source_code(source_code))
-    run_button.place(x=0, y=0)
+    run_button = Button(main_frame.frame, text = "Run",
+                        command = lambda source_code=source_code_text: compile_source_code(source_code))
+    run_button.place(x = 0, y = 0)
 
     root.window.mainloop()
 

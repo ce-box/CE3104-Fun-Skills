@@ -1,17 +1,19 @@
-# Simple rules for regular expresions
+# ------------------------------------------------------------
+# File: Rules.py
+# Developed by: Errick Barrantes, Jessica Espinoza
+# Project: FunSkills-Compiler
+# version: 1.2
+#
+# Description: Simple rules for regular expresions
+#
+# TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+# ------------------------------------------------------------
 
+from Compiler.src.lexer.Tokens import *
 
-from src.lexer.Tokens import *
 
 def t_GAME(t):
     r'(?i)GAME[0-4]'
-    return t
-
-
-def t_ID(t):
-    r'[a-z]([a-zA-Z]|[0-9]|&|-|@)*'
-    value = t.value.lower()
-    t.type = reserved.get(value, 'ID')
     return t
 
 
@@ -22,7 +24,12 @@ def t_RESERVED(t):
     return t
 
 
-# A regular expression rule with some action code
+def t_ID(t):
+    r'[a-z]([a-zA-Z]|[0-9]|&|-|@)*'
+    t.type = reserved.get(t.value, 'ID')
+    return t
+
+
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
@@ -39,13 +46,13 @@ def t_newline(t):
 t_ignore = ' \t'
 
 
-# Error handling rule
+# Error handling rules
 def t_error(t):
     print("SYNTAX ERROR: Invalid character", t.value[0], "at line number", t.lexer.lineno)
     t.lexer.skip(1)
 
 
-# A function that ignores commentaries
+# A function that ignores comments
 def t_COMMENT(t):
     r'\//.*'
     pass
