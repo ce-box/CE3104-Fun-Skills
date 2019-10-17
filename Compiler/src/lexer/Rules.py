@@ -8,6 +8,7 @@
 #
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
+from ply.lex import TOKEN
 
 from Compiler.src.lexer.Tokens import *
 
@@ -17,16 +18,9 @@ def t_GAME(t):
     return t
 
 
-def t_RESERVED(t):
-    r'[a-zA-Z]+'
-    value = t.value.lower()
-    t.type = reserved.get(value, 'ID')
-    return t
-
-
 def t_ID(t):
-    r'[a-z]([a-zA-Z]|[0-9]|&|-|@)*'
-    t.type = reserved.get(t.value, 'ID')
+    r'[a-z]([a-zA-Z0-9&@_-])*'
+    t.type = reserved.get(t.value, 'ID')    # Check for reserved words
     return t
 
 
