@@ -11,11 +11,16 @@
 
 
 # Regular expression rules for tokens
+
+# Operators
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_MULT = r'\*'
 t_DIVIDE = r'\/'
 t_EQUAL = r'\='
+
+
+# Symbols
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_SEMICOLON = r'\;'
@@ -24,6 +29,7 @@ t_RBRACE = r'}'
 t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_COMMA = r','
+
 
 # Reserved tokens (terminals)
 reserved = {
