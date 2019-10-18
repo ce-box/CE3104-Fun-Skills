@@ -24,7 +24,6 @@ t_RBRACE = r'}'
 t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_COMMA = r','
-t_QUOTE = r'\" | \''
 
 # Reserved tokens (terminals)
 reserved = {
@@ -54,5 +53,5 @@ reserved = {
 }
 
 # List of tokens
-tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'QUOTE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE',
+tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'PLUS', 'MINUS', 'MULT', 'DIVIDE',
           'EQUAL', 'ID', 'NUMBER', 'SEMICOLON', 'GAME', 'RESERVED', 'COMMA', 'STRING'] + list(reserved.values())
