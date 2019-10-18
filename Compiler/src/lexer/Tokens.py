@@ -47,12 +47,12 @@ reserved = {
     'main': 'MAIN',
     'balloon': 'BALLOON',
     'random': 'RANDOM',
-    'telaarana': 'TELAARANA',
-    'forasignword':'FORASIGNWORD',
-    'asignword':'ASIGNWORD',
+    'telaArana': 'TELAARANA',
+    'forAsignWord':'FORASIGNWORD',
+    'asignWord':'ASIGNWORD',
     'object': 'OBJECT',
 }
 
 # List of tokens
 tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'QUOTE', 'PLUS', 'MINUS', 'MULT', 'DIVIDE',
-          'EQUAL', 'ID', 'NUMBER', 'SEMICOLON', 'GAME', 'RESERVED', 'COMMA'] + list(reserved.values())
+          'EQUAL', 'ID', 'NUMBER', 'SEMICOLON', 'GAME', 'RESERVED', 'COMMA', 'STRING'] + list(reserved.values())

@@ -14,12 +14,13 @@ from Compiler.src.lexer.Tokens import *
 
 
 def t_GAME(t):
-    r'(?i)GAME[0-4]'
+    r'game[0-4]'
     return t
 
 
 def t_ID(t):
     r'[a-z]([a-zA-Z0-9&@_-])*'
+    print(t.value)
     t.type = reserved.get(t.value, 'ID')    # Check for reserved words
     return t
 
@@ -27,6 +28,12 @@ def t_ID(t):
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
+    return t
+
+
+def t_STRING(t):
+    r'(\")[a-zA-Z |0-9]*(\")'
+    t.value = str(t.value[1:-1])
     return t
 
 
