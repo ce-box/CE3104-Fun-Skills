@@ -20,7 +20,6 @@ def main():
     data = '''
     begin
     main{
-    int caca = 0;
     }
     game1{
     }

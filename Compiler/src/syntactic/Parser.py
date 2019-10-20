@@ -42,9 +42,9 @@ def p_structure(p):
 
 
 def p_statements(p):
-    '''statements : assignment
-                | declaration
-                | expression
+    '''statements : assignment statements
+                | declaration statements
+                | expression SEMICOLON statements
                 | empty'''
 # loop, reservedFuntions
 
