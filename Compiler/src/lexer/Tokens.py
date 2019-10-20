@@ -12,6 +12,7 @@
 
 # Regular expression rules for tokens
 
+
 # Operators
 t_PLUS = r'\+'
 t_MINUS = r'\-'

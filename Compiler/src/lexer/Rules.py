@@ -1,10 +1,10 @@
 # ------------------------------------------------------------
 # File: Rules.py
-# Developed by: Errick Barrantes, Jessica Espinoza
+# Developed by: Erick Barrantes, Jessica Espinoza
 # Project: FunSkills-Compiler
 # version: 1.2
 #
-# Description: Simple rules for regular expresions
+# Description: Simple rules for regular expressions
 #
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
@@ -20,7 +20,6 @@ def t_GAME(t):
 
 def t_ID(t):
     r'[a-z]([a-zA-Z0-9&@_-])*'
-    print(t.value)
     t.type = reserved.get(t.value, 'ID')    # Check for reserved words
     return t
 

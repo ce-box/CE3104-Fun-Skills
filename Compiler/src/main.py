@@ -12,12 +12,14 @@
 # ------------------------------------------------------------
 
 from Compiler.src.lexer.Lexer import analyzeData
-from Compiler.src.Syntactic.parser import parse
+from Compiler.src.syntactic.Parser import parse
 
 
 def main():
     # display_IDE_window()
-    data = "3 * 3"
+    data = '''
+    
+    '''
     analyzeData(data)
     parse(data)
 
