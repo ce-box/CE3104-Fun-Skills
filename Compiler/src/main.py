@@ -22,7 +22,6 @@ def main():
     main{
     }
     game1{
-    balloon(1, 2, 4, 5);
     }
     game2{
     }

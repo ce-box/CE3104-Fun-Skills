@@ -11,6 +11,18 @@
 # -------------------------------------------------------------
 
 from Compiler.src.syntactic.Operations import *
+from Compiler.src.syntactic.Loops import *
+
+
+# Definition for function content
+def p_statements(p):
+    '''statements : assignment statements
+                | declaration statements
+                | expression SEMICOLON statements
+                | reservedFunctions statements
+                | loop statements
+                | empty'''
+
 
 # Definition for reserved functions
 def p_reservedFunctions(p):

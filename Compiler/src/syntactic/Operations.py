@@ -10,8 +10,8 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-# Basic operations
 
+# Basic operations
 def p_expression_plus(p):
     'expression : expression PLUS term'
     p[0] = p[1] + p[3]

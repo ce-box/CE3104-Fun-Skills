@@ -42,16 +42,6 @@ def p_structure(p):
     END SEMICOLON'''
 
 
-# Definition for function content
-def p_statements(p):
-    '''statements : assignment statements
-                | declaration statements
-                | expression SEMICOLON statements
-                | reservedFunctions statements
-                | empty'''
-# loop
-
-
 # Build the parser
 def parse(data):
     parser = yacc.yacc()
