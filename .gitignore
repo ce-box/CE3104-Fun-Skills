@@ -159,3 +159,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+
+Compiler/src/syntactic/parser.out
+
+Compiler/src/syntactic/parsetab.py

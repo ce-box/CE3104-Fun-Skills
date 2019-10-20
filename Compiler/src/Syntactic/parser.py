@@ -1,20 +1,13 @@
 import ply.yacc as yacc
 
-# Get the token map from the lexer.  This is required.
-from Compiler.src.lexer.Rules import tokens
+from Compiler.src.syntactic.Statements import *
 
-
-def p_expression_plus(p):
-    'expression : expression PLUS term'
-    p[0] = p[1] + p[3]
-
-
-def p_expression_minus(p):
-    'expression : expression MINUS term'
-    p[0] = p[1] - p[3]
+# Get the token map from the lexer.
+from Compiler.src.lexer.Lexer import tokens
 
 
 start = 'structure'
+
 
 def p_structure(p):
     '''structure : BEGIN\
@@ -35,9 +28,6 @@ def p_structure(p):
     RBRACE\
     END SEMICOLON'''
 
-def p_term_times(p):
-    'term : term MULT factor'
-    p[0] = p[1] * p[3]
 
 def p_statements(p):
     '''statements : assignment statements
@@ -48,14 +38,13 @@ def p_statements(p):
 # loop
 
 
-
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    print("Syntax error")
 
 
+# Build the parser
 def parse(data):
-    # Build the parser
     parser = yacc.yacc()
     result = parser.parse(data)
     print(result)
