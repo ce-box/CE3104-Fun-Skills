@@ -13,9 +13,9 @@
 # ------------------------------------------------------------
 
 from tkinter import DISABLED, END, Button
-from Compiler.src.ide.TkWidgets.TkWindow import *
-from Compiler.src.ide.TkWidgets.TkFrame import *
-from Compiler.src.ide.TkWidgets.TkTextScroll import *
+from Compiler.src.ide.tkwidgets.TkWindow import *
+from Compiler.src.ide.tkwidgets.TkFrame import *
+from Compiler.src.ide.tkwidgets.TkTextScroll import *
 from Compiler.src.lexer.Lexer import analyzeData
 
 

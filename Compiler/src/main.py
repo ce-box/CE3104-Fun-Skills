@@ -11,11 +11,15 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-from Compiler.src.ide.IDE import display_IDE_window
+from Compiler.src.lexer.Lexer import analyzeData
+from Compiler.src.Syntactic.parser import parse
 
 
 def main():
-    display_IDE_window()
+    # display_IDE_window()
+    data = "3 * 3"
+    analyzeData(data)
+    parse(data)
 
 
 if __name__ == '__main__':

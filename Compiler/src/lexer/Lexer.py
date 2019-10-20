@@ -24,8 +24,8 @@ def analyzeData(data):
     token_list = []
     while True:
         tok = lexer.token()
-        print(tok)
         if not tok:
             break  # No more input
+        print(tok)
         token_list.append((tok.value, tok.type))
     return token_list
