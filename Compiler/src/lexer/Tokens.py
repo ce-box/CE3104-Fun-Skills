@@ -1,6 +1,6 @@
 # ------------------------------------------------------------
 # File: Tokens.py
-# Developed by: Errick Barrantes, Jessica Espinoza
+# Developed by: Erick Barrantes, Jessica Espinoza
 # Project: FunSkills-Compiler
 # version: 1.2
 #
@@ -61,8 +61,8 @@ reserved = {
     'balloon': 'BALLOON',
     'random': 'RANDOM',
     'telaArana': 'TELAARANA',
-    'forAsignWord':'FORASIGNWORD',
-    'asignWord':'ASIGNWORD',
+    'forAssignWord':'FORASSIGNWORD',
+    'assignWord':'ASSIGNWORD',
     'object': 'OBJECT',
     'inc' : 'INC',
     'dec' : 'DEC'

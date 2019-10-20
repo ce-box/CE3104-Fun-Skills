@@ -45,12 +45,10 @@ def p_statements(p):
     '''statements : assignment statements
                 | declaration statements
                 | expression SEMICOLON statements
+                | reservedFunctions statements
                 | empty'''
-# loop, reservedFuntions
+# loop
 
-def p_empty(p):
-    'empty :'
-    pass
 
 
 # Error rule for syntax errors
