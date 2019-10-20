@@ -12,6 +12,7 @@
 
 from Compiler.src.syntactic.Operations import *
 
+# Definition for reserved functions
 def p_reservedFunctions(p):
     'reservedFunctions : functions args SEMICOLON'
 
@@ -26,12 +27,14 @@ def p_functions(p):
                 | OBJECT'''
 
 
+# Arguments for functions
 def p_args(p):
     '''args : LPAREN atom args
             | COMMA atom args
             | RPAREN'''
 
 
+# Definition for assignment of variables with typification
 def p_assignment(p):
     '''assignment : type ID EQUAL atom SEMICOLON
                 | ID EQUAL atom SEMICOLON'''
@@ -42,10 +45,12 @@ def p_assignment(p):
         p[0] = p[3]
 
 
+# Definition for declaration of variables with typification
 def p_declaration(p):
     'declaration : type ID SEMICOLON'
 
 
+# Typification of variables
 def p_type(p):
     '''type : INT
             | TEXTO LPAREN NUMBER RPAREN'''

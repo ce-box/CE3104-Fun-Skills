@@ -10,6 +10,8 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
+# Basic operations
+
 def p_expression_plus(p):
     'expression : expression PLUS term'
     p[0] = p[1] + p[3]
@@ -34,6 +36,8 @@ def p_expression_negative(p):
     'expression : MINUS term'
     p[0] = -p[2]
 
+
+# Basic atomic expressions
 
 def p_expression_term(p):
     'expression : term'
@@ -60,3 +64,6 @@ def p_empty(p):
     pass
 
 
+# Error rule for syntax errors
+def p_error(p):
+    print("Syntax error")
