@@ -19,11 +19,17 @@ def main():
     # display_IDE_window()
     data = '''
     begin
-    main{}
-    game1{}
-    game2{}
-    game3{}
-    game4{}
+    main{
+    int caca = 0;
+    }
+    game1{
+    }
+    game2{
+    }
+    game3{
+    }
+    game4{
+    }
     end;
     
     '''

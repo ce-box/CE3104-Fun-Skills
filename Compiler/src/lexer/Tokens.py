@@ -34,29 +34,38 @@ t_COMMA = r','
 
 # Reserved tokens (terminals)
 reserved = {
+    # Conditionals
     'if': 'IF',
     'then': 'THEN',
     'else': 'ELSE',
+    'main': 'MAIN',
+
+     # Loops
     'while': 'WHILE',
     'for': 'FOR',
     'dow': 'DOW',
     'enddo': 'ENDDO',
     'forend': 'FOREND',
     'do': 'DO',
+    'times': 'TIMES',
+    'using': 'USING',
     'fend': 'FEND',
     'begin': 'BEGIN',
     'end': 'END',
+
+    # Types
     'int': 'INT',
     'texto': 'TEXTO',
-    'times': 'TIMES',
-    'using': 'USING',
-    'main': 'MAIN',
+
+    # Reserved functions
     'balloon': 'BALLOON',
     'random': 'RANDOM',
     'telaArana': 'TELAARANA',
     'forAsignWord':'FORASIGNWORD',
     'asignWord':'ASIGNWORD',
     'object': 'OBJECT',
+    'inc' : 'INC',
+    'dec' : 'DEC'
 }
 
 # List of tokens
