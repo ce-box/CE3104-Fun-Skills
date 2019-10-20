@@ -12,6 +12,24 @@
 
 from Compiler.src.syntactic.Operations import *
 
+def p_reservedFunctions(p):
+    'reservedFunctions : functions args SEMICOLON'
+
+
+def p_functions(p):
+    '''functions : BALLOON
+                | INC
+                | DEC
+                | RANDOM
+                | ASSIGNWORD
+                | TELAARANA
+                | OBJECT'''
+
+
+def p_args(p):
+    '''args : LPAREN atom args
+            | COMMA atom args
+            | RPAREN'''
 
 
 def p_assignment(p):

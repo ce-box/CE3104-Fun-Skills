@@ -14,34 +14,39 @@ def p_expression_minus(p):
     p[0] = p[1] - p[3]
 
 
-def p_expression_term(p):
-    'expression : term'
-    p[0] = p[1]
+start = 'structure'
 
+def p_structure(p):
+    '''structure : BEGIN\
+    MAIN LBRACE\
+    statements\
+    RBRACE\
+    GAME LBRACE\
+    statements\
+    RBRACE\
+    GAME LBRACE\
+    statements\
+    RBRACE\
+    GAME LBRACE\
+    statements\
+    RBRACE\
+    GAME LBRACE\
+    statements\
+    RBRACE\
+    END SEMICOLON'''
 
 def p_term_times(p):
     'term : term MULT factor'
     p[0] = p[1] * p[3]
 
+def p_statements(p):
+    '''statements : assignment statements
+                | declaration statements
+                | expression SEMICOLON statements
+                | reservedFunctions statements
+                | empty'''
+# loop
 
-def p_term_div(p):
-    'term : term DIVIDE factor'
-    p[0] = p[1] / p[3]
-
-
-def p_term_factor(p):
-    'term : factor'
-    p[0] = p[1]
-
-
-def p_factor_num(p):
-    'factor : NUMBER'
-    p[0] = p[1]
-
-
-def p_factor_expr(p):
-    'factor : LPAREN expression RPAREN'
-    p[0] = p[2]
 
 
 # Error rule for syntax errors
