@@ -46,5 +46,5 @@ def compile_source_code(source_code_text):
     print(lexical_analysis)
 
 
-if __name__ == '__main__':
-    display_IDE_window()
+#if __name__ == '__main__':
+#    display_IDE_window()
