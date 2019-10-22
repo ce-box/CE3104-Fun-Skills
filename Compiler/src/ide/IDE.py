@@ -13,11 +13,10 @@
 # ------------------------------------------------------------
 
 from tkinter import DISABLED, END, Button
-from Compiler.src.ide.tkwidgets.TkWindow import *
-from Compiler.src.ide.tkwidgets.TkFrame import *
-from Compiler.src.ide.tkwidgets.TkTextScroll import *
-from Compiler.src.lexer.Lexer import analyzeData
-
+from src.ide.TkWidgets.TkWindow import *
+from src.ide.TkWidgets.TkFrame import *
+from src.ide.TkWidgets.TkTextScroll import *
+from src.lexer.Lexer import analyzeData
 
 def display_IDE_window():
     root = create_main_window()
@@ -36,7 +35,7 @@ def display_IDE_window():
 
 
 def create_main_window():
-    root = TkWindow(1100, 650, "Compilador sin nombre")
+    root = TkWindow(1100, 650, "FUN SKILLS - PLAYGROUND")
     root.set_menu_bar(['File'], [['Open File', 'Save File', 'Exit']], [['onExit', 'onExit', 'onExit']])
     return root
 
@@ -45,3 +44,7 @@ def compile_source_code(source_code_text):
     data = source_code_text.scroll_text.get("1.0", END)
     lexical_analysis = analyzeData(data)
     print(lexical_analysis)
+
+
+if __name__ == '__main__':
+    display_IDE_window()
