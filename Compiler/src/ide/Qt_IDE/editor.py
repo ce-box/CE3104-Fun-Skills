@@ -1,85 +1,94 @@
-# ------------------------------------------------------------
-# File: editor.py
-# Developed by: Esteban Alvarado
-# Project: FunSkills-[Compiler]
-# version: 1.0
-# last edited by: Esteban Alvarado:: 22/10/19 18.00
-#
-# Description: This file defines the Ctags_parser class.
-#              An object from this class will run ctags
-#              build an sqlite database. You've seen
-#              something fairly similar in A useful
-#              database chapter.
-#
-# TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
-# ------------------------------------------------------------
-
-import sys
-from PyQt5.QtWidgets import *
+import functools
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import PyQt5.Qsci as Qsci
+from PyQt5.Qsci import *
+import src.ide.Qt_IDE.globals
+from src.ide.Qt_IDE.lexer import MyLexer
+
+'''================================================================================'''
+'''|                                  EDITOR                                      |'''
+'''================================================================================'''
 
 
-class CustomMainWindow(QMainWindow):
-    def __init__(self):
-        super(CustomMainWindow, self).__init__()
+class ScintillaEditor(QsciScintilla):
 
-        # Window setup
-        # --------------
+    def __init__(self, text, show_symbol_handle):
+        super(ScintillaEditor, self).__init__()
+        self.__show_symbol_handle = show_symbol_handle
 
-        # 1. Define the geometry of the main window
-        self.setGeometry(300, 300, 800, 400)
-        self.setWindowTitle("FunSkills - Playground")
+        # -------------------------------- #
+        #     QScintilla editor setup      #
+        # -------------------------------- #
 
-        # 2. Create frame and layout
-        self.__frm = QFrame(self)
-        self.__frm.setStyleSheet("QWidget { background-color: #262520 }")
-        self.__lyt = QVBoxLayout()
-        self.__frm.setLayout(self.__lyt)
-        self.setCentralWidget(self.__frm)
-        self.__myFont = QFont()
-        self.__myFont.setPointSize(14)
+        self.setText(text)
+        self.setLexer(None)  # We install lexer later
+        self.setUtf8(True)  # Set encoding to UTF-8
 
-        # 3. Place a button
-        self.__btn = QPushButton("Run")
-        self.__btn.setFixedWidth(50)
-        self.__btn.setFixedHeight(50)
-        self.__btn.clicked.connect(self.__btn_action)
-        self.__btn.setFont(self.__myFont)
-        self.__lyt.addWidget(self.__btn)
+        # 1. Text wrapping
+        # -----------------
+        self.setWrapMode(QsciScintilla.WrapWord)
+        self.setWrapVisualFlags(QsciScintilla.WrapFlagByText)
+        self.setWrapIndentMode(QsciScintilla.WrapIndentIndented)
 
-        # QScintilla editor setup
-        # ------------------------
+        # 2. End-of-line mode
+        # --------------------
+        self.setEolMode(QsciScintilla.EolWindows)
+        self.setEolVisibility(False)
 
-        # ! Make instance of QsciScintilla class!
-        self.__editor = Qsci.QsciScintilla()
-        self.__editor.setText("Hello\n")
-        self.__editor.append("world")
-        self.__editor.setLexer(None)
-        self.__editor.setUtf8(True)  # Set encoding to UTF-8
-        self.__editor.setFont(self.__myFont)  # Will be overridden by lexer!
+        # 3. Indentation
+        # ---------------
+        self.setIndentationsUseTabs(False)
+        self.setTabWidth(4)
+        self.setIndentationGuides(True)
+        self.setTabIndents(True)
+        self.setAutoIndent(True)
 
-        # ! Add editor to layout !
-        self.__lyt.addWidget(self.__editor)
+        # 4. Caret
+        # ---------
+        self.setCaretForegroundColor(QColor("#ff0000ff"))
+        self.setCaretLineVisible(True)
+        self.setCaretLineBackgroundColor(QColor("#1f0000ff"))
+        self.setCaretWidth(2)
 
-        self.show()
+        # 5. Margins
+        # -----------
+        self.setMarginType(0, QsciScintilla.NumberMargin)
+        self.setMarginWidth(0, "00000000")
+        self.setMarginsForegroundColor(QColor("#ff888888"))
+
+        # -------------------------------- #
+        #          Install lexer           #
+        # -------------------------------- #
+        self.__lexer = MyLexer(self)
+        self.setLexer(self.__lexer)
+
+        # -------------------------------- #
+        #  Connect function to indicators  #
+        # -------------------------------- #
+        self.indicatorClicked.connect(self.indicator_clicked)
 
     ''''''
 
-    def __btn_action(self):
-        print("Run btn pressed")
+    def indicator_clicked(self, line, index, keys):
+        QTimer.singleShot(100, functools.partial(
+            self.indicator_clicked_delayed, line, index, keys))
+
+    ''''''
+
+    def indicator_clicked_delayed(self, line, index, keys):
+        pos = self.positionFromLineIndex(line, index)
+        start = self.SendScintilla(QsciScintilla.SCI_INDICATORSTART, 0, pos)
+        end = self.SendScintilla(QsciScintilla.SCI_INDICATOREND, 0, pos)
+        text = self.text()[start:end]
+        print("indicator '{}' clicked in line '{}', index '{}'".format(text, line, index))
+
+        relPath, line = self.__lexer.parser.where_to_jump(text)
+        linefocus = int(line) - 1
+        print("jump to file: " + relPath)
+        relPath = globals.projectFolderPath + '\\' + relPath
+        self.__show_symbol_handle(relPath, linefocus=linefocus, colfocus=0)
 
     ''''''
 
 
-''' End Class '''
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    QApplication.setStyle(QStyleFactory.create('Fusion'))
-    myGUI = CustomMainWindow()
-
-    sys.exit(app.exec_())
-
-''''''
+'''=== end class ==='''

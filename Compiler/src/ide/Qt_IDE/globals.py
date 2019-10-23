@@ -13,8 +13,8 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-project_folder_path = "/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores"
-project_main_file = project_folder_path + "src/main.fsk"
+projectFolderPath = "/home/esteban/Arduino/MyProjects/"
+projectMainFile = projectFolderPath + "8_QUEENS_PROBLEM/8_QUEENS_PROBLEM.ino"
 
 #--------------------------
 # NOTE: *.fsk will be the
