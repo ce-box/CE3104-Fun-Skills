@@ -13,8 +13,8 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-projectFolderPath = "/home/esteban/Arduino/MyProjects/"
-projectMainFile = projectFolderPath + "8_QUEENS_PROBLEM/8_QUEENS_PROBLEM.ino"
+projectFolderPath = "/home/esteban/Documentos/PROGRAMACION/C++/Codecademy_C++/"
+projectMainFile = projectFolderPath + "sketch.fsk"
 
 #--------------------------
 # NOTE: *.fsk will be the

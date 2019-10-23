@@ -167,6 +167,8 @@ class MyLexer(QsciLexerCustom):
         # 4.1 Check if multiline comment
         multiline_comm_flag = False
         singleline_comm_flag = False
+        first_slash_flag = False
+
         arroba = False
         editor = self.parent()
         if start > 0:
@@ -192,12 +194,17 @@ class MyLexer(QsciLexerCustom):
 
             ###
             else:
+
+                # Brackets
                 if token[0] in ["(", ")", "{", "}", "[", "]"]:
                     # blue <b>
                     self.setStyling(token[1], 13)
 
+                # Boolean tags
+                elif token[0] in ["true","false"]:
+                    self.setStyling(token[1], 15)
 
-
+                # Data Types
                 elif token[0] in ["signed", "unsigned", "char", "short", "int",
                                   "long", "bool", "float", "double", "void",
                                   "byte", "word", "dword",
@@ -208,26 +215,35 @@ class MyLexer(QsciLexerCustom):
                     # cyan
                     self.setStyling(token[1], 18)
 
+                # Numbers
                 elif token[0].isdigit():
-                    #red <r>
+                    #blue
                     self.setStyling(token[1], 12)
-                    number = True
 
-                elif token[0] in ["#", "include"]:
+                # constants
+                elif token[0] in ["#", "include","define"]:
                     # red
                     self.setStyling(token[1], 2)
 
+                # @ special char
                 elif token[0] == "@":
                     # orange
                     self.setStyling(token[1], 4)
                     arroba = True
+
+                # Multiline Comment
+
+                elif token[0] == "$":
+                    # lightgreen
+                    singleline_comm_flag = True
+                    self.setStyling(token[1], 8)
 
                 elif token[0] == "/*":
                     # lightgreen
                     multiline_comm_flag = True
                     self.setStyling(token[1], 8)
 
-                elif token[0] in ["+","-","%","/","<",">","=","*","!"]:
+                elif token[0] in ["+","-","%","<",">","=","*","!","/"]:
                     self.setStyling(token[1], 2)
 
                 else:
