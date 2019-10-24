@@ -2,7 +2,7 @@ import functools
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.Qsci import *
-import src.ide.Qt_IDE.globals
+import src.ide.Qt_IDE.globals as globals
 from src.ide.Qt_IDE.lexer import MyLexer
 
 '''================================================================================'''
@@ -45,7 +45,7 @@ class ScintillaEditor(QsciScintilla):
 
         # 4. Caret
         # ---------
-        self.setCaretForegroundColor(QColor("#ff0000ff"))
+        self.setCaretForegroundColor(QColor("#fffffff"))
         self.setCaretLineVisible(True)
         self.setCaretLineBackgroundColor(QColor("#1f0000ff"))
         self.setCaretWidth(2)
@@ -54,7 +54,7 @@ class ScintillaEditor(QsciScintilla):
         # -----------
         self.setMarginType(0, QsciScintilla.NumberMargin)
         self.setMarginWidth(0, "00000000")
-        self.setMarginsForegroundColor(QColor("#ff888888"))
+        self.setMarginsForegroundColor(QColor("#293352"))
 
         # -------------------------------- #
         #          Install lexer           #

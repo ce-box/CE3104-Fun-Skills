@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from src.ide.Qt_IDE.editor import ScintillaEditor
 import ntpath
 import src.ide.Qt_IDE.globals as globals
@@ -25,6 +26,8 @@ class TabMaster(QTabWidget):
 
         self.addTab(newtab, newtabName)
         self.setCurrentWidget(newtab)
+
+        self.setStyleSheet("QWidget { background-color: #e4e8f7 ; color: #c72cb2}")
 
         newtab.setCursorPosition(0, 0)
         newtab.ensureCursorVisible()
@@ -81,28 +84,54 @@ class CustomMainWindow(QMainWindow):
         # 1. Define the geometry of the main window
         # ------------------------------------------
         self.setGeometry(100, 100, 1200, 800)
-        self.setWindowTitle("QScintilla Test")
+        self.setWindowTitle("FunSkills - Playground")
 
         # 2. Create frame and layout
         # ---------------------------
         self.__frm = QFrame(self)
-        self.__frm.setStyleSheet("QWidget { background-color: #ffeaeaea }")
+        self.__frm.setStyleSheet("QWidget { background-color: #000712 }")
         self.__lyt = QVBoxLayout()
+        self.__btn_lyt = QGridLayout()
         self.__frm.setLayout(self.__lyt)
         self.setCentralWidget(self.__frm)
         self.__myFont = QFont()
         self.__myFont.setPointSize(14)
 
-        # 3. Place a button
+        # 3. Place run button
         # ------------------
-        self.__btn = QPushButton("Qsci")
-        self.__btn.setFixedWidth(50)
-        self.__btn.setFixedHeight(50)
-        self.__btn.clicked.connect(self.__btn_action)
-        self.__btn.setFont(self.__myFont)
-        self.__lyt.addWidget(self.__btn)
+        self.__run_btn = QPushButton("RUN")
+        self.__run_btn.setFixedWidth(50)
+        self.__run_btn.setFixedHeight(50)
+        self.__run_btn.clicked.connect(self.__run_btn_action)
+        self.__run_btn.setFont(self.__myFont)
+        self.__run_btn.setStyleSheet("QWidget { background-color: #b4b8bf }")
+        self.__btn_lyt.addWidget(self.__run_btn,0,0,1,1,alignment=Qt.AlignLeft)
 
-        # 4. Insert the TabMaster
+        # 4. Place open file button
+        # ------------------
+        self.__open_btn = QPushButton("OPEN")
+        self.__open_btn.setFixedWidth(50)
+        self.__open_btn.setFixedHeight(50)
+        self.__open_btn.clicked.connect(self.__open_btn_action)
+        self.__open_btn.setFont(self.__myFont)
+        self.__open_btn.setStyleSheet("QWidget { background-color: #b4b8bf }")
+        self.__btn_lyt.addWidget(self.__open_btn,0,1,1,1,alignment=Qt.AlignLeft)
+
+        # 5. Place save file button
+        # ------------------
+        self.__save_btn = QPushButton("SAVE")
+        self.__save_btn.setFixedWidth(50)
+        self.__save_btn.setFixedHeight(50)
+        self.__save_btn.clicked.connect(self.__save_btn_action)
+        self.__save_btn.setFont(self.__myFont)
+        self.__save_btn.setStyleSheet("QWidget { background-color: #b4b8bf }")
+        self.__btn_lyt.addWidget(self.__save_btn,0,2,1,1,alignment=Qt.AlignLeft)
+
+        self.__lyt.addLayout(self.__btn_lyt)
+
+
+
+        # 6. Insert the TabMaster
         # ------------------------
         self.__tabMaster = TabMaster()
         self.__tabMaster.show_file(globals.projectMainFile)
@@ -111,9 +140,14 @@ class CustomMainWindow(QMainWindow):
 
     ''''''
 
-    def __btn_action(self):
-        print("Hello World")
+    def __run_btn_action(self):
+        print("Run File")
 
+    def __open_btn_action(self):
+        print("Open File")
+
+    def __save_btn_action(self):
+        print("Save File")
     ''''''
 
 '''=== end class ==='''

@@ -1,8 +1,23 @@
+# ------------------------------------------------------------
+# File: lexer.py
+# Developed by: Esteban Alvarado Vargas
+# Project: FunSkills-Compiler
+# version: 2.2
+#
+# Description: Token recognizer for a simple expression evaluator for
+# numbers and +,-,*,/, given them an specific color (High Light)
+#
+# TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+# ------------------------------------------------------------
+
 from PyQt5.QtGui import *
 from PyQt5.Qsci import *
 import re
 from src.ide.Qt_IDE.ctags_parser import Ctags_parser
 
+# @brief : Lexical analyzer that allows you to recognize keywords,
+#          numbers and symbols to highlight them with colors that identify them
+# @extends QsciLexerCustom
 class MyLexer(QsciLexerCustom):
 
     def __init__(self, parent):
@@ -10,14 +25,14 @@ class MyLexer(QsciLexerCustom):
 
         # Default text settings
         # ----------------------
-        self.setDefaultColor(QColor("#ff000000"))
-        self.setDefaultPaper(QColor("#ffffffff"))
+        self.setDefaultColor(QColor("#0e0f12"))
+        self.setDefaultPaper(QColor("#0e0f12"))
         self.setDefaultFont(QFont("Consolas", 14))
 
         # Initialize colors per style
         # ----------------------------
-        self.setColor(QColor("#ff" + "000000"), 0)  # black
-        self.setColor(QColor("#ff" + "000000"), 1)  # black <b>
+        self.setColor(QColor("#ff" + "ffffff"), 0)  # white
+        self.setColor(QColor("#ff" + "ffffff"), 1)  # white <b>
         self.setColor(QColor("#ff" + "d60404"), 2)  # red
         self.setColor(QColor("#ff" + "d60404"), 3)  # red <b>
         self.setColor(QColor("#ff" + "ff7f00"), 4)  # orange
@@ -39,26 +54,8 @@ class MyLexer(QsciLexerCustom):
 
         # Initialize paper colors per style
         # ----------------------------------
-        self.setPaper(QColor("#ffffffff"), 0)  # white
-        self.setPaper(QColor("#ffffffff"), 1)  # white
-        self.setPaper(QColor("#ffffffff"), 2)  # white
-        self.setPaper(QColor("#ffffffff"), 3)  # white
-        self.setPaper(QColor("#ffffffff"), 4)  # white
-        self.setPaper(QColor("#ffffffff"), 5)  # white
-        self.setPaper(QColor("#ffffffff"), 6)  # white
-        self.setPaper(QColor("#ffffffff"), 7)  # white
-        self.setPaper(QColor("#ffffffff"), 8)  # white
-        self.setPaper(QColor("#ffffffff"), 9)  # white
-        self.setPaper(QColor("#ffffffff"), 10)  # white
-        self.setPaper(QColor("#ffffffff"), 11)  # white
-        self.setPaper(QColor("#ffffffff"), 12)  # white
-        self.setPaper(QColor("#ffffffff"), 13)  # white
-        self.setPaper(QColor("#ffffffff"), 14)  # white
-        self.setPaper(QColor("#ffffffff"), 15)  # white
-        self.setPaper(QColor("#ffffffff"), 16)  # white
-        self.setPaper(QColor("#ffffffff"), 17)  # white
-        self.setPaper(QColor("#ffffffff"), 18)  # white
-        self.setPaper(QColor("#ffffffff"), 19)  # white
+        for x in range(0,20):
+            self.setPaper(QColor("#0e0f12"), x)  # white
 
         # Initialize fonts per style
         # ---------------------------
@@ -101,9 +98,9 @@ class MyLexer(QsciLexerCustom):
 
     def description(self, style):
         if style == 0:
-            return "black"
+            return "white"
         elif style == 1:
-            return "black <b>"
+            return "white <b>"
         elif style == 2:
             return "red"
         elif style == 3:
@@ -211,7 +208,7 @@ class MyLexer(QsciLexerCustom):
                                   "int8_t", "uint8_t", "int16_t", "uint16_t",
                                   "int32_t", "uint32_t", "int64_t", "uint64_t"
                                   "int8", "uint8", "int16", "uint16",
-                                  "int32", "uint32", "int64", "uint64"]:
+                                  "int32", "uint32", "int64", "uint64","if","while","do while","try"]:
                     # cyan
                     self.setStyling(token[1], 18)
 
