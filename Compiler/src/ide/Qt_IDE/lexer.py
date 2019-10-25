@@ -25,14 +25,14 @@ class MyLexer(QsciLexerCustom):
 
         # Default text settings
         # ----------------------
-        self.setDefaultColor(QColor("#0e0f12"))
-        self.setDefaultPaper(QColor("#0e0f12"))
+        self.setDefaultColor(QColor("#ffffff"))
+        self.setDefaultPaper(QColor("#ffffff"))
         self.setDefaultFont(QFont("Consolas", 14))
 
         # Initialize colors per style
         # ----------------------------
-        self.setColor(QColor("#ff" + "ffffff"), 0)  # white
-        self.setColor(QColor("#ff" + "ffffff"), 1)  # white <b>
+        self.setColor(QColor("#ff" + "000000"), 0)  # black
+        self.setColor(QColor("#ff" + "000000"), 1)  # black <b>
         self.setColor(QColor("#ff" + "d60404"), 2)  # red
         self.setColor(QColor("#ff" + "d60404"), 3)  # red <b>
         self.setColor(QColor("#ff" + "ff7f00"), 4)  # orange
@@ -55,7 +55,7 @@ class MyLexer(QsciLexerCustom):
         # Initialize paper colors per style
         # ----------------------------------
         for x in range(0,20):
-            self.setPaper(QColor("#0e0f12"), x)  # white
+            self.setPaper(QColor("#ffffff"), x)  # white
 
         # Initialize fonts per style
         # ---------------------------
@@ -202,13 +202,15 @@ class MyLexer(QsciLexerCustom):
                     self.setStyling(token[1], 15)
 
                 # Data Types
-                elif token[0] in ["signed", "unsigned", "char", "short", "int",
-                                  "long", "bool", "float", "double", "void",
-                                  "byte", "word", "dword",
-                                  "int8_t", "uint8_t", "int16_t", "uint16_t",
-                                  "int32_t", "uint32_t", "int64_t", "uint64_t"
-                                  "int8", "uint8", "int16", "uint16",
-                                  "int32", "uint32", "int64", "uint64","if","while","do while","try"]:
+                elif token[0] in ["int", "text"]:
+                    # cyan
+                    self.setStyling(token[1], 18)
+
+                # Reserved Functions, loops, Conditionals
+                elif token[0] in ["if","then","else","main","while","for","dow",
+                                  "enddo","forend","do","times","using","fend",
+                                  "begin","end",'balloon',"random","telaarana",
+                                  "forassignword","assignword","object","inc","dec"]:
                     # cyan
                     self.setStyling(token[1], 18)
 

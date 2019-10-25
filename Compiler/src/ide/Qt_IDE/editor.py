@@ -43,9 +43,9 @@ class ScintillaEditor(QsciScintilla):
         self.setTabIndents(True)
         self.setAutoIndent(True)
 
-        # 4. Caret
+        # 4. Caret | Cursor ... this one -> |
         # ---------
-        self.setCaretForegroundColor(QColor("#fffffff"))
+        self.setCaretForegroundColor(QColor("#000000"))
         self.setCaretLineVisible(True)
         self.setCaretLineBackgroundColor(QColor("#1f0000ff"))
         self.setCaretWidth(2)
@@ -53,7 +53,8 @@ class ScintillaEditor(QsciScintilla):
         # 5. Margins
         # -----------
         self.setMarginType(0, QsciScintilla.NumberMargin)
-        self.setMarginWidth(0, "00000000")
+        self.setMarginWidth(0, 35)
+        self.setColor(QColor("#293382"))
         self.setMarginsForegroundColor(QColor("#293352"))
 
         # -------------------------------- #
