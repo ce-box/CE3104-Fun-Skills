@@ -1,14 +1,16 @@
-Object[][] array_Words={{"Sahid",1},{"edgardo",2},{"esteban",3},{"jessica",4},{"maria",5},{"jose",6},{"erick",7},{"mauro",8},{"andres",9}};
-int web_X=100;
-int web_Y=100;
-String[][][] asign_Word;
+Object[][] game_Dic={{"Sahid",1},{"edgardo",2},{"esteban",3},{"jessica",4},{"maria",5},{"jose",6},{"erick",7},{"mauro",8},{"andres",9},
+{"Sahid",1},{"edgardo",2},{"esteban",3},{"jessica",4},{"maria",5},{"jose",6},{"erick",7},{"mauro",8},{"andres",9},
+{"Sahid",1},{"edgardo",2},{"esteban",3},{"jessica",4},{"maria",5},{"jose",6},{"erick",7}};
+int player_X=750;
+int player_Y=275;
+ArrayList<String> words_Found = new ArrayList<String>();
+int[][] vertexs_Array;
+Object[][] word_Web = new Object[5][5];
 
 
 
 void setup() {
-  size(1000,800);  
-  textSize(26);
-  textAlign(CENTER);
+  size(1000,800); 
   background(255);
   stroke(0);
   strokeWeight(2);
@@ -16,14 +18,38 @@ void setup() {
 }
 
 void draw() {
-  fill(0);
-  text("words found",700,100);
   fill(255);
   draw_Mat();
+  draw_Player();
   pushMatrix(); 
-  web(3,3);  
+  web(5,5);  
   smooth();
   popMatrix();
+  found_Words();
+  for_Asign_Word(5,5);
+  word_Player_Collision(player_X,player_Y);
+}
+
+void found_Words(){
+  stroke(0);
+  rect(0, 500, 400, 300, 7);
+  int x=70; int y=540;
+  for (int i=0;i<words_Found.size()-1;i++){
+    if (x>330){
+      y+=40;
+      x=60;}
+    strokeWeight(1);
+    textSize(16);
+    text(words_Found.get(i).toString(),x,y);      
+    x+=(words_Found.get(i).toString().length()*15)+10;
+  }
+}
+
+void draw_Player(){
+  fill(#b5cd38);
+  noStroke();
+  ellipse(player_X,player_Y,15,15);
+  stroke(0);
 }
 
 void columns(int n){   
@@ -66,48 +92,42 @@ void web(int npoints, int n_Columns) {
 }
 
 
-void mov_Square(String pos){
-  if (pos=="UP"){
-    System.out.println("UP");
-    fill(0);
-    ellipse(725,323,50,50);}/**
-  else if (key==DOWN){
-    mov_Square("UP");
-    mov_Web("UP");}
-  if (key==RIGHT){
-    mov_Square("RIGHT");
-    mov_Web("RIGHT");}
-  else if (key==LEFT){
-    mov_Square("LEFT");
-    mov_Web("LEFT");}**/
+void keyPressed(){
+  switch(keyCode){
+    case(UP):
+    println("UP");
+    player_Y-=20;
+    case(DOWN):
+    player_Y+=20;
+    case(RIGHT):
+    player_X+=20;
+    case(LEFT):
+    player_X-=20;
+  }
 }
 
-public void keyPressed(){
-  if (key==CODED){
-    println(key);
-    if (key==UP){
-      mov_Square("UP");
-      //mov_Web("UP");
+void for_Asign_Word(int lines, int columns){
+  int index=0;
+  for (int i=0; i<lines; i++){
+    for (int j=0; j<columns;j++){ 
+      word_Web[i][j]=game_Dic[index];
+      index++;
+      println(index);
+      println(word_Web[i][j]);
     }
-    else if (key==DOWN){
-      mov_Square("UP");
-      //mov_Web("UP");
-   }
-    if (key==RIGHT){
-      mov_Square("RIGHT");
-      //mov_Web("RIGHT");
-    }
-    else if (key==LEFT){
-      mov_Square("LEFT");
-      //mov_Web("LEFT");
+  }  
+}
+
+
+void word_Player_Collision(int x, int y){  
+  for (int i=0; i<vertexs_Array.length;i++){
+    if(x==vertexs_Array[i][0] && y==vertexs_Array[i][1]){
+      words_Found.add(word_Web[i].toString());
     }
   }
 }
 
 void draw_Mat(){
-  //rect(X;Y;W;H)  
-  rect(625,325,250,100);//HORIZONTAL
-  rect(700,250,100,250);
-  line(625,325,825,325);
-  line(625,425,825,425);
+  line(750,150,750,400);
+  line(625,275,875,275);
 }
