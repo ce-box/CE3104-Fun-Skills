@@ -13,44 +13,56 @@
 import java.util.Map;
 
 // Color sequences 
-HashMap<Integer,String> color_dict = new HashMap<Integer,String>();
-ArrayList<Integer> color_seq = new ArrayList<Integer>();
+HashMap<Integer,String> colorDict = new HashMap<Integer,String>();
+ArrayList<Integer> colorSeq = new ArrayList<Integer>();
 ArrayList<Flag> flagList = new ArrayList<Flag>();
 
 // According to its status is the screen that runs
 // 0: Initial Screen
 // 1: Game Screen
 // 2: Game-over Screen
-int game_Screen = 0;
+int gameScreen = 0;
 
 int color_amt = 2;
 
-// Flags Positions constants
+// Quantization of attempts
+int attempts = 0;
+int successes = 0;
 
+
+// 
+PFont fontArialBold;
+
+
+
+void guiSetup(){
+
+  fontArialBold = createFont("Arial Bold", 16);
+}
 
 void setup() {
-  size(764,500);
+  size(800,600);
+
+  guiSetup();
   
   // First the dictionary is initialized, 
   // then the flags are instantiated.
-  init_dict();
+  initDict();
   initList();
+ 
+  generateRandomSequence();
+  decodeSequence();
 
-  for(int i = 0; i < 5; i++){
-    generate_random_sequence();
-    decode_sequence();
-  }
-    
 }
 
 
 void draw(){
     // Game Screen Selector
-  if(game_Screen == 0){
-    init_Screen();
-  } else if(game_Screen == 1){
-    game_Screen();
-  } else if(game_Screen == 2){
+  if(gameScreen == 0){
+    initScreen();
+  } else if(gameScreen == 1){
+    gameScreen();
+  } else if(gameScreen == 2){
     //game_Over_Screen();
   }
 
@@ -60,14 +72,21 @@ void draw(){
  *                    SCREEN CONTENTS
  * -----------------------------------------------------*/
 
-void init_Screen(){
+
+void initScreen(){
   background(0);
   textAlign(CENTER);
   text("Click to Start", height/2, width/2);
 }
 
-void game_Screen(){
+
+void gameScreen(){
   background(255);
+
+  textFont(fontArialBold);
+  fill(0);
+  text("Success:"+successes,50,20);
+  text("Attemps:"+attempts,200,20);
   drawFlags();
 }
 
@@ -79,23 +98,46 @@ void game_Screen(){
  * @brief - For this example the entry is the mouse. This function must 
  *  be adapted to the kinect inputs
  */
-public void mousePressed(){
-  if(game_Screen == 0){
-    start_Game();
+void mousePressed(){
+
+  //  
+  if(gameScreen == 0){
+    startGame();
   }
 
+  /* Check if the cursor is on a flag, then verify that the flag 
+   * is the one you are looking for */
   for(Flag flag: flagList){
-    if(flag.flagOver){
-      println("You pressed flag color: "+ flag.getColor());
+    if(flag.flagOver){ 
+      if(checkFlag(flag)){
+        println("Correct!");
+        colorSeq.remove(0);
+        successes++;
+      } 
+      else{
+        println("Bad Answer!");
+        attempts++;
+      }
     }
   }
 }
 
 /** 
+ * @brief - checks if the color of the flag matches the 
+ *          first of the sequence
+ */ 
+boolean checkFlag(Flag flag){
+  String currentColor = colorDict.get(colorSeq.get(0));
+  String selectedColor = flag.getColor();
+  return currentColor == selectedColor;
+}
+
+
+/** 
  * @brief - Sets the necessary variables to start the game
  */ 
-void start_Game(){
-  game_Screen = 1;
+void startGame(){
+  gameScreen = 1;
 }
 
 
@@ -119,12 +161,12 @@ void drawFlags(){
 /**
  * @brief - Enter the colors to the dictionary
  */
-void init_dict(){
-  color_dict.put(0,"red");
-  color_dict.put(4,"orange");
-  color_dict.put(3,"yellow");
-  color_dict.put(1,"green");
-  color_dict.put(2,"blue");
+void initDict(){
+  colorDict.put(0,"red");
+  colorDict.put(4,"orange");
+  colorDict.put(3,"yellow");
+  colorDict.put(1,"green");
+  colorDict.put(2,"blue");
 }
 
 /** 
@@ -134,7 +176,7 @@ void initList(){
   Flag flag;
   int posX = 0;
   for(int x = 0; x < 5; x++){
-    String flagColor = color_dict.get(x);
+    String flagColor = colorDict.get(x);
     flag = new Flag(posX,height/2 - 50,flagColor);
     flagList.add(flag);
     posX += 155;
@@ -145,11 +187,11 @@ void initList(){
  * @brief -Function that randomly generates an 
  *         incremental color pattern
  */
-void generate_random_sequence(){
+void generateRandomSequence(){
 
   for(int cnt = 0; cnt<color_amt;cnt++){
-    int r_num = int(random(0, 4));; // Btw 0-4
-    color_seq.add(r_num);
+    int r_num = int(random(0, 4)); // Btw 0-4
+    colorSeq.add(r_num);
   }
 }
 
@@ -157,9 +199,9 @@ void generate_random_sequence(){
  * @brief -This function decodes the random number 
  *         pattern list generated
  */
-void decode_sequence(){
-  for(int x:color_seq){
-    println("color: ",color_dict.get(x));
+void decodeSequence(){
+  for(int x:colorSeq){
+    println("color: ",colorDict.get(x));
   }
   println("---");
 }
