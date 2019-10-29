@@ -50,19 +50,30 @@ def p_args(p):
 def p_assignment(p):
     '''assignment : type ID EQUAL atom SEMICOLON
                 | ID EQUAL atom SEMICOLON'''
+
+    ID = None
+    value = None
+
     if len(p) == 6:
-        variables[p[2]] = p[4]
+        ID = p[2]
+        value = p[4]
     elif len(p) == 5:
-        if p[1] in variables:
-            variables[p[1]] = p[3]
-        else:
-            print("Syntactic Error: Variable %s has not been declared" % p[1])
+        ID = p[1]
+        value = p[3]
+
+    if len(ID) <= 10:
+        variables[ID] = value
+    else:
+        print("Syntactic Error: Variable %s identifier is too long." % ID)
 
 
 # Definition for declaration of variables with typification
 def p_declaration(p):
     'declaration : type ID SEMICOLON'
-    variables[p[2]] = None
+    if len(p[2]) <= 10:
+        variables[p[2]] = None
+    else:
+        print("Syntactic Error: Variable %s identifier is too long." % p[2])
 
 
 # Typification of variables
