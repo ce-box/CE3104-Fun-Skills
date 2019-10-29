@@ -10,6 +10,8 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
+variables = {}
+
 
 # Basic operations
 def p_expression_plus(p):
@@ -52,6 +54,11 @@ def p_term_factor(p):
 def p_factor_num(p):
     'factor : NUMBER'
     p[0] = p[1]
+
+
+def p_factor_ID(p):
+    'factor : ID'
+    p[0] = variables[p[1]]
 
 
 def p_factor_expr(p):

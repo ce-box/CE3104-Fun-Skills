@@ -51,15 +51,15 @@ def p_assignment(p):
     '''assignment : type ID EQUAL atom SEMICOLON
                 | ID EQUAL atom SEMICOLON'''
     if len(p) == 6:
-        p[0] = p[4]
-
+        variables[p[2]] = p[4]
     elif len(p) == 5:
-        p[0] = p[3]
+        variables[p[1]] = p[3]
 
 
 # Definition for declaration of variables with typification
 def p_declaration(p):
     'declaration : type ID SEMICOLON'
+    variables[p[2]] = None
 
 
 # Typification of variables
