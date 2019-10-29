@@ -22,8 +22,7 @@ def main():
     main{
     }
     game1{
-    int a = 7;
-    a = 7 + a;
+    a = 7;
     }
     game2{
     }
