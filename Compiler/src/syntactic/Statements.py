@@ -51,15 +51,18 @@ def p_assignment(p):
     '''assignment : type ID EQUAL atom SEMICOLON
                 | ID EQUAL atom SEMICOLON'''
     if len(p) == 6:
-        p[0] = p[4]
-
+        variables[p[2]] = p[4]
     elif len(p) == 5:
-        p[0] = p[3]
+        if p[1] in variables:
+            variables[p[1]] = p[3]
+        else:
+            print("Syntactic Error: Variable %s has not been declared" % p[1])
 
 
 # Definition for declaration of variables with typification
 def p_declaration(p):
     'declaration : type ID SEMICOLON'
+    variables[p[2]] = None
 
 
 # Typification of variables
@@ -71,7 +74,6 @@ def p_type(p):
 
 def p_atom(p):
     '''atom : STRING
-            | ID
             | expression'''
     p[0] = p[1]
 

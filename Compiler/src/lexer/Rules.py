@@ -10,7 +10,7 @@
 # ------------------------------------------------------------
 from ply.lex import TOKEN
 
-from src.lexer.Tokens import *
+from Compiler.src.lexer.Tokens import *
 
 
 def t_GAME(t):
