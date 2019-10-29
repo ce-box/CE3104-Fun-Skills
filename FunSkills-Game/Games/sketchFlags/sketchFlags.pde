@@ -1,9 +1,9 @@
 /* ------------------------------------------------------------
  * File: sketchFlags.pde
- * Developed by: María José Zamora Vargas
+ * Developed by: María José Zamora - Esteban Alvarado
  * Project: FunSkills - [Game]
  * version: 2.0
- * last edited: Esteban Alvarado:: 11.30
+ * last edited: Esteban Alvarado:: 15.30
  * 
  * Description: Flags Game Basic GUI
  * 
@@ -23,14 +23,16 @@ ArrayList<Flag> flagList = new ArrayList<Flag>();
 // 2: Game-over Screen
 int gameScreen = 0;
 
-int color_amt = 2;
+int color_amt = 4;
 
 // Quantization of attempts
 int attempts = 0;
 int successes = 0;
+int score = 0;
 
 
-// 
+// GUI Variables
+PatternBox box;
 PFont fontArialBold;
 
 
@@ -38,21 +40,22 @@ PFont fontArialBold;
 void guiSetup(){
 
   fontArialBold = createFont("Arial Bold", 16);
+  box = new PatternBox(250,100);
+  
 }
 
 void setup() {
   size(800,600);
 
   guiSetup();
-  
+
   // First the dictionary is initialized, 
   // then the flags are instantiated.
   initDict();
   initList();
- 
+
   generateRandomSequence();
   decodeSequence();
-
 }
 
 
@@ -63,7 +66,7 @@ void draw(){
   } else if(gameScreen == 1){
     gameScreen();
   } else if(gameScreen == 2){
-    //game_Over_Screen();
+    gameOverScreen();
   }
 
 }
@@ -77,6 +80,7 @@ void initScreen(){
   background(0);
   textAlign(CENTER);
   text("Click to Start", height/2, width/2);
+ 
 }
 
 
@@ -87,7 +91,28 @@ void gameScreen(){
   fill(0);
   text("Success:"+successes,50,20);
   text("Attemps:"+attempts,200,20);
+  text("Score:"+attempts,550,20);
+
+  box.setPattern(colorSeq);
+  box.drawBox();
+  
   drawFlags();
+
+  if(colorSeq.size() == 0){
+    gameScreen = 2;
+  }
+}
+
+void gameOverScreen() {
+  background(44, 62, 80);
+  textAlign(CENTER);
+  fill(236, 240, 241);
+  textSize(12);
+  text("Your Score", width/2, height/2 - 120);
+  textSize(130);
+  text(score, width/2, height/2);
+  textSize(15);
+  text("Click to Restart", width/2, height-30);
 }
 
 /* ------------------------------------------------------
@@ -105,21 +130,27 @@ void mousePressed(){
     startGame();
   }
 
-  /* Check if the cursor is on a flag, then verify that the flag 
-   * is the one you are looking for */
-  for(Flag flag: flagList){
-    if(flag.flagOver){ 
-      if(checkFlag(flag)){
-        println("Correct!");
-        colorSeq.remove(0);
-        successes++;
-      } 
-      else{
-        println("Bad Answer!");
-        attempts++;
-      }
-    }
+  if(gameScreen == 1){
+    validateFlags();
   }
+
+  if(gameScreen == 2){
+    gameScreen = 0;
+    reset();
+  }
+}
+
+/** 
+ * @brief - Return all values ​​to their initial conditions
+ */
+void reset(){
+
+  generateRandomSequence();
+  decodeSequence();
+
+  score = 0;
+  attempts = 0;
+  successes = 0;
 }
 
 /** 
@@ -138,6 +169,29 @@ boolean checkFlag(Flag flag){
  */ 
 void startGame(){
   gameScreen = 1;
+}
+
+/**
+ * @brief - Check if the cursor is on a flag, then verify that 
+ *          the flag is the one you are looking for 
+ */
+void validateFlags(){
+  
+  for(Flag flag: flagList){
+    
+    if(flag.flagOver){ 
+      if(checkFlag(flag)){
+        println("Correct!");
+        colorSeq.remove(0);
+        successes++;
+        score += 10;
+      } 
+      else{
+        println("Bad Answer!");
+        attempts++;
+      }
+    }
+  }
 }
 
 
