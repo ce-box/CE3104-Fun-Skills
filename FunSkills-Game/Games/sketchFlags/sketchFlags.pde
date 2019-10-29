@@ -3,8 +3,8 @@
  * Developed by: María José Zamora - Esteban Alvarado
  * Project: FunSkills - [Game]
  * version: 2.0
- * last edited: Esteban Alvarado:: 15.30
- * 
+ * last edited:  Esteban Alvarado:: 29/10/2019 | 10.30
+ *
  * Description: Flags Game Basic GUI
  * 
  * TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
@@ -35,14 +35,9 @@ int score = 0;
 PatternBox box;
 PFont fontArialBold;
 
-
-
-void guiSetup(){
-
-  fontArialBold = createFont("Arial Bold", 16);
-  box = new PatternBox(250,100);
-  
-}
+/* ------------------------------------------------------
+ *                PROCESSING MAIN FUNCTIONS
+ * -----------------------------------------------------*/
 
 void setup() {
   size(800,600);
@@ -74,6 +69,14 @@ void draw(){
 /* ------------------------------------------------------
  *                    SCREEN CONTENTS
  * -----------------------------------------------------*/
+
+
+void guiSetup(){
+
+  fontArialBold = createFont("Arial Bold", 16);
+  box = new PatternBox(250,100);
+  
+}
 
 
 void initScreen(){
@@ -140,6 +143,18 @@ void mousePressed(){
   }
 }
 
+/* ------------------------------------------------------
+ *                  SCREEN CHANGERS
+ * -----------------------------------------------------*/
+
+/** 
+ * @brief - Sets the necessary variables to start the game
+ */ 
+void startGame(){
+  gameScreen = 1;
+}
+
+
 /** 
  * @brief - Return all values ​​to their initial conditions
  */
@@ -153,6 +168,10 @@ void reset(){
   successes = 0;
 }
 
+/* ------------------------------------------------------
+ *                     VALIDATIONS
+ * -----------------------------------------------------*/
+
 /** 
  * @brief - checks if the color of the flag matches the 
  *          first of the sequence
@@ -163,13 +182,6 @@ boolean checkFlag(Flag flag){
   return currentColor == selectedColor;
 }
 
-
-/** 
- * @brief - Sets the necessary variables to start the game
- */ 
-void startGame(){
-  gameScreen = 1;
-}
 
 /**
  * @brief - Check if the cursor is on a flag, then verify that 
@@ -194,6 +206,9 @@ void validateFlags(){
   }
 }
 
+/* ------------------------------------------------------
+ *                    DRAWING FUNCTIONS
+ * -----------------------------------------------------*/
 
 /**
  * @brief - Maintains a loop that is drawing and 
@@ -209,7 +224,7 @@ void drawFlags(){
 
 
 /* -----------------------------------
- *           OTHER FUNCTIONS
+ *           UTIL FUNCTIONS
  * -----------------------------------*/
 
 /**

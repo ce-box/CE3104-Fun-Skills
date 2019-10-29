@@ -3,7 +3,7 @@
  * Developed by: Esteban Alvarado
  * Project: FunSkills - [Game]
  * version: 2.0
- * last edited: Esteban Alvarado:: 20.30
+ * last edited: Esteban Alvarado:: 29/10/2019 | 10.30
  * 
  * Description: It presents the sequence of colors that the 
  *              user must follow in a pleasant way
@@ -36,20 +36,17 @@
 
     /* Note: The default color of a Flag is Black*/
 
-    // Initialize the content of the color-name dictionary
-    private void initDict(){
-        colorDict.put(0,#e60000); // RED
-        colorDict.put(4,#ffa500); // ORANGE
-        colorDict.put(3,#ffff33); // YELLOW
-        colorDict.put(1,#009a00); // GREEN
-        colorDict.put(2,#1a1aff); // BLUE
-    }
 
+    /** 
+     * @brief PatterBox Class Contructor
+     * @param x
+     * @param y
+     */
     public PatternBox(int x, int y){
-    this.posX = x;
-    this.posY = y;
+        this.posX = x;
+        this.posY = y;
 
-    initDict();
+        initDict();
     }
 
     /* ------------------------------------------------------
@@ -69,12 +66,14 @@
         this.pattern = true;
     }
 
-    
 
     /* ------------------------------------------------------
      *                    DRAWING FUNCTIONS
      * -----------------------------------------------------*/
 
+    /** 
+     * @brief - Draw the pattern box
+     */
     public void drawBox(){
         fill(boxColor);
         rect(posX, posY, boxWidth, boxHeight);
@@ -82,6 +81,10 @@
         drawCircles();
     }
 
+    /** 
+     * @brief - Draw the sequence of colors that the user 
+     *          must follow
+     */
     public void drawCircles(){
         
         float tmpX = posX+24+circleRad;
@@ -99,11 +102,26 @@
                     fill(offColor);
                 }
             } 
-            
+
             ellipseMode(RADIUS);ellipse(tmpX,tmpY,circleRad,circleRad);
             tmpX += ((2*circleRad)+12);
             listIndex++;
         }
+    }
+
+    /* ------------------------------------------------------
+     *                    UTIL FUNCTIONS
+     * -----------------------------------------------------*/
+     
+    /** 
+     * @brief - Initialize the content of the color-name dictionary
+     */
+    private void initDict(){
+        colorDict.put(0,#e60000); // RED
+        colorDict.put(4,#ffa500); // ORANGE
+        colorDict.put(3,#ffff33); // YELLOW
+        colorDict.put(1,#009a00); // GREEN
+        colorDict.put(2,#1a1aff); // BLUE
     }
 
 

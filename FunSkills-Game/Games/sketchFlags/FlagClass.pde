@@ -3,7 +3,7 @@
  * Developed by: Esteban Alvarado Vargas
  * Project: FunSkills - [Game]
  * version: 1.0
- * last edited: Esteban Alvarado:: 11.30
+ * last edited: Esteban Alvarado:: 29/10/2019 | 10.30
  * 
  * Description: Implementation of the functionalities and 
  *              attributes of the flags. An object allows
@@ -31,18 +31,9 @@ public class Flag{
 
 
     /* Note: The default color of a Flag is Black*/
-
-    // Initialize the content of the color-name dictionary
-    private void initDict(){
-        colorDict.put("red",#e60000);
-        colorDict.put("orange",#ffa500);
-        colorDict.put("yellow",#ffff33);
-        colorDict.put("green",#009a00);
-        colorDict.put("blue",#1a1aff);
-    }
     
     /** 
-     * @brief Flag Class Contructor
+     * @brief - Flag Class Contructor
      * @param posX
      * @param posY
      */
@@ -54,7 +45,7 @@ public class Flag{
     }
     
     /** 
-     * @brief Flag Class Contructor w/ ColorName
+     * @brief - Flag Class Contructor w/ ColorName
      * @param posX
      * @param posY
      */
@@ -66,9 +57,13 @@ public class Flag{
         this.initDict();
         this.flagColor = colorDict.get(colorName);
     }
+
+    /* ------------------------------------------------------
+     *                    DRAWING FUNCTIONS
+     * -----------------------------------------------------*/
     
     /** 
-     * @brief Flag Drawer
+     * @brief - Flag Drawer
      * @param posX
      * @param posY
      * @param flagSize
@@ -83,8 +78,12 @@ public class Flag{
         rect(posX,posY,flagWidth,flagHeight);
     }
 
+    /* ------------------------------------------------------
+    *                   SETTERS /& GETTERS
+    * -----------------------------------------------------*/
+
     /** 
-     * @brief Allows you to configure the color of the flag
+     * @brief - Allows you to configure the color of the flag
      * @param flagColor
      */
     public void setColor(color flagColor){
@@ -92,7 +91,7 @@ public class Flag{
     }
 
     /** 
-     * @brief Set the highlighted color of the flag
+     * @brief - Set the highlighted color of the flag
      * @param highColor
      */
     public void setHColor(color highColor){
@@ -100,7 +99,19 @@ public class Flag{
     }
 
     /** 
-     * @brief Update the state of the flag depending on whether it is pressed or not
+     * @brief Returns the color of the flag
+     */
+    public String getColor(){
+        return this.colorName;
+    }
+
+    /* ------------------------------------------------------
+     *                    UTIL FUNCTIONS
+     * -----------------------------------------------------*/
+
+    /** 
+     * @brief - Update the state of the flag depending on whether 
+     *          it is pressed or not
      * @param x
      * @param y
      */
@@ -113,14 +124,7 @@ public class Flag{
     }
 
     /** 
-     * @brief Returns the color of the flag
-     */
-    public String getColor(){
-        return this.colorName;
-    }
-
-    /** 
-     * @brief Function to know if the mouse is on the flag
+     * @brief - Function to know if the mouse is on the flag
      * @param mouse_X
      * @param mouse_Y
      */
@@ -131,6 +135,19 @@ public class Flag{
             }else{
               return false;
       }
+    }
+
+    /* ------------------------------------------------------
+     *                    UTIL FUNCTIONS
+     * -----------------------------------------------------*/
+
+    // Initialize the content of the color-name dictionary
+    private void initDict(){
+        colorDict.put("red",#e60000);
+        colorDict.put("orange",#ffa500);
+        colorDict.put("yellow",#ffff33);
+        colorDict.put("green",#009a00);
+        colorDict.put("blue",#1a1aff);
     }
 
 }
