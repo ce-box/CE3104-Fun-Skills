@@ -94,7 +94,7 @@ void gameScreen(){
   fill(0);
   text("Success:"+successes,50,20);
   text("Attemps:"+attempts,200,20);
-  text("Score:"+attempts,550,20);
+  text("Score:"+score,550,20);
 
   box.setPattern(colorSeq);
   box.drawBox();
