@@ -18,14 +18,13 @@ from Compiler.src.syntactic.Parser import parse
 def main():
     # display_IDE_window()
     data = '''
-    
+    //caca2
     begin
     main{
+    //caca
     int a = 2;
-    -1 + 2;
     }
     game1{
-    a = 7;
     }
     game2{
     }

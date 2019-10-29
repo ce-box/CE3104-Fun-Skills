@@ -21,6 +21,7 @@ def p_statements(p):
                 | expression SEMICOLON statements
                 | reservedFunctions statements
                 | loop statements
+                | COMMENT statements
                 | empty'''
 
 

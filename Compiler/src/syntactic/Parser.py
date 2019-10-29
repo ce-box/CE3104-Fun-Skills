@@ -23,7 +23,8 @@ start = 'structure'
 
 # Main structure for program
 def p_structure(p):
-    '''structure : BEGIN\
+    '''structure : COMMENT\
+    BEGIN\
     MAIN LBRACE\
     statements\
     RBRACE\
