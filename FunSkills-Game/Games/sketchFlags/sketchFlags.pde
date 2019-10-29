@@ -82,7 +82,7 @@ void guiSetup(){
 void initScreen(){
   background(0);
   textAlign(CENTER);
-  text("Click to Start", height/2, width/2);
+  text("Click to Start", width/2, height/2);
  
 }
 
