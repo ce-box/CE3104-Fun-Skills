@@ -12,6 +12,12 @@
 
 variables = {}
 
+precedence = (
+    ('nonassoc', 'LESSTHAN', 'GREATERTHAN'),  # Nonassociative operators
+    ('left', 'PLUS', 'MINUS'),
+    ('left', 'TIMES', 'DIVIDE'),
+    ('right', 'NEGATIVE'),  # Unary minus operator
+)
 
 # Basic operations
 def p_expression_plus(p):
@@ -35,7 +41,7 @@ def p_term_div(p):
 
 
 def p_expression_negative(p):
-    'expression : MINUS term'
+    'expression : MINUS term %prec NEGATIVE'
     p[0] = -p[2]
 
 

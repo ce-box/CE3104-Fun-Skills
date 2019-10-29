@@ -19,7 +19,7 @@ def p_loop_dow(p):
 
 
 def p_loop_for(p):
-    'loop : FOR atom TIMES USING ID statements FOREND SEMICOLON'
+    'loop : FOR expression TIMES USING ID statements FOREND SEMICOLON'
 
 
 def p_loop_forAssignWord(p):

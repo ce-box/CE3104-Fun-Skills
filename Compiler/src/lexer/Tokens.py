@@ -19,6 +19,8 @@ t_MINUS = r'\-'
 t_MULT = r'\*'
 t_DIVIDE = r'\/'
 t_EQUAL = r'\='
+t_LESSTHAN = r'\<'
+t_GREATERTHAN = r'\>'
 
 
 # Symbols
@@ -70,4 +72,5 @@ reserved = {
 
 # List of tokens
 tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'PLUS', 'MINUS', 'MULT', 'DIVIDE',
-          'EQUAL', 'ID', 'NUMBER', 'SEMICOLON', 'GAME', 'RESERVED', 'COMMA', 'STRING'] + list(reserved.values())
+          'EQUAL', 'LESSTHAN', 'GREATERTHAN', 'ID', 'NUMBER', 'SEMICOLON', 'GAME', 'RESERVED', 'COMMA',
+          'STRING', 'COMMENT'] + list(reserved.values())

@@ -55,5 +55,5 @@ def t_error(t):
 # A function that ignores comments
 def t_COMMENT(t):
     r'\//.*'
-    pass
-    # No return value. Token discarded
+    t.value = "comment"
+    return t
