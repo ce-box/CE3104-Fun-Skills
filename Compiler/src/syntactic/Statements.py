@@ -57,22 +57,26 @@ def p_assignment(p):
 
     if len(p) == 6:
         ID = p[2]
-        value = p[4]
+        value = [p[4], p[1]]
     elif len(p) == 5:
-        ID = p[1]
-        value = p[3]
+        if p[1] in variables:
+            ID = p[1]
+            value = [p[3], variables[ID][1]]
+        else:
+            print("Syntactic Error: Variable %s has not been declared." % p[1])
 
-    if len(ID) <= 10:
-        variables[ID] = value
-    else:
-        print("Syntactic Error: Variable %s identifier is too long." % ID)
+    if ID:
+        if len(ID) <= 10:
+            variables[ID] = value
+        else:
+            print("Syntactic Error: Variable %s identifier is too long." % ID)
 
 
 # Definition for declaration of variables with typification
 def p_declaration(p):
     'declaration : type ID SEMICOLON'
     if len(p[2]) <= 10:
-        variables[p[2]] = None
+        variables[p[2]] = [None, p[1]]
     else:
         print("Syntactic Error: Variable %s identifier is too long." % p[2])
 

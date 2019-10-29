@@ -44,7 +44,8 @@ def p_structure(p):
 
 
 # Build the parser
-def parse(data):
+def parse(lex):
     parser = yacc.yacc()
-    result = parser.parse(data)
+    result = parser.parse(lexer=lex)
     print(result)
+    print(variables)

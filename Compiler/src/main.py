@@ -11,7 +11,8 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-from Compiler.src.lexer.Lexer import analyzeData
+import ply.lex as lex
+from Compiler.src.lexer.Rules import *
 from Compiler.src.syntactic.Parser import parse
 
 
@@ -22,10 +23,11 @@ def main():
     begin
     main{
     //caca
-    int a = 2;
+    a = 2;
     }
     game1{
-    int aaaaaaaaaaa;
+    int a;
+    int aaaaaaa = 3;
     }
     game2{
     }
@@ -36,8 +38,11 @@ def main():
     end;
     
     '''
-    analyzeData(data)
-    parse(data)
+    # Build the lexer
+    lexer = lex.lex()
+    # Receive input
+    lexer.input(data)
+    parse(lexer)
 
 
 if __name__ == '__main__':
