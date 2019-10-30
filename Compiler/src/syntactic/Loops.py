@@ -15,7 +15,7 @@ from Compiler.src.syntactic.Statements import *
 
 
 def p_loop_dow(p):
-    'loop : DOW args statements ENDDO SEMICOLON'
+    'loop : DOW LPAREN expression RPAREN statements ENDDO SEMICOLON'
 
 
 def p_loop_for(p):
@@ -23,5 +23,5 @@ def p_loop_for(p):
 
 
 def p_loop_forAssignWord(p):
-    'loop : FORASSIGNWORD args DO\
-            ASSIGNWORD args SEMICOLON'
+    'loop : FORASSIGNWORD LPAREN expression COMMA expression RPAREN DO\
+            statements FOREND SEMICOLON'

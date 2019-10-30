@@ -12,6 +12,7 @@
 
 from Compiler.src.syntactic.Operations import *
 from Compiler.src.syntactic.Loops import *
+from Compiler.src.syntactic.ReservedFunctions import *
 
 
 # Definition for function content
@@ -19,38 +20,17 @@ def p_statements(p):
     '''statements : assignment statements
                 | declaration statements
                 | expression SEMICOLON statements
-                | reservedFunctions statements
+                | reservedFunction statements
                 | loop statements
                 | COMMENT statements
                 | empty'''
 
 
-# Definition for reserved functions
-def p_reservedFunctions(p):
-    'reservedFunctions : functions args SEMICOLON'
-
-
-def p_functions(p):
-    '''functions : BALLOON
-                | INC
-                | DEC
-                | RANDOM
-                | ASSIGNWORD
-                | TELAARANA
-                | OBJECT'''
-
-
-# Arguments for functions
-def p_args(p):
-    '''args : LPAREN atom args
-            | COMMA atom args
-            | RPAREN'''
-
-
 # Definition for assignment of variables with typification
 def p_assignment(p):
     '''assignment : type ID EQUAL atom SEMICOLON
-                | ID EQUAL atom SEMICOLON'''
+                  | ID EQUAL atom SEMICOLON
+                  | array EQUAL atom SEMICOLON'''
 
     ID = None
     value = None
@@ -74,7 +54,8 @@ def p_assignment(p):
 
 # Definition for declaration of variables with typification
 def p_declaration(p):
-    'declaration : type ID SEMICOLON'
+    '''declaration : type ID SEMICOLON
+                   | type array SEMICOLON'''
     if len(p[2]) <= 10:
         variables[p[2]] = [None, p[1]]
     else:
@@ -85,6 +66,11 @@ def p_declaration(p):
 def p_type(p):
     '''type : INT
             | TEXTO LPAREN NUMBER RPAREN'''
+    p[0] = p[1]
+
+
+def p_array(p):
+    '''array : ID LBRACKET NUMBER RBRACKET'''
     p[0] = p[1]
 
 

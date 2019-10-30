@@ -19,6 +19,7 @@ precedence = (
     ('right', 'NEGATIVE'),  # Unary minus operator
 )
 
+
 # Basic operations
 def p_expression_plus(p):
     'expression : expression PLUS term'

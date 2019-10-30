@@ -10,7 +10,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-import src.lexer.Lexer as Lexer
+import Compiler.src.lexer.Lexer as Lexer
 
 # -------------------------------------------------
 #                       TESTS

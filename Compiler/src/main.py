@@ -22,12 +22,11 @@ def main():
     //caca2
     begin
     main{
-    //caca
-    a = 2;
     }
     game1{
-    int a;
-    int aaaaaaa = 3;
+        dow(2)
+            int arr[25];
+        enddo;    
     }
     game2{
     }
