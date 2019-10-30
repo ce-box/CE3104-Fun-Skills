@@ -10,7 +10,6 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-variables = {}
 
 precedence = (
     ('nonassoc', 'LESSTHAN', 'GREATERTHAN'),  # Nonassociative operators

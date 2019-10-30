@@ -15,6 +15,8 @@ from Compiler.src.syntactic.Loops import *
 from Compiler.src.syntactic.ReservedFunctions import *
 
 
+variables = {}
+
 # Definition for function content
 def p_statements(p):
     '''statements : assignment statements
@@ -37,11 +39,11 @@ def p_assignment(p):
 
     if len(p) == 6:
         ID = p[2]
-        value = [p[4], p[1]]
+        value = [p[1], p[4]]
     elif len(p) == 5:
         if p[1] in variables:
             ID = p[1]
-            value = [p[3], variables[ID][1]]
+            value = variables[ID] + [p[3]]
         else:
             print("Syntactic Error: Variable %s has not been declared." % p[1])
 
@@ -57,7 +59,7 @@ def p_declaration(p):
     '''declaration : type ID SEMICOLON
                    | type array SEMICOLON'''
     if len(p[2]) <= 10:
-        variables[p[2]] = [None, p[1]]
+        variables[p[2]] = [p[1]]
     else:
         print("Syntactic Error: Variable %s identifier is too long." % p[2])
 

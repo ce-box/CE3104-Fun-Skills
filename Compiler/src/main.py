@@ -14,6 +14,7 @@
 import ply.lex as lex
 from Compiler.src.lexer.Rules import *
 from Compiler.src.syntactic.Parser import parse
+from Compiler.src.datastructures.TreeNode import *
 
 
 def main():
@@ -24,9 +25,12 @@ def main():
     main{
     }
     game1{
-        dow(2)
-            int arr[25];
-        enddo;    
+        int a;
+        a = 3;   
+        a = 7;
+        a = "b";
+        int b = 5;
+        b = 10; 
     }
     game2{
     }
