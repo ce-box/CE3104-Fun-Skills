@@ -18,6 +18,7 @@ from Compiler.src.syntactic.Statements import *
 from Compiler.src.lexer.Lexer import tokens
 
 
+astRoot = TreeNode("structure")
 start = 'structure'
 
 
@@ -41,6 +42,23 @@ def p_structure(p):
     statements\
     RBRACE\
     END SEMICOLON'''
+
+    mainNode = TreeNode(p[3])
+    mainNode.add_child(p[5])
+
+    g1Node = TreeNode(p[7])
+    g1Node.add_child(p[9])
+
+    g2Node = TreeNode(p[11])
+    g2Node.add_child(p[13])
+
+    g3Node = TreeNode(p[15])
+    g3Node.add_child(p[17])
+
+    g4Node = TreeNode(p[19])
+    g4Node.add_child(p[21])
+
+    astRoot.add_children([mainNode, g1Node, g2Node, g3Node, g4Node])
 
 
 # Build the parser
