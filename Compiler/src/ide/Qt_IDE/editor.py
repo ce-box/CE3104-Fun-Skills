@@ -68,15 +68,18 @@ class ScintillaEditor(QsciScintilla):
         # -------------------------------- #
         self.indicatorClicked.connect(self.indicator_clicked)
 
-    ''''''
+
+        print(self.text())
 
     def indicator_clicked(self, line, index, keys):
+        print('cambio')
         QTimer.singleShot(100, functools.partial(
             self.indicator_clicked_delayed, line, index, keys))
 
     ''''''
 
     def indicator_clicked_delayed(self, line, index, keys):
+
         pos = self.positionFromLineIndex(line, index)
         start = self.SendScintilla(QsciScintilla.SCI_INDICATORSTART, 0, pos)
         end = self.SendScintilla(QsciScintilla.SCI_INDICATOREND, 0, pos)

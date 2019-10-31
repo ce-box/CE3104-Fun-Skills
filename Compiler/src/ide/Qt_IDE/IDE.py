@@ -30,12 +30,12 @@ class TabMaster(QTabWidget):
 
     ''''''
 
-    def show_file(self, filepath):
+    def showFile(self, filepath):
         f = open(filepath, "r")
         text = f.read()
         f.close()
 
-        newtab = ScintillaEditor(text, self.show_symbol)
+        newtab = ScintillaEditor(text, self.showSymbol)
         newtabName = ntpath.basename(filepath)
 
         self.addTab(newtab, newtabName)
@@ -49,7 +49,8 @@ class TabMaster(QTabWidget):
 
     ''''''
 
-    def show_symbol(self, filepath, linefocus = 0, colfocus = 0):
+
+    def showSymbol(self, filepath, linefocus = 0, colfocus = 0):
         for i in range(self.count()):
             tabname = str(self.tabText(i))
             if tabname == ntpath.basename(filepath):
@@ -67,7 +68,7 @@ class TabMaster(QTabWidget):
         text = f.read()
         f.close()
 
-        newtab = ScintillaEditor(text, self.show_symbol)
+        newtab = ScintillaEditor(text, self.showSymbol)
         newtabName = ntpath.basename(filepath)
 
         self.addTab(newtab, newtabName)
@@ -76,6 +77,7 @@ class TabMaster(QTabWidget):
         newtab.setCursorPosition(linefocus, colfocus)
         newtab.ensureCursorVisible()
         newtab.setFocus()
+
 
         ###
 
@@ -90,6 +92,8 @@ class CustomMainWindow(QMainWindow):
 
     def __init__(self):
         super(CustomMainWindow, self).__init__()
+
+        self.__text_code = ""
 
         # -------------------------------- #
         #           Window setup           #
@@ -157,7 +161,7 @@ class CustomMainWindow(QMainWindow):
         # 6. Insert the TabMaster
         # ------------------------
         self.__tabMaster = TabMaster()
-        self.__tabMaster.show_file(globals.projectMainFile)
+        self.__tabMaster.showFile(globals.projectCurrentFile)
         self.__lyt.addWidget(self.__tabMaster,1,0)
         self.show()
 
@@ -178,17 +182,78 @@ class CustomMainWindow(QMainWindow):
 
 
 
-
     ''''''
 
     def __run_btn_action(self):
         print("Run File")
+        f = open(globals.projectTempFile, "r")
+        text = f.read()
+        f.close()
+        print('run: ',text)
 
     def __open_btn_action(self):
         print("Open File")
+        self.getfileWindow()
+
 
     def __save_btn_action(self):
         print("Save File")
+
+        buttonReply = QMessageBox.question(self, 'Save File', "Are you sure you want to save the changes?",
+                                           QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if buttonReply == QMessageBox.Yes:
+
+
+            # If the file is the default then you will access to save it as a new file
+            if('sketch.fsk' in globals.projectCurrentFile):
+                self.saveFileWindow()
+            else:
+                self.saveFile()
+
+
+    def saveFile(self, new = False):
+
+
+        # First you get the text from the temp file
+        f = open(globals.projectTempFile, "r")
+        text = f.read()
+        f.close()
+
+        action = "w"
+        if new:
+            action = "w+"
+        # Then, save it in the original file
+        tf = open(globals.projectCurrentFile, action)
+        tf.write(text)
+        tf.close()
+
+    '''================================================================================'''
+    '''|                           FILE DIALOG WINDOWS                                 |'''
+    '''================================================================================'''
+    def getfileWindow(self):
+        fileName = QFileDialog.getOpenFileName(self, 'Open',
+                                            'c:\\', "Code Files (*.fsk *.txt)")
+        print("Filename:", fileName[0])
+
+        if(fileName[0] != ''):
+            globals.projectCurrentFile = fileName[0]
+            self.__tabMaster.removeTab(0)
+            self.__tabMaster.showFile(globals.projectCurrentFile)
+
+    def saveFileWindow(self):
+        fileName = QFileDialog.getSaveFileName(self, 'Save',
+                                            'c:\\', "Code Files (*.fsk *.txt)")
+        print("Filename:", fileName[0])
+        if (fileName[0] != ''):
+            globals.projectCurrentFile = fileName[0]
+            self.saveFile(True)
+            self.__tabMaster.removeTab(0)
+            self.__tabMaster.showFile(globals.projectCurrentFile)
+
+
+
+
+
     ''''''
 
 '''=== end class ==='''
