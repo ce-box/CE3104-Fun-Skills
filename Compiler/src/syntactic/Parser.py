@@ -59,11 +59,12 @@ def p_structure(p):
     g4Node.add_child(p[21])
 
     astRoot.add_children([mainNode, g1Node, g2Node, g3Node, g4Node])
-
+    p[0] = astRoot
 
 # Build the parser
 def parse(lex):
     parser = yacc.yacc()
-    result = parser.parse(lexer=lex)
-    print(result)
+    astTree = parser.parse(lexer=lex)
     print(variables)
+
+    print(astTree.children[1].children[0].children[1].children[0].children[2].children[0].children[1].children)

@@ -47,19 +47,23 @@ def p_statements_4(p):
 # Definition for assignment of variables with typification
 def p_assignment(p):
     '''assignment : type ID EQUAL atom SEMICOLON
-                  | ID EQUAL atom SEMICOLON
-                  | array EQUAL atom SEMICOLON'''
+                  | ID EQUAL atom SEMICOLON'''
 
     ID = None
     value = None
+    assignmentNode = TreeNode("assignment")
 
     if len(p) == 6:
         ID = p[2]
         value = [p[1], p[4]]
+        assignmentNode.add_children([p[1], p[2], p[4]])
+        p[0] = assignmentNode
     elif len(p) == 5:
         if p[1] in variables:
             ID = p[1]
             value = variables[ID] + [p[3]]
+            assignmentNode.add_children([p[1], p[3]])
+            p[0] = assignmentNode
         else:
             print("Syntactic Error: Variable %s has not been declared." % p[1])
 

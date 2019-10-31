@@ -20,6 +20,7 @@ def p_loop_dow(p):
     loopNode = TreeNode("loop")
     loopNode.add_children([p[1], p[3], p[5]])
     p[0] = loopNode
+    print(p[3])
 
 
 

@@ -25,7 +25,7 @@ def main():
     main{
     }
     game1{
-    int a = "a";
+    int a = 5;
     dow(a)
         balloon(2, 3);
     enddo;    

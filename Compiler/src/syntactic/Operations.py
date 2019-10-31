@@ -67,8 +67,9 @@ def p_factor_num(p):
 
 def p_factor_ID(p):
     'factor : ID'
-    if isinstance(p[1], int):
+    if isinstance(variables[p[1]][-1], int):
         p[0] = variables[p[1]][-1]
+        print(p[0])
     else:
         print("'" + p[1] + "'", "must be integer")
 
