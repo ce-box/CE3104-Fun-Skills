@@ -43,22 +43,13 @@ def p_structure(p):
     RBRACE\
     END SEMICOLON'''
 
-    mainNode = TreeNode(p[3])
-    mainNode.add_child(p[5])
+    for i in range(3, 22, 4):
+        node = TreeNode(p[i])
+        i += 2
+        if p[i]:
+            node.add_child(p[i])
+        astRoot.add_child(node)
 
-    g1Node = TreeNode(p[7])
-    g1Node.add_child(p[9])
-
-    g2Node = TreeNode(p[11])
-    g2Node.add_child(p[13])
-
-    g3Node = TreeNode(p[15])
-    g3Node.add_child(p[17])
-
-    g4Node = TreeNode(p[19])
-    g4Node.add_child(p[21])
-
-    astRoot.add_children([mainNode, g1Node, g2Node, g3Node, g4Node])
     p[0] = astRoot
 
 
@@ -67,5 +58,3 @@ def parse(lex):
     parser = yacc.yacc()
     astTree = parser.parse(lexer=lex)
     print(variables)
-
-    print(astTree.children)

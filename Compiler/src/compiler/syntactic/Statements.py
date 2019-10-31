@@ -23,21 +23,26 @@ def p_statements_1(p):
                 | reservedFunction statements
                 | loop statements'''
     node = TreeNode("statements")
-    node.add_children([p[1], p[2]])
+    node.add_child(p[1])
+    if p[2]:
+        node.add_child(p[2])
     p[0] = node
 
 
 def p_statements_2(p):
     '''statements : expression SEMICOLON statements'''
     node = TreeNode("statements")
-    node.add_children([p[1], p[3]])
+    node.add_child(p[1])
+    if p[2]:
+        node.add_child(p[3])
     p[0] = node
 
 
 def p_statements_3(p):
     '''statements : COMMENT statements'''
     node = TreeNode("statements")
-    node.add_child(p[2])
+    if p[2]:
+        node.add_child(p[2])
     p[0] = node
 
 
