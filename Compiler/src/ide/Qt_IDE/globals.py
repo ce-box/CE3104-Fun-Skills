@@ -15,6 +15,8 @@
 
 projectFolderPath = "/home/esteban/Documentos/PROGRAMACION/C++/Codecademy_C++/"
 projectMainFile = projectFolderPath + "sketch.fsk"
+projectCurrentFile = projectMainFile
+projectTempFile = "/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/src/tmp_file/tmp.fsk"
 
 #--------------------------
 # NOTE: *.fsk will be the

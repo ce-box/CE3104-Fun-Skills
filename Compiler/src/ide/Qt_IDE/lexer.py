@@ -13,6 +13,7 @@
 from PyQt5.QtGui import *
 from PyQt5.Qsci import *
 import re
+import src.ide.Qt_IDE.globals as globals
 from src.ide.Qt_IDE.ctags_parser import Ctags_parser
 
 # @brief : Lexical analyzer that allows you to recognize keywords,
@@ -142,6 +143,12 @@ class MyLexer(QsciLexerCustom):
 
     ''''''
 
+    # This function allows a temporary copy of the files to be created.
+    def saveChanges(self,text):
+        f = open(globals.projectTempFile, "w")
+        f.write(text)
+        f.close()
+
     def styleText(self, start, end):
         # 1. Initialize the styling procedure
         # ------------------------------------
@@ -151,6 +158,8 @@ class MyLexer(QsciLexerCustom):
         # 2. Slice out a part from the text
         # ----------------------------------
         text = self.parent().text()[start:end]
+
+        self.saveChanges(self.parent().text())
 
         # 3. Tokenize the text
         # ---------------------
