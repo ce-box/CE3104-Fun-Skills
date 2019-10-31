@@ -25,12 +25,10 @@ def main():
     main{
     }
     game1{
-        int a;
-        a = 3;   
-        a = 7;
-        int b = 5;
-        b = 10; 
-        int c = a + b;
+    int a = 5;
+    dow(a)
+        balloon(2, 3);
+    enddo;    
     }
     game2{
     }
