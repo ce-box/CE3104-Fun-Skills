@@ -10,7 +10,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-from Compiler.src.datastructures.TreeNode import TreeNode
+from Compiler.src.datastructures.TreeNode import *
 
 variables = {}
 
@@ -67,7 +67,10 @@ def p_factor_num(p):
 
 def p_factor_ID(p):
     'factor : ID'
-    p[0] = variables[p[1]][-1]
+    if isinstance(p[1], int):
+        p[0] = variables[p[1]][-1]
+    else:
+        print("'" + p[1] + "'", "must be integer")
 
 
 def p_factor_expr(p):

@@ -16,7 +16,6 @@ from Compiler.src.syntactic.ReservedFunctions import *
 
 
 
-
 # Definition for function content
 def p_statements_1(p):
     '''statements : assignment statements
