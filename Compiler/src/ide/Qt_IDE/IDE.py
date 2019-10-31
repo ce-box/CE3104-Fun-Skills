@@ -13,7 +13,7 @@
 # ------------------------------------------------------------
 
 # Libraries
-from src.lexer.Lexer import analyzeData
+from src.compiler.lexer.Lexer import analyzeData
 import sys
 import ntpath
 

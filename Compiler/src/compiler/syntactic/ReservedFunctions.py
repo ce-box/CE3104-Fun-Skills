@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-from src.syntactic.Statements import *
+from src.compiler.syntactic.Statements import *
 =======
 from Compiler.src.syntactic.Statements import *
 from Compiler.src.datastructures.TreeNode import *

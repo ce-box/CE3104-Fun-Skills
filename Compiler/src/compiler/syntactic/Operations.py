@@ -10,8 +10,6 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-from src.datastructures.TreeNode import TreeNode
-
 variables = {}
 
 precedence = (

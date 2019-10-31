@@ -10,10 +10,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-from src.syntactic.Operations import *
-from src.syntactic.Loops import *
-from src.syntactic.ReservedFunctions import *
-from src.datastructures.TreeNode import *
+from src.compiler.datastructures.TreeNode import *
 
 
 # Definition for function content

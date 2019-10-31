@@ -9,8 +9,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
-from ply.lex import TOKEN
-from src.lexer.Tokens import *
+from src.compiler.lexer.Tokens import *
 
 
 def t_GAME(t):
