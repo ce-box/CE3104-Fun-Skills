@@ -1,3 +1,15 @@
+# ------------------------------------------------------------
+# File: editor.py
+# Developed by: Esteban Alvarado Vargas
+# Project: FunSkills-[Compiler]
+# version: 2.0
+# last edited by: Esteban Alvarado:: 31/10/19 01.30
+#
+# Description: Text editor that allows syntax highlighting.
+#
+# TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+# ------------------------------------------------------------
+
 import functools
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *

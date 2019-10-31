@@ -12,6 +12,7 @@
 
 
 from src.syntactic.Statements import *
+from src.datastructures.TreeNode import *
 
 
 def p_loop_dow(p):
