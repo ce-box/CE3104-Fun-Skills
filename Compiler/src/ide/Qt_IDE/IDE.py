@@ -3,7 +3,7 @@
 # Developed by: Esteban Alvarado Vargas
 # Project: FunSkills-[Compiler]
 # version: 3.0
-# last edited by: Esteban Alvarado:: 24/10/19 17.30
+# last edited by: Esteban Alvarado:: 31/10/19 00.30
 #
 # Description: Contains the functions that creates and puts
 #              together all the necessary widgets and commands
@@ -12,17 +12,23 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 
+# Libraries
+from src.lexer.Lexer import analyzeData
 import sys
+import ntpath
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from src.ide.Qt_IDE.editor import ScintillaEditor
-import ntpath
 import src.ide.Qt_IDE.globals as globals
 
 '''================================================================================'''
 '''|                                TABMASTER                                     |'''
 '''================================================================================'''
+
+# @class - Handler of text sheet or 'tables'. Create new
+#          tables and display their content.
 class TabMaster(QTabWidget):
 
     def __init__(self):
@@ -30,6 +36,9 @@ class TabMaster(QTabWidget):
 
     ''''''
 
+    # @brief - Method responsible for opening a window in the
+    #          text editor, from a given file.
+    # @param filepath
     def showFile(self, filepath):
         f = open(filepath, "r")
         text = f.read()
@@ -47,9 +56,12 @@ class TabMaster(QTabWidget):
         newtab.ensureCursorVisible()
         newtab.setFocus()
 
-    ''''''
 
-
+    # @brief - Method responsible for opening a window in the
+    #          text editor, from a given file.
+    # @param filepath
+    # @param linefocus
+    # @param colfocus
     def showSymbol(self, filepath, linefocus = 0, colfocus = 0):
         for i in range(self.count()):
             tabname = str(self.tabText(i))
@@ -81,7 +93,6 @@ class TabMaster(QTabWidget):
 
         ###
 
-    ''''''
 
 '''=== end class ==='''
 
@@ -90,10 +101,11 @@ class TabMaster(QTabWidget):
 '''================================================================================'''
 class CustomMainWindow(QMainWindow):
 
+    # @brief - Main window builder places buttons, text and code tabs
     def __init__(self):
         super(CustomMainWindow, self).__init__()
+        self.__setTmpFile()
 
-        self.__text_code = ""
 
         # -------------------------------- #
         #           Window setup           #
@@ -116,47 +128,8 @@ class CustomMainWindow(QMainWindow):
         self.__myFont = QFont()
         self.__myFont.setPointSize(14)
 
-        # 3. Place run button
-        # ------------------
-        self.__run_btn = QPushButton("")
-        self.__run_btn.setIcon(QIcon("/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/src/img/play_btn.png"))
-        self.__run_btn.setIconSize(QSize(50,50))
-        self.__run_btn.setFixedWidth(50)
-        self.__run_btn.setFixedHeight(50)
-        self.__run_btn.clicked.connect(self.__run_btn_action)
-        self.__run_btn.setFont(self.__myFont)
-        self.__run_btn.setStyleSheet("QWidget { background: #03152e}")
-        self.__btn_lyt.addWidget(self.__run_btn,alignment=Qt.AlignLeft)
-
-        # 4. Place open file button
-        # ------------------
-        self.__open_btn = QPushButton("")
-        self.__open_btn.setIcon(QIcon("/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/src/img/Open_btn.png"))
-        self.__open_btn.setIconSize(QSize(50, 50))
-        self.__open_btn.setFixedWidth(50)
-        self.__open_btn.setFixedHeight(50)
-        self.__open_btn.clicked.connect(self.__open_btn_action)
-        self.__open_btn.setFont(self.__myFont)
-        self.__open_btn.setStyleSheet("QWidget { background-color: #03152e }")
-        self.__btn_lyt.addWidget(self.__open_btn,alignment=Qt.AlignLeft)
-
-        # Add an empty space to fill Layout spaces between open and run buttons and save button
-        self.__btn_lyt.addStretch(20)
-
-        # 5. Place save file button
-        # ------------------
-        self.__save_btn = QPushButton("")
-        self.__save_btn.setIcon(QIcon("/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/src/img/save_btn.png"))
-        self.__save_btn.setIconSize(QSize(50,50))
-        self.__save_btn.setFixedWidth(50)
-        self.__save_btn.setFixedHeight(50)
-        self.__save_btn.clicked.connect(self.__save_btn_action)
-        self.__save_btn.setFont(self.__myFont)
-        self.__save_btn.setStyleSheet("QWidget { background-color: #03152e }")
-        self.__btn_lyt.addWidget(self.__save_btn,alignment=Qt.AlignLeft)
-
-        self.__lyt.addLayout(self.__btn_lyt,0,0)
-        self.__btn_lyt.addStretch(1) # Add an empty space to fill Layout spaces
+        # 3. Insert Buttons
+        self.__setButtons()
 
         # 6. Insert the TabMaster
         # ------------------------
@@ -180,39 +153,97 @@ class CustomMainWindow(QMainWindow):
         self.__lyt.addWidget(self.__textbox, 3, 0)
 
 
+    # -------------------------------- #
+    #          Buttons setup           #
+    # -------------------------------- #
 
+    # @brief - Function that inserts user buttons
+    def __setButtons(self):
 
-    ''''''
+        # 1. Place run button
+        # ------------------
+        self.__run_btn = QPushButton("")
+        self.__run_btn.setIcon(QIcon(
+            "/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/src/img/play_btn.png"))
+        self.__run_btn.setIconSize(QSize(50, 50))
+        self.__run_btn.setFixedWidth(50)
+        self.__run_btn.setFixedHeight(50)
+        self.__run_btn.clicked.connect(self.__run_btn_action)
+        self.__run_btn.setFont(self.__myFont)
+        self.__run_btn.setStyleSheet("QWidget { background: #03152e}")
+        self.__btn_lyt.addWidget(self.__run_btn, alignment=Qt.AlignLeft)
 
+        # 2. Place open file button
+        # ------------------
+        self.__open_btn = QPushButton("")
+        self.__open_btn.setIcon(QIcon(
+            "/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/src/img/Open_btn.png"))
+        self.__open_btn.setIconSize(QSize(50, 50))
+        self.__open_btn.setFixedWidth(50)
+        self.__open_btn.setFixedHeight(50)
+        self.__open_btn.clicked.connect(self.__open_btn_action)
+        self.__open_btn.setFont(self.__myFont)
+        self.__open_btn.setStyleSheet("QWidget { background-color: #03152e }")
+        self.__btn_lyt.addWidget(self.__open_btn, alignment=Qt.AlignLeft)
+
+        # Add an empty space to fill Layout spaces between open and run buttons and save button
+        self.__btn_lyt.addStretch(20)
+
+        # 3. Place save file button
+        # ------------------
+        self.__save_btn = QPushButton("")
+        self.__save_btn.setIcon(QIcon(
+            "/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/src/img/save_btn.png"))
+        self.__save_btn.setIconSize(QSize(50, 50))
+        self.__save_btn.setFixedWidth(50)
+        self.__save_btn.setFixedHeight(50)
+        self.__save_btn.clicked.connect(self.__save_btn_action)
+        self.__save_btn.setFont(self.__myFont)
+        self.__save_btn.setStyleSheet("QWidget { background-color: #03152e }")
+        self.__btn_lyt.addWidget(self.__save_btn, alignment=Qt.AlignLeft)
+
+        self.__lyt.addLayout(self.__btn_lyt, 0, 0)
+        self.__btn_lyt.addStretch(1)  # Add an empty space to fill Layout spaces
+
+    # -------------------------------- #
+    #        Buttons Actions           #
+    # -------------------------------- #
+
+    # @brief - Send the text in the code editor to be reviewed and
+    #          analyzed by the compiler
     def __run_btn_action(self):
-        print("Run File")
         f = open(globals.projectTempFile, "r")
-        text = f.read()
+        data = f.read()
         f.close()
-        print('run: ',text)
 
+        lexical_analysis = analyzeData(data)
+        print(lexical_analysis)
+
+    # @brief - Open a file explorer that allows you to open a
+    #          * .fsk file
     def __open_btn_action(self):
-        print("Open File")
         self.getfileWindow()
+        self.__setTmpFile()
 
-
+    # @brief - Save new files or save changes to existing files
     def __save_btn_action(self):
-        print("Save File")
-
         buttonReply = QMessageBox.question(self, 'Save File', "Are you sure you want to save the changes?",
                                            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if buttonReply == QMessageBox.Yes:
 
-
             # If the file is the default then you will access to save it as a new file
-            if('sketch.fsk' in globals.projectCurrentFile):
-                self.saveFileWindow()
+            if('sketch001.fsk' in globals.projectCurrentFile):
+                self.__saveFileWindow()
             else:
-                self.saveFile()
+                self.__saveFile()
 
+    # -------------------------------- #
+    #           File Actions           #
+    # -------------------------------- #
 
-    def saveFile(self, new = False):
-
+    # @brief - Rewrite the contents of the files when they are
+    #          changed and saved
+    def __saveFile(self, new = False):
 
         # First you get the text from the temp file
         f = open(globals.projectTempFile, "r")
@@ -227,9 +258,21 @@ class CustomMainWindow(QMainWindow):
         tf.write(text)
         tf.close()
 
-    '''================================================================================'''
-    '''|                           FILE DIALOG WINDOWS                                 |'''
-    '''================================================================================'''
+    def __setTmpFile(self):
+        # Then, save it in the original file
+        file = open(globals.projectCurrentFile, 'r')
+        text = file.read()
+        file.close()
+
+        tmpFile = open(globals.projectTempFile, "w")
+        tmpFile.write(text)
+        tmpFile.close()
+
+    # -------------------------------- #
+    #         Dialog Windows           #
+    # -------------------------------- #
+
+    # @brief - Open the file explorer to import a funskills code file
     def getfileWindow(self):
         fileName = QFileDialog.getOpenFileName(self, 'Open',
                                             'c:\\', "Code Files (*.fsk *.txt)")
@@ -240,21 +283,17 @@ class CustomMainWindow(QMainWindow):
             self.__tabMaster.removeTab(0)
             self.__tabMaster.showFile(globals.projectCurrentFile)
 
-    def saveFileWindow(self):
+    # @brief - Open the file explorer to create a new funskills code file
+    def __saveFileWindow(self):
         fileName = QFileDialog.getSaveFileName(self, 'Save',
                                             'c:\\', "Code Files (*.fsk *.txt)")
         print("Filename:", fileName[0])
         if (fileName[0] != ''):
             globals.projectCurrentFile = fileName[0]
-            self.saveFile(True)
+            self.__saveFile(True)
             self.__tabMaster.removeTab(0)
             self.__tabMaster.showFile(globals.projectCurrentFile)
 
-
-
-
-
-    ''''''
 
 '''=== end class ==='''
 
@@ -264,5 +303,3 @@ if __name__ == '__main__':
     QApplication.setStyle(QStyleFactory.create('Fusion'))
     myGUI = CustomMainWindow()
     sys.exit(app.exec_())
-
-''''''

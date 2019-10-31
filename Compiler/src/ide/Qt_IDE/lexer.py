@@ -1,8 +1,8 @@
 # ------------------------------------------------------------
 # File: lexer.py
 # Developed by: Esteban Alvarado Vargas
-# Project: FunSkills-Compiler
-# version: 2.2
+# last edited by: Esteban Alvarado:: 31/10/19 00.30
+# version: 3.2
 #
 # Description: Token recognizer for a simple expression evaluator for
 # numbers and +,-,*,/, given them an specific color (High Light)
@@ -144,12 +144,17 @@ class MyLexer(QsciLexerCustom):
     ''''''
 
     # This function allows a temporary copy of the files to be created.
-    def saveChanges(self,text):
+    def autoSave(self,text):
         f = open(globals.projectTempFile, "w")
         f.write(text)
         f.close()
 
     def styleText(self, start, end):
+
+        # 0. Initialize the styling procedure
+        # ------------------------------------
+        self.autoSave(self.parent().text())
+
         # 1. Initialize the styling procedure
         # ------------------------------------
         counter = start
@@ -159,11 +164,9 @@ class MyLexer(QsciLexerCustom):
         # ----------------------------------
         text = self.parent().text()[start:end]
 
-        self.saveChanges(self.parent().text())
-
         # 3. Tokenize the text
         # ---------------------
-        p = re.compile(r"[*]\/|\/[*]|\s+|\w+|\W")
+        p = re.compile(r"(/\*|\*/|\(\*|\*\)|//|\n|\"+|\'+|\#+|\s+|\w+|\W)")
 
         # 'token_list' is a list of tuples: (token_name, token_len)
         token_list = [(token, len(bytearray(token, "utf-8"))) for token in p.findall(text)]
@@ -172,10 +175,10 @@ class MyLexer(QsciLexerCustom):
         # ------------------
         # 4.1 Check if multiline comment
         multiline_comm_flag = False
-        singleline_comm_flag = False
         first_slash_flag = False
 
-        arroba = False
+        string = False
+        comment = False
         editor = self.parent()
         if start > 0:
             previous_style_nr = editor.SendScintilla(editor.SCI_GETSTYLEAT, start - 1)
@@ -185,19 +188,21 @@ class MyLexer(QsciLexerCustom):
         ###
         # 4.2 Style the text in a loop
         for i, token in enumerate(token_list):
-            if multiline_comm_flag or singleline_comm_flag:
+            if multiline_comm_flag:
                 # lightgreen
                 self.setStyling(token[1], 8)
                 if token[0] == "*/":
                     multiline_comm_flag = False
-                elif singleline_comm_flag and token[0] == "\n":
-                    singleline_comm_flag = False
                 ###
-            elif arroba:
+            elif string:
                 self.setStyling(token[1], 4)
-                if token[0] == "\n":
-                    arroba = False
+                if token[0] == "\"" or token[0] == "\'":
+                    string = False
 
+            elif comment:
+                self.setStyling(token[1], 8)
+                if token[0] == "\n":
+                    comment = False
             ###
             else:
 
@@ -234,16 +239,16 @@ class MyLexer(QsciLexerCustom):
                     self.setStyling(token[1], 2)
 
                 # @ special char
-                elif token[0] == "@":
+                elif token[0] == "\"" or token[0] == "\'":
                     # orange
                     self.setStyling(token[1], 4)
-                    arroba = True
+                    string = True
 
                 # Multiline Comment
 
-                elif token[0] == "$":
+                elif token[0] == "//":
                     # lightgreen
-                    singleline_comm_flag = True
+                    comment = True
                     self.setStyling(token[1], 8)
 
                 elif token[0] == "/*":

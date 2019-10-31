@@ -1,3 +1,16 @@
+# ------------------------------------------------------------
+# File: singleton.py
+# Developed by: Esteban Alvarado Vargas
+# Project: FunSkills-[Compiler]
+# version: 1.0
+# last edited by: Esteban Alvarado:: 31/10/19 01.30
+#
+# Description: Non-essential class of the program, allows to
+#              avoid opening the same file twice
+#
+# TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+# ------------------------------------------------------------
+
 class Singleton:
     """
     A non-thread-safe helper class to ease implementing singletons.

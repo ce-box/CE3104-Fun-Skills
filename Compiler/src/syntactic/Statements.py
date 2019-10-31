@@ -10,9 +10,10 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-from Compiler.src.syntactic.Operations import *
-from Compiler.src.syntactic.Loops import *
-from Compiler.src.syntactic.ReservedFunctions import *
+from src.syntactic.Operations import *
+from src.syntactic.Loops import *
+from src.syntactic.ReservedFunctions import *
+from src.datastructures.TreeNode import *
 
 
 

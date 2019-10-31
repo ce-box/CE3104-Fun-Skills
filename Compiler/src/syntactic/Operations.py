@@ -10,7 +10,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-from Compiler.src.datastructures.TreeNode import TreeNode
+from src.datastructures.TreeNode import TreeNode
 
 variables = {}
 

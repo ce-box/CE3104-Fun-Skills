@@ -12,10 +12,11 @@
 
 import ply.yacc as yacc
 
-from Compiler.src.syntactic.Statements import *
+from src.syntactic.Statements import *
 
 # Get the token map from the lexer.
-from Compiler.src.lexer.Lexer import tokens
+from src.lexer.Lexer import tokens
+from src.datastructures.TreeNode import *
 
 
 astRoot = TreeNode("structure")

@@ -11,7 +11,7 @@
 # -------------------------------------------------------------
 
 
-from Compiler.src.syntactic.Statements import *
+from src.syntactic.Statements import *
 
 
 def p_loop_dow(p):
