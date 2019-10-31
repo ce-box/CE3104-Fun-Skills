@@ -15,17 +15,35 @@ from Compiler.src.syntactic.Loops import *
 from Compiler.src.syntactic.ReservedFunctions import *
 
 
-variables = {}
+
 
 # Definition for function content
-def p_statements(p):
+def p_statements_1(p):
     '''statements : assignment statements
                 | declaration statements
-                | expression SEMICOLON statements
                 | reservedFunction statements
-                | loop statements
-                | COMMENT statements
-                | empty'''
+                | loop statements'''
+    node = TreeNode("statements")
+    node.add_children([p[1], p[2]])
+    return node
+
+
+def p_statements_2(p):
+    '''statements : expression SEMICOLON statements'''
+    node = TreeNode("statements")
+    node.add_children([p[1], p[3]])
+    return node
+
+
+def p_statements_3(p):
+    '''statements : COMMENT statements'''
+    node = TreeNode("statements")
+    node.add_child(p[2])
+    return node
+
+
+def p_statements_4(p):
+    '''statements : empty'''
 
 
 # Definition for assignment of variables with typification
@@ -34,12 +52,14 @@ def p_assignment(p):
                   | ID EQUAL atom SEMICOLON
                   | array EQUAL atom SEMICOLON'''
 
+    node = TreeNode("assignment")
     ID = None
     value = None
 
     if len(p) == 6:
         ID = p[2]
         value = [p[1], p[4]]
+        #node.add_children([p[1], p[2], p[4]])
     elif len(p) == 5:
         if p[1] in variables:
             ID = p[1]

@@ -28,9 +28,9 @@ def main():
         int a;
         a = 3;   
         a = 7;
-        a = "b";
         int b = 5;
         b = 10; 
+        int c = a + b;
     }
     game2{
     }
@@ -45,7 +45,7 @@ def main():
     lexer = lex.lex()
     # Receive input
     lexer.input(data)
-    parse(lexer)
+    ast = parse(lexer)
 
 
 if __name__ == '__main__':

@@ -10,6 +10,9 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
+from Compiler.src.datastructures.TreeNode import TreeNode
+
+variables = {}
 
 precedence = (
     ('nonassoc', 'LESSTHAN', 'GREATERTHAN'),  # Nonassociative operators
@@ -64,7 +67,7 @@ def p_factor_num(p):
 
 def p_factor_ID(p):
     'factor : ID'
-    p[0] = variables[p[1]]
+    p[0] = variables[p[1]][-1]
 
 
 def p_factor_expr(p):
