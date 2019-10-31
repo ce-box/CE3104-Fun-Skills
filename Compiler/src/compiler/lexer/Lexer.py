@@ -10,6 +10,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # ------------------------------------------------------------
 import ply.lex as lex
+from src.compiler.lexer.Rules import *
 
 
 # Main function to analyze a received data (source code string) and returns a list with tuples, containing

@@ -12,9 +12,9 @@
 # ------------------------------------------------------------
 
 import ply.lex as lex
-from Compiler.src.lexer.Rules import *
-from Compiler.src.syntactic.Parser import parse
-from Compiler.src.datastructures.TreeNode import *
+from src.compiler.lexer.Rules import *
+from src.compiler.syntactic.Parser import parse
+from src.compiler.datastructures.TreeNode import *
 
 
 def main():
@@ -26,6 +26,7 @@ def main():
     }
     game1{
     int a = 5;
+    int b = 4;
     dow(a)
         balloon(2, 3);
     enddo;    

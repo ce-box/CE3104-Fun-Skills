@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 from src.compiler.syntactic.Statements import *
-=======
-from Compiler.src.syntactic.Statements import *
-from Compiler.src.datastructures.TreeNode import *
->>>>>>> ParserDev
+from src.compiler.datastructures.TreeNode import *
 
 
 def p_reservedFunction_balloon(p):

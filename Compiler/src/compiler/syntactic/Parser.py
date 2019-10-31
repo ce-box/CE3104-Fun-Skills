@@ -13,6 +13,8 @@
 import ply.yacc as yacc
 
 # Get the token map from the lexer.
+from src.compiler.syntactic.Statements import *
+from src.compiler.lexer.Lexer import tokens
 from src.compiler.datastructures.TreeNode import *
 
 
@@ -59,10 +61,11 @@ def p_structure(p):
     astRoot.add_children([mainNode, g1Node, g2Node, g3Node, g4Node])
     p[0] = astRoot
 
+
 # Build the parser
 def parse(lex):
     parser = yacc.yacc()
     astTree = parser.parse(lexer=lex)
     print(variables)
 
-    print(astTree.children[1].children[0].children[1].children[0].children[2].children[0].children[1].children)
+    print(astTree.children)

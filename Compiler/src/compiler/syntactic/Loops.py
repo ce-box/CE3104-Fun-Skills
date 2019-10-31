@@ -10,7 +10,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-
+from src.compiler.syntactic.Statements import *
 from src.compiler.datastructures.TreeNode import *
 
 

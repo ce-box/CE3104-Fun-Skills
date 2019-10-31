@@ -163,3 +163,7 @@ fabric.properties
 Compiler/src/syntactic/parser.out
 
 Compiler/src/syntactic/parsetab.py
+
+Compiler/src/compiler/syntactic/parsetab.py
+
+Compiler/src/compiler/syntactic/parser.out
