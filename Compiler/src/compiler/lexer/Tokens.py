@@ -57,7 +57,7 @@ reserved = {
 
     # Types
     'int': 'INT',
-    'texto': 'TEXTO',
+    'str': 'STR',
 
     # Reserved functions
     'balloon': 'BALLOON',

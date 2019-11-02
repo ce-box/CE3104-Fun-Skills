@@ -56,5 +56,5 @@ def p_structure(p):
 # Build the parser
 def parse(lex):
     parser = yacc.yacc()
-    astTree = parser.parse(lexer=lex)
+    astTree = parser.parse(lexer = lex)
     print(variables)
