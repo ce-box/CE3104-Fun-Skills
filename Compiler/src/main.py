@@ -15,6 +15,7 @@ import ply.lex as lex
 from src.compiler.lexer.Rules import *
 from src.compiler.semantic import Semantic
 from src.compiler.syntactic.Parser import *
+from src.compiler.codegenerator.CodeGenerator import *
 from src.compiler.datastructures.TreeNode import *
 
 
@@ -55,7 +56,7 @@ def main():
     # Receive input
     lexer.input(data)
     ast = parse(lexer)
-    print(ast.children[2].children[0].children)
+    iterateTree(ast)
     # checkSymbolTable = Semantic.symbolAnalysis(variables)
 
 
