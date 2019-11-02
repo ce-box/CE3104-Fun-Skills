@@ -4,7 +4,7 @@
 # Project: FunSkills-Compiler
 # version: 1
 #
-# Last modified 19 /10 /19
+# Last modified 26 /10 /19
 # Description: Grammar for assignments
 #
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
@@ -103,7 +103,7 @@ def p_declaration_array(p):
 # Typification of variables
 def p_type(p):
     '''type : INT
-            | TEXTO LPAREN NUMBER RPAREN'''
+            | STR LPAREN NUMBER RPAREN'''
     p[0] = p[1]
 
 

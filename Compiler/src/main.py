@@ -13,21 +13,23 @@
 
 import ply.lex as lex
 from src.compiler.lexer.Rules import *
-from src.compiler.syntactic.Parser import parse
+from src.compiler.semantic import Semantic
+from src.compiler.syntactic.Parser import *
 from src.compiler.datastructures.TreeNode import *
 
 
 def main():
     # display_IDE_window()
     data = '''
-    //caca2
+    // Comentario inicial
     begin
     main{
     }
     game1{
     int a = 5;
-    int b[3];
-    str(10) c[5];
+    int b = -4;
+    a = 0;
+    int c = a + b;
     dow(a)
         balloon(2, 3);
     enddo;   
@@ -46,6 +48,7 @@ def main():
     # Receive input
     lexer.input(data)
     ast = parse(lexer)
+    checkSymbolTable = Semantic.symbolAnalysis(variables)
 
 
 if __name__ == '__main__':

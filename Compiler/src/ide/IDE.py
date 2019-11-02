@@ -20,8 +20,8 @@ import ntpath
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from src.ide.Qt_IDE.editor import ScintillaEditor
-import src.ide.Qt_IDE.globals as globals
+from src.ide.editor import ScintillaEditor
+import src.ide.globals as globals
 
 '''================================================================================'''
 '''|                                TABMASTER                                     |'''
