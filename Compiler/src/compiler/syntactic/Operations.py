@@ -72,7 +72,20 @@ def p_factor_ID(p):
             print("'" + p[1] + "'", "must be integer")
     except KeyError:
         print("Syntactic Error: Variable %s has not been declared." % p[1])
-        p[0] = 0;
+        p[0] = 0
+
+
+def p_factor_array(p):
+    'factor : ID LBRACKET NUMBER RBRACKET'
+    if variables[p[1]]:
+        arrayList = variables[p[1]][1]
+        if p[3] < len(arrayList):
+            value = arrayList[p[3]]
+            p[0] = value
+        else:
+            print("Index out of range")
+    else:
+        print("Syntactic Error: Variable %s has not been declared." % p[1])
 
 
 def p_factor_expr(p):

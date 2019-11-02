@@ -51,33 +51,55 @@ def p_statements_4(p):
 
 
 # Definition for assignment of variables with typification
-def p_assignment(p):
-    '''assignment : type ID EQUAL atom SEMICOLON
-                  | ID EQUAL atom SEMICOLON'''
+def p_assignment_declare(p):
+    'assignment : type ID EQUAL atom SEMICOLON'
 
-    ID = None
-    value = None
     assignmentNode = TreeNode("assignment")
-
-    if len(p) == 6:
-        ID = p[2]
+    ID = p[2]
+    if len(ID) <= 10:
         value = [p[1], p[4]]
+        variables[ID] = value
         assignmentNode.add_children([p[1], p[2], p[4]])
         p[0] = assignmentNode
-    elif len(p) == 5:
-        if p[1] in variables:
-            ID = p[1]
-            value = variables[ID] + [p[3]]
+    else:
+        print("Syntactic Error: Variable %s identifier is too long." % ID)
+
+
+# Definition for reassignment of previously defined variables
+def p_assignment_value(p):
+    'assignment : ID EQUAL atom SEMICOLON'
+
+    assignmentNode = TreeNode("assignment")
+
+    if p[1] in variables:
+        ID = p[1]
+        value = variables[ID] + [p[3]]
+        variables[ID] = value
+        assignmentNode.add_children([p[1], p[3]])
+        p[0] = assignmentNode
+    else:
+        print("Syntactic Error: Variable %s has not been declared." % p[1])
+
+
+# Definition for value of specific position in array.
+def p_assignment_array(p):
+    'assignment : ID LBRACKET NUMBER RBRACKET EQUAL atom SEMICOLON'
+
+    assignmentNode = TreeNode("assignment")
+
+    if p[1] in variables:
+        ID = p[1]
+        position = p[3]
+        arrayList = variables[ID][1]
+        if position < len(arrayList):
+            arrayList[position] = p[6]
+            variables[ID] = [variables[ID][0]] + [arrayList]
             assignmentNode.add_children([p[1], p[3]])
             p[0] = assignmentNode
         else:
-            print("Syntactic Error: Variable %s has not been declared." % p[1])
-
-    if ID:
-        if len(ID) <= 10:
-            variables[ID] = value
-        else:
-            print("Syntactic Error: Variable %s identifier is too long." % ID)
+            print("Index out of range")
+    else:
+        print("Syntactic Error: Variable %s has not been declared." % p[1])
 
 
 # Definition for declaration of variables with typification

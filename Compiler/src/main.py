@@ -26,11 +26,12 @@ def main():
     main{
     }
     game1{
-    int a = 5;
-    int b = -4;
-    a = 0;
-    int c = a + b;
-    dow(a)
+    int a[3];
+    a[0] = 1;
+    a[1] = 4;
+    a[2] = 5;
+    int b = a[1];
+    dow(a[1])
         balloon(2, 3);
     enddo;   
     }
@@ -48,7 +49,7 @@ def main():
     # Receive input
     lexer.input(data)
     ast = parse(lexer)
-    checkSymbolTable = Semantic.symbolAnalysis(variables)
+    #checkSymbolTable = Semantic.symbolAnalysis(variables)
 
 
 if __name__ == '__main__':
