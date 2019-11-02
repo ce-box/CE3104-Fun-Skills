@@ -10,43 +10,34 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
-from src.compiler.syntactic.Operations import *
 from src.compiler.syntactic.Loops import *
 from src.compiler.syntactic.ReservedFunctions import *
-from src.compiler.datastructures.TreeNode import *
 
 
 # Definition for function content
+def p_statements_0(p):
+    '''statements : loop statements'''
+    p[0] = p[1]
+
+
+def p_statements_4(p):
+    '''statements : reservedFunction statements'''
+    funcList.insert(0, p[1])
+
+
 def p_statements_1(p):
     '''statements : assignment statements
-                | declaration statements
-                | reservedFunction statements
-                | loop statements'''
-    node = TreeNode("statements")
-    node.add_child(p[1])
-    if p[2]:
-        node.add_child(p[2])
-    p[0] = node
+                  | declaration statements
+                  | COMMENT statements'''
+    p[0] = p[2]
 
 
 def p_statements_2(p):
     '''statements : expression SEMICOLON statements'''
-    node = TreeNode("statements")
-    node.add_child(p[1])
-    if p[2]:
-        node.add_child(p[3])
-    p[0] = node
+    p[0] = p[3]
 
 
 def p_statements_3(p):
-    '''statements : COMMENT statements'''
-    node = TreeNode("statements")
-    if p[2]:
-        node.add_child(p[2])
-    p[0] = node
-
-
-def p_statements_4(p):
     '''statements : empty'''
 
 
@@ -54,13 +45,10 @@ def p_statements_4(p):
 def p_assignment_declare(p):
     'assignment : type ID EQUAL atom SEMICOLON'
 
-    assignmentNode = TreeNode("assignment")
     ID = p[2]
     if len(ID) <= 10:
         value = [p[1], p[4]]
         variables[ID] = value
-        assignmentNode.add_children([p[1], p[2], p[4]])
-        p[0] = assignmentNode
     else:
         print("Syntactic Error: Variable %s identifier is too long." % ID)
 
@@ -69,14 +57,10 @@ def p_assignment_declare(p):
 def p_assignment_value(p):
     'assignment : ID EQUAL atom SEMICOLON'
 
-    assignmentNode = TreeNode("assignment")
-
     if p[1] in variables:
         ID = p[1]
         value = variables[ID] + [p[3]]
         variables[ID] = value
-        assignmentNode.add_children([p[1], p[3]])
-        p[0] = assignmentNode
     else:
         print("Syntactic Error: Variable %s has not been declared." % p[1])
 
@@ -85,8 +69,6 @@ def p_assignment_value(p):
 def p_assignment_array(p):
     'assignment : ID LBRACKET NUMBER RBRACKET EQUAL atom SEMICOLON'
 
-    assignmentNode = TreeNode("assignment")
-
     if p[1] in variables:
         ID = p[1]
         position = p[3]
@@ -94,8 +76,6 @@ def p_assignment_array(p):
         if position < len(arrayList):
             arrayList[position] = p[6]
             variables[ID] = [variables[ID][0]] + [arrayList]
-            assignmentNode.add_children([p[1], p[3]])
-            p[0] = assignmentNode
         else:
             print("Index out of range")
     else:

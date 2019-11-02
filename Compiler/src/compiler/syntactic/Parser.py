@@ -58,3 +58,4 @@ def parse(lex):
     parser = yacc.yacc()
     astTree = parser.parse(lexer = lex)
     print(variables)
+    return astTree

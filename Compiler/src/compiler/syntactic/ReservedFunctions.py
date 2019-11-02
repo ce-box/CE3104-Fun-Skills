@@ -11,7 +11,6 @@
 # -------------------------------------------------------------
 
 
-from src.compiler.syntactic.Statements import *
 from src.compiler.datastructures.TreeNode import *
 
 
