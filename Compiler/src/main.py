@@ -28,7 +28,7 @@ def main():
     game1{
     int a = 5;
     int b = 4;
-    str(4) p = "CACA";
+    b = c + 2;
     dow(a)
         balloon(2, 3);
     enddo;    

@@ -65,10 +65,14 @@ def p_factor_num(p):
 
 def p_factor_ID(p):
     'factor : ID'
-    if isinstance(variables[p[1]][-1], int):
-        p[0] = variables[p[1]][-1]
-    else:
-        print("'" + p[1] + "'", "must be integer")
+    try:
+        if isinstance(variables[p[1]][-1], int):
+            p[0] = variables[p[1]][-1]
+        else:
+            print("'" + p[1] + "'", "must be integer")
+    except KeyError:
+        print("Syntactic Error: Variable %s has not been declared." % p[1])
+        p[0] = 0;
 
 
 def p_factor_expr(p):
