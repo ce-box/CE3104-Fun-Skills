@@ -21,14 +21,15 @@ from src.compiler.datastructures.TreeNode import *
 def main():
     # display_IDE_window()
     data = '''
-    //caca2
+    // Comentario inicial
     begin
     main{
     }
     game1{
     int a = 5;
-    int b = 4;
-    b = c + 2;
+    int b = -4;
+    a = 0;
+    int c = a + b;
     dow(a)
         balloon(2, 3);
     enddo;    
