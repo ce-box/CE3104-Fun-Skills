@@ -19,8 +19,8 @@ import subprocess
 import time
 import json
 import sqlite3
-import src.ide.Qt_IDE.globals as globals
-from src.ide.Qt_IDE.singleton import Singleton
+import src.ide.globals as globals
+from src.ide.singleton import Singleton
 
 '''================================================================================'''
 '''|                               CTAGS PARSER                                   |'''
