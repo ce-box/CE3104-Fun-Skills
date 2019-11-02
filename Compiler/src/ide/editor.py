@@ -14,8 +14,8 @@ import functools
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.Qsci import *
-import src.ide.Qt_IDE.globals as globals
-from src.ide.Qt_IDE.lexer import MyLexer
+import src.ide.globals as globals
+from src.ide.lexer import MyLexer
 
 '''================================================================================'''
 '''|                                  EDITOR                                      |'''

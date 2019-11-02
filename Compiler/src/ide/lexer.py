@@ -13,8 +13,8 @@
 from PyQt5.QtGui import *
 from PyQt5.Qsci import *
 import re
-import src.ide.Qt_IDE.globals as globals
-from src.ide.Qt_IDE.ctags_parser import Ctags_parser
+import src.ide.globals as globals
+from src.ide.ctags_parser import Ctags_parser
 
 # @brief : Lexical analyzer that allows you to recognize keywords,
 #          numbers and symbols to highlight them with colors that identify them
