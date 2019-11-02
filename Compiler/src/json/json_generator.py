@@ -27,12 +27,17 @@ def get_json():
 # @param new_json_dict
 def save_json(new_setup):
     with open(config_path, 'w') as json_file:
-        json.dump(new_setup, json_file)
+        json.dump(new_setup, json_file,indent=4)
 
-
-def set_game1(json_dict,value):
-    game = json_dict['game1']
-    game['a'] = value
+# @brief - Allows you to configure the properties of the first game in the
+#          suite: balloon.
+# @param json_dict: current dictionary
+# @param its_value: Iterations amount
+# @param pos_list: String list w/ positions
+def set_game1(json_dict,its_value,pos_list):
+    dict = json_dict['game1']
+    dict['iterations'] = its_value
+    dict['positions'] = pos_list
 
 def set_game2(json_dict,value):
     game = json_dict['game2']
@@ -45,3 +50,11 @@ def set_game3(json_dict,value):
 def set_game4(json_dict,value):
     game = json_dict['game4']
     game['d'] = value
+
+if __name__ == '__main__':
+    data = get_json()
+    print(data)
+    p_list = ['0,0','2,0','5,6','7,9']
+    set_game1(data,4,p_list)
+    save_json(data)
+    print(get_json())
