@@ -42,24 +42,11 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 Da un ejemplo
 ```
 
-### Installing 🔧
+### Demo
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
-
-```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
+<p align="center">
+<img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1572718337/CE3104/Fun%20Skills/demo_mxc0qd.gif" width="300">
+</p>
 
 
 ## Deployment 📦
@@ -71,6 +58,7 @@ _Agrega notas adicionales sobre como hacer deploy_
 For the development of this project we use the following resources
 
 * [Python Lex Yacc](https://www.dabeaz.com/ply/) - The Lexical Compiler Analyzer
+* [PyQt5](https://www.qt.io/) - UI IDE FunSkills Playground (Qscintilla for Syntax Highligth)
 * [Processing](https://processing.org/) - Graphic Interface Development
 * [Python](https://www.python.org/) - Business Logic Development
 
