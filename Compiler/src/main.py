@@ -26,11 +26,11 @@ def main():
     }
     game1{
     int a = 5;
-    int b = 4;
-    b = c + 2;
+    int b[3];
+    str(10) c[5];
     dow(a)
         balloon(2, 3);
-    enddo;    
+    enddo;   
     }
     game2{
     }

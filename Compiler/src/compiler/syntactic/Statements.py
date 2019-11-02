@@ -81,11 +81,21 @@ def p_assignment(p):
 
 
 # Definition for declaration of variables with typification
-def p_declaration(p):
-    '''declaration : type ID SEMICOLON
-                   | type array SEMICOLON'''
+def p_declaration_var(p):
+    'declaration : type ID SEMICOLON'
     if len(p[2]) <= 10:
         variables[p[2]] = [p[1]]
+    else:
+        print("Syntactic Error: Variable %s identifier is too long." % p[2])
+
+
+def p_declaration_array(p):
+    'declaration : type array SEMICOLON'
+    if len(p[2][0]) <= 10:
+        arrayList = []
+        for index in range(p[2][1]):
+            arrayList.append(None)
+        variables[p[2][0]] = [p[1] + "Array", arrayList]
     else:
         print("Syntactic Error: Variable %s identifier is too long." % p[2])
 
@@ -99,7 +109,7 @@ def p_type(p):
 
 def p_array(p):
     '''array : ID LBRACKET NUMBER RBRACKET'''
-    p[0] = p[1]
+    p[0] = [p[1], p[3]]
 
 
 def p_atom(p):
