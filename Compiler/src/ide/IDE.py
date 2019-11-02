@@ -113,7 +113,7 @@ class CustomMainWindow(QMainWindow):
 
         # 1. Define the geometry of the main window
         # ------------------------------------------
-        self.setGeometry(100, 100, 800, 800)
+        self.setGeometry(250, 100, 800, 800)
         self.setWindowTitle("FunSkills - Playground")
 
         # 2. Create frame and layout
@@ -297,9 +297,11 @@ class CustomMainWindow(QMainWindow):
 
 '''=== end class ==='''
 
-
-if __name__ == '__main__':
+def run_IDE():
     app = QApplication(sys.argv)
     QApplication.setStyle(QStyleFactory.create('Fusion'))
     myGUI = CustomMainWindow()
     sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    run_IDE()
