@@ -1,5 +1,6 @@
 {
     "game1": {
+        "_name": "balloon",
         "iterations": 4,
         "positions": [
             "0,0",
