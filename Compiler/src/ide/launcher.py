@@ -1,5 +1,5 @@
 # ------------------------------------------------------------
-# File: init.py
+# File: launcher.py
 # Developed by: Esteban Alvarado Vargas
 # Project: FunSkills-[Compiler]
 # version: 3.0
@@ -36,7 +36,7 @@ QProgressBar::chunk{
 }"""
 
 # Init window class
-class init_window(QWidget):
+class launcher_window(QWidget):
 
     # Constructor
     def __init__(self, parent=None):
@@ -77,7 +77,7 @@ def count(app,window):
 #          the code editor
 def init_IDE():
     app = QApplication(sys.argv)
-    window = init_window()
+    window = launcher_window()
     window.show()
 
     x = threading.Thread(target=count,args=(app,window,))
