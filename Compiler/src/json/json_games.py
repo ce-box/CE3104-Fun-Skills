@@ -56,12 +56,13 @@ class object():
     #            JSON Builder          #
     # -------------------------------- #
     def build_json(self):
-        game = self.__get_this_game()
-        game["pos"] = self.__pos
-        game["height"] = self.__height
-        game["length"] = self.__length
-        game["time"] = self.__time
-        game["repeat"] = self.__repeat
+
+        with self.__get_this_game() as game:
+            game["pos"] = self.__pos
+            game["height"] = self.__height
+            game["length"] = self.__length
+            game["time"] = self.__time
+            game["repeat"] = self.__repeat
 
         save_json(self.__json)
 

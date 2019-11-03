@@ -1,13 +1,8 @@
 {
     "object": {
-        "pos": [
-            "x,y",
-            "x,y",
-            "x,y",
-            "x,y"
-        ],
-        "height": 10,
-        "length": 20,
+        "pos": [],
+        "height": 13,
+        "length": 55,
         "time": 15,
         "repeat": 1
     },
