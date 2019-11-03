@@ -7,8 +7,6 @@
   <img
        src="https://camo.githubusercontent.com/a3469255f3fcdead1593919251ab6f438744e9be/68747470733a2f2f63692e6170707665796f722e636f6d2f6170692f70726f6a656374732f7374617475732f346f3338706c743078626f31756263382f6272616e63682f6d61737465723f7376673d74727565">
   
-  <img src = "https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20osx--64%20%7C%20win--64-lightgrey">
-  
   <img src= "https://img.shields.io/badge/python-v3.7-blue">
   <br/>
   <img src= "https://img.shields.io/badge/status-stable-brightgreen">
@@ -29,9 +27,20 @@ In addition, a <b>command language</b> has been created to configure the game. T
 
 ## Getting Started 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+<p align=justify>Prerequisites:You must have <a href="https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Instalaci%C3%B3n-de-Git">Git</a>
+ installed on your console.</p>
 
-Mira **Deployment** para conocer como desplegar el proyecto.
+1. On **GitHub**, go to the main page of the [repository](https://github.com/estalvgs1999/CE3104-Fun-Skills).
+2. Under the name of the repository, click **Clone or download**.
+3. In the Clone with HTTPs section, click to copy the repository cloning URL.
+4. Open **Git Bash**.
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type 'git clone', and then paste the URL that you copied in _Step 2_.
+
+   ```$ git clone https://github.com/estalvgs1999/CE3104-Fun-Skills```
+
+7. Press Enter. Your local clone will be created for [CE3104-Fun-Skills](https://github.com/estalvgs1999/CE3104-Fun-Skills).
+8. Now you can access the examples contained in this repository.
 
 
 ### Prerequisites 📋
@@ -47,11 +56,6 @@ Da un ejemplo
 <p align="center">
 <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1572718337/CE3104/Fun%20Skills/demo_mxc0qd.gif" width="300">
 </p>
-
-
-## Deployment 📦
-
-_Agrega notas adicionales sobre como hacer deploy_
 
 ## Built With
 
