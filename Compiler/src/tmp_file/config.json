@@ -1,21 +1,32 @@
 {
-    "game1": {
-        "_name": "balloon",
-        "iterations": 4,
-        "positions": [
-            "0,0",
-            "2,0",
-            "5,6",
-            "7,9"
-        ]
+    "object": {
+        "pos": ["x,y","x,y","x,y","x,y"],
+        "height":10,
+        "length": 20,
+        "time": 15,
+        "repeat": 1
     },
-    "game2": {
-        "b": 10
+    "balloon": {
+        "height": 10,
+        "length": 20,
+        "h_inc": 0,
+        "h_dec": 0,
+        "l_inc": 0,
+        "l_dec": 0,
+        "repeat": 1
     },
-    "game3": {
-        "c": 200
+    "flags": {
+        "colors": ["red","blue","green","yellow","orange"],
+        "points": [10,20,30,20,10],
+        "time": 15,
+        "repeat": 1,
+        "cont_inc": 1,
+        "time_dec": 1
     },
-    "game4": {
-        "d": 200
+    "spidey": {
+        "colors": ["river","waterfall","ocean","rain","water"],
+        "points": [5,10,15,20,30],
+        "rows": 2,
+        "cols": 2
     }
 }
