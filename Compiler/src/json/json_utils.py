@@ -3,7 +3,7 @@
 # Developed by: Esteban Alvarado Vargas
 # Project: FunSkills-[Compiler]
 # version: 1.0
-# last edited by: Esteban Alvarado:: 1/11/19 22.30
+# last edited by: Esteban Alvarado:: 3/11/19 5.30
 #
 # Description: This code is responsible for reading and
 #              modifying the json file of game settings.
