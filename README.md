@@ -1,7 +1,7 @@
 # 𝗙𝘂𝗻 𝗦𝗸𝗶𝗹𝗹𝘀™ 🧩
 
 
-<p align=center><img src="https://cutt.ly/ieulNTo" width="300"></p>
+<p align=center><img src="https://cutt.ly/Ueul1gR" width="620"></p>
 
 <p align="center">
   <img
@@ -87,7 +87,7 @@ This project is under License (GNU General Public License) - see the file [LICEN
 
 ---
 <p align="center">
-<img src="https://cutt.ly/Ueul1gR" width="200"/>
+<img src="https://cutt.ly/ieulNTo" width="80"/>
   <br/>
 <img src="https://licensebuttons.net/l/by-nc/3.0/88x31.png" width="60"/>
   
