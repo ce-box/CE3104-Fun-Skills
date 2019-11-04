@@ -32,7 +32,7 @@
         ],
         "time": 15,
         "repeat": 1,
-        "cont_inc": 1,
+        "cnt_inc": 1,
         "time_dec": 1
     },
     "spidey": {

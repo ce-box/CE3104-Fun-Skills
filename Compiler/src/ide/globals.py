@@ -15,16 +15,17 @@
 
 import os
 
+# These few lines of code allow the project folder to be accessed
+# regardless of the equipment used
 file_dir = os.path.dirname(os.path.abspath(__file__))
 directory_path = os.path.dirname(file_dir)
 projectFolderPath = os.path.dirname(directory_path)
 
+###
 projectMainFile = os.path.join(projectFolderPath, 'FunSkills Projects/sketch001.fsk')
 projectCurrentFile = projectMainFile
 projectTempFile = os.path.join(projectFolderPath, 'src/tmp/tmp.fsk')
 
-#--------------------------
-# NOTE: *.fsk is the
-# fun skills command pro-
-# gram files extensions
-# -------------------------
+# --------------------------------------------------------------
+# NOTE: *.fsk is the fun skills command program files extensions
+# --------------------------------------------------------------
