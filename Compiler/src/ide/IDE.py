@@ -163,7 +163,7 @@ class CustomMainWindow(QMainWindow):
         # 1. Place run button
         # ------------------
         self.__run_btn = QPushButton("")
-        self.__run_btn.setIcon(QIcon(globals.projectFolderPath+"/src/img/play_btn.png"))
+        self.__run_btn.setIcon(QIcon(globals.projectFolderPath+"/img/play_btn.png"))
         self.__run_btn.setIconSize(QSize(50, 50))
         self.__run_btn.setFixedWidth(50)
         self.__run_btn.setFixedHeight(50)
@@ -175,7 +175,7 @@ class CustomMainWindow(QMainWindow):
         # 2. Place open file button
         # ------------------
         self.__open_btn = QPushButton("")
-        self.__open_btn.setIcon(QIcon(globals.projectFolderPath+"/src/img/Open_btn.png"))
+        self.__open_btn.setIcon(QIcon(globals.projectFolderPath+"/img/Open_btn.png"))
         self.__open_btn.setIconSize(QSize(50, 50))
         self.__open_btn.setFixedWidth(50)
         self.__open_btn.setFixedHeight(50)
@@ -190,7 +190,7 @@ class CustomMainWindow(QMainWindow):
         # 3. Place save file button
         # ------------------
         self.__save_btn = QPushButton("")
-        self.__save_btn.setIcon(QIcon(globals.projectFolderPath+"/src/img/save_btn.png"))
+        self.__save_btn.setIcon(QIcon(globals.projectFolderPath+"/img/save_btn.png"))
         self.__save_btn.setIconSize(QSize(50, 50))
         self.__save_btn.setFixedWidth(50)
         self.__save_btn.setFixedHeight(50)

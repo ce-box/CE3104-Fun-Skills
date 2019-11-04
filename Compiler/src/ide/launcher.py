@@ -19,10 +19,11 @@ from PyQt5.QtWidgets import *
 import time
 import threading
 import src.ide.IDE as ide
+import src.ide.globals as globals
 
 # Path variables
-directory_path = "/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/"
-img_path = directory_path + "src/img/intro.png"
+directory_path = globals.projectFolderPath
+img_path = directory_path + "/img/intro.png"
 
 TIME_LIMIT = 100
 BAR_STYLE = """QProgressBar{

@@ -18,12 +18,13 @@ import os
 file_dir = os.path.dirname(os.path.abspath(__file__))
 directory_path = os.path.dirname(file_dir)
 projectFolderPath = os.path.dirname(directory_path)
-projectMainFile = os.path.join(projectFolderPath, 'src/FunSkills Projects/sketch001.fsk')
+
+projectMainFile = os.path.join(projectFolderPath, 'FunSkills Projects/sketch001.fsk')
 projectCurrentFile = projectMainFile
 projectTempFile = os.path.join(projectFolderPath, 'src/tmp_file/tmp.fsk')
 
 #--------------------------
-# NOTE: *.fsk will be the
+# NOTE: *.fsk is the
 # fun skills command pro-
 # gram files extensions
 # -------------------------
