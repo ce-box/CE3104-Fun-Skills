@@ -15,7 +15,9 @@
 
 import os
 
-projectFolderPath = '/home/esteban/Documentos/TEC/2S 2019/Lenguajes-Compiladores-Intérpretes/2. Compiladores/2. Proyecto/CE3104-Fun-Skills/Compiler/'
+file_dir = os.path.dirname(os.path.abspath(__file__))
+directory_path = os.path.dirname(file_dir)
+projectFolderPath = os.path.dirname(directory_path)
 projectMainFile = os.path.join(projectFolderPath, 'src/FunSkills Projects/sketch001.fsk')
 projectCurrentFile = projectMainFile
 projectTempFile = os.path.join(projectFolderPath, 'src/tmp_file/tmp.fsk')
