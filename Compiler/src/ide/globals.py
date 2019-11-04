@@ -21,7 +21,7 @@ projectFolderPath = os.path.dirname(directory_path)
 
 projectMainFile = os.path.join(projectFolderPath, 'FunSkills Projects/sketch001.fsk')
 projectCurrentFile = projectMainFile
-projectTempFile = os.path.join(projectFolderPath, 'src/tmp_file/tmp.fsk')
+projectTempFile = os.path.join(projectFolderPath, 'src/tmp/tmp.fsk')
 
 #--------------------------
 # NOTE: *.fsk is the

@@ -16,7 +16,7 @@ import json
 
 file_dir = os.path.dirname(os.path.abspath(__file__))
 directory_file = os.path.dirname(file_dir)
-config_path =  directory_file + '/tmp_file/config.json'
+config_path =  directory_file + '/tmp/config.json'
 
 # @brief - It is responsible for reading the configuration
 #          json and returns it as a dictionary.

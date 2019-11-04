@@ -36,21 +36,21 @@
         "time_dec": 1
     },
     "spidey": {
-        "colors": [
+        "words": [
+            "tree",
             "river",
-            "waterfall",
-            "ocean",
-            "rain",
-            "water"
+            "mountain",
+            "camp",
+            "forest"
         ],
         "points": [
-            5,
-            10,
-            15,
-            20,
-            30
+            12,
+            23,
+            34,
+            45,
+            56
         ],
-        "rows": 2,
-        "cols": 2
+        "rows": 5,
+        "cols": 5
     }
 }
