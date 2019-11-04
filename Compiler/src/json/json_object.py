@@ -49,23 +49,21 @@ class object():
     def __get_this_game(self):
         return self.__json["object"]
 
-    def empty_pos(self):
-        return not self.__pos
-
     # -------------------------------- #
     #            JSON Builder          #
     # -------------------------------- #
     def build_json(self):
 
-        with self.__get_this_game() as game:
-            # starting positions
-            game["pos"] = self.__pos
-            game["height"] = self.__height
-            game["length"] = self.__length
+        game = self.__get_this_game()
 
-            # iteration control
-            game["time"] = self.__time
-            game["repeat"] = self.__repeat
+        # starting positions
+        game["pos"] = self.__pos
+        game["height"] = self.__height
+        game["length"] = self.__length
+
+        # iteration control
+        game["time"] = self.__time
+        game["repeat"] = self.__repeat
 
         save_json(self.__json)
 

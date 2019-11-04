@@ -33,3 +33,4 @@ def save_json(new_setup):
 
 if __name__ == '__main__':
     print(get_json())
+    save_json({'a':1})

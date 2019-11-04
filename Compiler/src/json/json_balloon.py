@@ -25,10 +25,10 @@ class balloon():
         # Configuration Attributes
         self.__height = 10
         self.__length = 20
-        self.__h_inc = 0,
-        self.__h_dec = 0,
-        self.__l_inc = 0,
-        self.__l_dec = 0,
+        self.__h_inc = 0
+        self.__h_dec = 0
+        self.__l_inc = 0
+        self.__l_dec = 0
         self.__repeat = 1
 
     # -------------------------------- #
@@ -59,23 +59,24 @@ class balloon():
     def __get_this_game(self):
         return self.__json["balloon"]
 
-
     # -------------------------------- #
     #            JSON Builder          #
     # -------------------------------- #
     def build_json(self):
-        with self.__get_this_game() as game:
-            # starting positions
-            game["height"] = self.__height
-            game["length"] = self.__length
+        game = self.__get_this_game()
+        print(game)
 
-            # increase\decrease factors
-            game["h_inc"] = self.__h_inc
-            game["h_dec"] = self.__h_dec
-            game["l_inc"] = self.__l_inc
-            game["l_dec"] = self.__l_dec
+        # starting positions
+        game["height"] = self.__height
+        game["length"] = self.__length
 
-            # iteration control
-            game["repeat"] = self.__repeat
+        # increase\decrease factors
+        game["h_inc"] = self.__h_inc
+        game["h_dec"] = self.__h_dec
+        game["l_inc"] = self.__l_inc
+        game["l_dec"] = self.__l_dec
+
+        # iteration control
+        game["repeat"] = self.__repeat
 
         save_json(self.__json)
