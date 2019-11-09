@@ -23,7 +23,7 @@
      
      boolean pattern = false;
 
-     ArrayList<Integer> colorPattern = new ArrayList<Integer>();
+     ArrayList<String> colorPattern = new ArrayList<String>();
 
      // GUI Variables
      int boxColor = #807b7a;
@@ -32,7 +32,7 @@
      color doneColor;
 
     // Color Hash Map
-    HashMap<Integer,Integer> colorDict = new HashMap<Integer,Integer>();
+    HashMap<String,Integer> colorDict = new HashMap<String,Integer>();
 
     /* Note: The default color of a Flag is Black*/
 
@@ -61,7 +61,7 @@
         this.circleRad = radius;
     }
 
-    public void setPattern(ArrayList<Integer> colorPattern){
+    public void setPattern(ArrayList<String> colorPattern){
         this.colorPattern = colorPattern;
         this.pattern = true;
     }
@@ -95,7 +95,7 @@
             
             if(pattern){
                 try {
-                int currentColorCode = colorPattern.get(listIndex);
+                String currentColorCode = colorPattern.get(listIndex);
                 int currentColor = colorDict.get(currentColorCode);
                 fill(currentColor);
                 } catch (Exception e) {
@@ -117,11 +117,11 @@
      * @brief - Initialize the content of the color-name dictionary
      */
     private void initDict(){
-        colorDict.put(0,#e60000); // RED
-        colorDict.put(4,#ffa500); // ORANGE
-        colorDict.put(3,#ffff33); // YELLOW
-        colorDict.put(1,#009a00); // GREEN
-        colorDict.put(2,#1a1aff); // BLUE
+        colorDict.put("red",#e60000); // RED
+        colorDict.put("orange",#ffa500); // ORANGE
+        colorDict.put("yellow",#ffff33); // YELLOW
+        colorDict.put("green",#009a00); // GREEN
+        colorDict.put("blue",#1a1aff); // BLUE
     }
 
 

@@ -23,6 +23,8 @@ public class Flag{
     int flagWidth = 150;
     color flagColor = color(0);
     color highColor = color(255);
+
+    int points = 10;
     boolean flagOver;
     String colorName = "black";
 
@@ -49,10 +51,11 @@ public class Flag{
      * @param posX
      * @param posY
      */
-    public Flag(int posX,int posY, String colorName){
+    public Flag(int posX,int posY, String colorName,int points){
         this.posX = posX;
         this.posY = posY;
         this.colorName = colorName;
+        this.points = points;
 
         this.initDict();
         this.flagColor = colorDict.get(colorName);
@@ -105,6 +108,9 @@ public class Flag{
         return this.colorName;
     }
 
+    public int getPoints(){
+        return this.points;
+    }
     /* ------------------------------------------------------
      *                    UTIL FUNCTIONS
      * -----------------------------------------------------*/

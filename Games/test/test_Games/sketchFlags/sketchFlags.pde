@@ -38,39 +38,37 @@ PFont fontArialBold;
 /* ------------------------------------------------------
  *                PROCESSING MAIN FUNCTIONS
  * -----------------------------------------------------*/
-
-void setup() {
+gameFlags gf;
+  
+void setup(){
   size(800,600);
-
-  guiSetup();
-
-  // First the dictionary is initialized, 
-  // then the flags are instantiated.
-  initDict();
-  initList();
-
-  generateRandomSequence();
-  decodeSequence();
+  gf = new gameFlags();
 }
 
 
 void draw(){
-    // Game Screen Selector
+  
+  gf.draw();
+  /*  // Game Screen Selector
   if(gameScreen == 0){
     initScreen();
   } else if(gameScreen == 1){
     gameScreen();
   } else if(gameScreen == 2){
     gameOverScreen();
-  }
+  }*/
 
 }
 
+
+void mousePressed(){
+  gf.mousePressed();
+}
 /* ------------------------------------------------------
  *                    SCREEN CONTENTS
  * -----------------------------------------------------*/
 
-
+/*
 void guiSetup(){
 
   fontArialBold = createFont("Arial Bold", 16);
@@ -116,7 +114,7 @@ void gameOverScreen() {
   text(score, width/2, height/2);
   textSize(15);
   text("Click to Restart", width/2, height-30);
-}
+}*/
 
 /* ------------------------------------------------------
  *                     INPUT EVENTS
@@ -126,6 +124,7 @@ void gameOverScreen() {
  * @brief - For this example the entry is the mouse. This function must 
  *  be adapted to the kinect inputs
  */
+/*
 void mousePressed(){
 
   //  
@@ -142,22 +141,23 @@ void mousePressed(){
     reset();
   }
 }
-
+*/
 /* ------------------------------------------------------
  *                  SCREEN CHANGERS
  * -----------------------------------------------------*/
 
 /** 
  * @brief - Sets the necessary variables to start the game
- */ 
+ */ /*
 void startGame(){
   gameScreen = 1;
-}
+}*/
 
 
 /** 
  * @brief - Return all values ​​to their initial conditions
  */
+/*
 void reset(){
 
   generateRandomSequence();
@@ -166,7 +166,7 @@ void reset(){
   score = 0;
   attempts = 0;
   successes = 0;
-}
+}*/
 
 /* ------------------------------------------------------
  *                     VALIDATIONS
@@ -176,17 +176,20 @@ void reset(){
  * @brief - checks if the color of the flag matches the 
  *          first of the sequence
  */ 
+/*
 boolean checkFlag(Flag flag){
   String currentColor = colorDict.get(colorSeq.get(0));
   String selectedColor = flag.getColor();
   return currentColor == selectedColor;
-}
+}/*
 
 
 /**
  * @brief - Check if the cursor is on a flag, then verify that 
  *          the flag is the one you are looking for 
  */
+
+/*
 void validateFlags(){
   
   for(Flag flag: flagList){
@@ -205,7 +208,7 @@ void validateFlags(){
     }
   }
 }
-
+*/
 /* ------------------------------------------------------
  *                    DRAWING FUNCTIONS
  * -----------------------------------------------------*/
@@ -214,6 +217,7 @@ void validateFlags(){
  * @brief - Maintains a loop that is drawing and 
  *          updating the flags
  */
+/*
 void drawFlags(){
 
   for(Flag flag : flagList){
@@ -221,7 +225,7 @@ void drawFlags(){
     flag.drawFlag();
   }
 }
-
+*/
 
 /* -----------------------------------
  *           UTIL FUNCTIONS
@@ -230,17 +234,18 @@ void drawFlags(){
 /**
  * @brief - Enter the colors to the dictionary
  */
+/*
 void initDict(){
   colorDict.put(0,"red");
   colorDict.put(4,"orange");
   colorDict.put(3,"yellow");
   colorDict.put(1,"green");
   colorDict.put(2,"blue");
-}
+}*/
 
 /** 
  * @brief Create the flags that will be used during the game
- */
+ *//*
 void initList(){
   Flag flag;
   int posX = 0;
@@ -250,12 +255,12 @@ void initList(){
     flagList.add(flag);
     posX += 155;
   }
-}
+}*/
 
 /**
  * @brief -Function that randomly generates an 
  *         incremental color pattern
- */
+ *//*
 void generateRandomSequence(){
 
   for(int cnt = 0; cnt<color_amt;cnt++){
@@ -264,13 +269,10 @@ void generateRandomSequence(){
   }
 }
 
-/**
- * @brief -This function decodes the random number 
- *         pattern list generated
- */
+
 void decodeSequence(){
   for(int x:colorSeq){
     println("color: ",colorDict.get(x));
   }
   println("---");
-}
+}*/
