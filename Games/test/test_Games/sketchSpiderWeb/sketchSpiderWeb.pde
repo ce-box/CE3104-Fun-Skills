@@ -1,74 +1,94 @@
 Object[][] game_Dic={{"Sahid",1},{"edgardo",2},{"esteban",3},{"jessica",4},{"maria",5},{"jose",6},{"erick",7},{"mauro",8},{"andres",9},
 {"Sahid",1},{"edgardo",2},{"esteban",3},{"jessica",4},{"maria",5},{"jose",6},{"erick",7},{"mauro",8},{"andres",9},
 {"Sahid",1},{"edgardo",2},{"esteban",3},{"jessica",4},{"maria",5},{"jose",6},{"erick",7}};
-int player_X=750;
-int player_Y=275;
-ArrayList<String> words_Found = new ArrayList<String>();
-int[][] vertexs_Array;
-Object[][] word_Web = new Object[5][5];
-
-
+int player_Column=1;
+int player_Line=2;
+int score = 0;
+float player_X;
+float player_Y;
+LinkedList words_Found;
+LinkedList web_Vertexs;
 
 void setup() {
   size(1000,800); 
   background(255);
   stroke(0);
   strokeWeight(2);
-  fill(255);
+  fill(255);  
+  web_Vertexs = new LinkedList();
+  words_Found = new LinkedList();
 }
 
-void draw() {
-  fill(255);
-  draw_Mat();
-  draw_Player();
+void draw() {    
   pushMatrix(); 
   web(5,5);  
   smooth();
   popMatrix();
-  found_Words();
+  //found_Words();
   for_Asign_Word(5,5);
-  word_Player_Collision(player_X,player_Y);
+  word_Player_Collision();   
+  LinkedList start_Line =(LinkedList) web_Vertexs.getNode(player_Column).getData();
+  player_X=(start_Line.getNode(player_Line).getX());
+  player_Y=(start_Line.getNode(player_Line).getY());
+  draw_Player();
+  draw_Mat();
+  printScore();
 }
+
+void printScore() {
+  textAlign(CENTER);
+  fill(0);
+  textSize(30); 
+  text(score, 600, 10);
+}
+
 
 void found_Words(){
   stroke(0);
   rect(0, 500, 400, 300, 7);
   int x=70; int y=540;
-  for (int i=0;i<words_Found.size()-1;i++){
+  for (int i=0;i<words_Found.getSize()-1;i++){
     if (x>330){
       y+=40;
       x=60;}
     strokeWeight(1);
     textSize(16);
-    text(words_Found.get(i).toString(),x,y);      
-    x+=(words_Found.get(i).toString().length()*15)+10;
+    text(words_Found.getNode(i).getData().toString(),x,y);      
+    x+=(words_Found.getNode(i).getData().toString().length()*15)+10;
   }
 }
 
 void draw_Player(){
+  translate(250,250);
   fill(#b5cd38);
   noStroke();
   ellipse(player_X,player_Y,15,15);
   stroke(0);
+  translate(0,0);
 }
 
-void columns(int n){   
+
+void columns(int n){
+  LinkedList temp = new LinkedList();
    noFill();
   int seg_Column = 125/n;
   float angle = TWO_PI / n;
-  translate(0,0);
   while(seg_Column<255 && n!=0) {
     noFill();
     beginShape();
-    for (float a = 0; a < TWO_PI; a += angle) {
+    for (float a = 0; a < TWO_PI; a += angle) {//Crea circulos cada  vez mas grandes
       float sx =  cos(a) * seg_Column;
       float sy =  sin(a) * seg_Column;
       vertex(sx, sy);
-    }   
-    seg_Column+=125/n;
+      Node tmp = new Node(sx, sy, 0);
+      temp.append(tmp);
+    }
+    seg_Column+=(125/n)*(n/2);
     n--;
+    web_Vertexs.append(temp);
+    smooth();
    endShape(CLOSE);
-  }  
+  } 
 }
 
 
@@ -89,45 +109,65 @@ void web(int npoints, int n_Columns) {
   endShape(CLOSE);    
   columns(n_Columns);
   smooth();
+  translate(0,0);
 }
 
 
-void keyPressed(){
+
+void keyPressed(){ 
+  translate(250,250);
   switch(keyCode){
-    case(UP):
-    println("UP");
-    player_Y-=20;
-    case(DOWN):
-    player_Y+=20;
+    case(UP):   
+  LinkedList line =(LinkedList)  web_Vertexs.getNode(player_Column).getData();
+  player_X=(line.getNode(player_Line+1).getX());
+  player_Y=(line.getNode(player_Line+1).getY());
+  player_Line++;
+    case(DOWN):    
+  LinkedList line2 =(LinkedList)  web_Vertexs.getNode(player_Column).getData();    
+  player_X=(line2.getNode(player_Line-1).getX());
+  player_Y=(line2.getNode(player_Line-1).getY());
+  draw_Player();
+  player_Line--;
     case(RIGHT):
-    player_X+=20;
+  LinkedList new_Line =(LinkedList)  web_Vertexs.getNode(player_Column+1).getData();
+  player_X=(new_Line.getNode(player_Line).getX());
+  player_Y=(new_Line.getNode(player_Line).getY());
+  player_Column++;
     case(LEFT):
-    player_X-=20;
+  LinkedList new_Line2 =(LinkedList)  web_Vertexs.getNode(player_Column-1).getData();
+  player_X=(new_Line2.getNode(player_Line).getX());
+  player_Y=(new_Line2.getNode(player_Line).getY());
+  player_Column--;
   }
+  
+  translate(0,0);
 }
 
 void for_Asign_Word(int lines, int columns){
   int index=0;
-  for (int i=0; i<lines; i++){
+  for (int i=0; i<lines; i++){    
+  LinkedList new_Line =(LinkedList) web_Vertexs.getNode(i).getData();
     for (int j=0; j<columns;j++){ 
-      word_Web[i][j]=game_Dic[index];
+      new_Line.getNode(j).setData(game_Dic[index]);
       index++;
-      println(index);
-      println(word_Web[i][j]);
     }
   }  
 }
 
-
-void word_Player_Collision(int x, int y){  
-  for (int i=0; i<vertexs_Array.length;i++){
-    if(x==vertexs_Array[i][0] && y==vertexs_Array[i][1]){
-      words_Found.add(word_Web[i].toString());
+void word_Player_Collision(){  
+  LinkedList new_Line =(LinkedList)  web_Vertexs.getNode(player_Column).getData();
+  for (int i=0; i<new_Line.getSize();i++){    
+    if(player_X == new_Line.getNode(i).getX() && player_Y == new_Line.getNode(i).getY()){
+      words_Found.append(new_Line.getNode(i).getData().toString());
     }
   }
 }
 
+
 void draw_Mat(){
-  line(750,150,750,400);
-  line(625,275,875,275);
+  fill(#b5cd38);
+  arc(470, 60, 250, 250, PI-3*QUARTER_PI, PI-QUARTER_PI,PIE);
+  arc(470, 40, 250, 250, PI+QUARTER_PI, PI+3*QUARTER_PI,PIE);
+  arc(480, 50, 250, 250, PI+3*QUARTER_PI, TWO_PI+QUARTER_PI,PIE);  
+  arc(460, 50, 250, 250, PI-QUARTER_PI, PI+QUARTER_PI,PIE);
 }
