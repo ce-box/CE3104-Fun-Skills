@@ -13,7 +13,7 @@
 # ------------------------------------------------------------
 
 # Libraries
-from src.compiler.lexer.Lexer import analyzeData
+from src.ide.ide_compile import *
 import sys
 import ntpath
 
@@ -213,8 +213,7 @@ class CustomMainWindow(QMainWindow):
         data = f.read()
         f.close()
 
-        lexical_analysis = analyzeData(data)
-        print(lexical_analysis)
+        compile(data)
 
     # @brief - Open a file explorer that allows you to open a
     #          * .fsk file
