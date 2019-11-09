@@ -32,6 +32,7 @@ def p_structure(p):
     game\
     game\
     game\
+    optionalComment\
     END SEMICOLON'''
 
     keyList = ["main", "game1", "game2", "game3", "game4"]
@@ -45,18 +46,28 @@ def p_structure(p):
 
     p[0] = astRoot
 
+
 def p_main(p):
-    'main : MAIN LBRACE statements RBRACE'
-    symbolsTable["main"] = copy.deepcopy(variables)
-    variables.clear()
-    p[0] = p[3]
+    '''main : COMMENT main
+            | MAIN LBRACE statements RBRACE'''
+    if len(p) == 5:
+        symbolsTable["main"] = copy.deepcopy(variables)
+        variables.clear()
+        p[0] = p[3]
 
 
 def p_game(p):
-    'game : GAME LBRACE statements RBRACE'
-    symbolsTable["game" + str(len(symbolsTable))] = copy.deepcopy(variables)
-    variables.clear()
-    p[0] = p[3]
+    '''game : COMMENT game
+            | GAME LBRACE statements RBRACE'''
+    if len(p) == 5:
+        symbolsTable["game" + str(len(symbolsTable))] = copy.deepcopy(variables)
+        variables.clear()
+        p[0] = p[3]
+
+
+def p_optionalComment(p):
+    '''optionalComment : COMMENT optionalComment
+                      | empty'''
 
 
 # Build the parser

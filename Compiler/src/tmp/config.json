@@ -16,8 +16,20 @@
         "repeat": 5
     },
     "flags": {
-        "colors": ["red", "blue", "green", "yellow", "orange"],
-        "points": [10, 20, 30, 20, 10],
+        "colors": [
+            "red",
+            "blue",
+            "green",
+            "yellow",
+            "orange"
+        ],
+        "points": [
+            10,
+            20,
+            30,
+            20,
+            10
+        ],
         "time": 40,
         "amnt": 3,
         "repeat": 2,

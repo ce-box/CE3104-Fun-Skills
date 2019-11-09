@@ -22,7 +22,7 @@ from src.compiler.datastructures.TreeNode import *
 def main():
     # display_IDE_window()
     data = '''
-    // Comentario inicial
+    // Obligatory initial Comment
     begin
     main{
         int a;
