@@ -7,13 +7,13 @@
         "repeat": 1
     },
     "balloon": {
-        "height": 10,
-        "length": 20,
-        "h_inc": 0,
+        "height": 1,
+        "length": 15,
+        "h_inc": 2,
         "h_dec": 0,
         "l_inc": 0,
-        "l_dec": 0,
-        "repeat": 1
+        "l_dec": 1,
+        "repeat": 5
     },
     "flags": {
         "colors": [

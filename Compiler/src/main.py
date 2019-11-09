@@ -29,8 +29,6 @@ def main():
     }
     game1{
         int x = 0;
-        x = 7;
-        x = "CACA";
         int y = 9;
         balloon(x, y);
     }
