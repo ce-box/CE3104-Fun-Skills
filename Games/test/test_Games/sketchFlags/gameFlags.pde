@@ -10,18 +10,21 @@
  * TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
  * ------------------------------------------------------------*/
 
-import java.util.Map;
+import java.util.Collections;
 
 public class gameFlags{
 
     // Game DB JSON Values
     private ArrayList<String> colors = new ArrayList<String>();
     private ArrayList<Integer> points = new ArrayList<Integer>();
+    
+    // Game 
     private ArrayList<Flag> flagList = new ArrayList<Flag>();
+    private ArrayList<String> pattern = new ArrayList<String>();
 
     private int repeat = 0;
     private int time = 0;
-    private int index_amnt = 0;
+    private int index_amnt = 3;
     private int amnt_inc = 0;
     private int time_dec = 0;
 
@@ -40,26 +43,25 @@ public class gameFlags{
     // GUI Variables
     private PatternBox box;
     private PFont fontArialBold;
-     
+    
+
+    /**
+     * @brief Constructor
+     */
     public gameFlags(){
          
         guiSetup();
         getConfig();
-        foo();
+
         initFlags();
+        generatePattern();
 
     }
     
-    private void foo(){
-        colors.add("red");
-        colors.add("green");
-        colors.add("blue");
-
-        points.add(20);
-        points.add(30);
-        points.add(40);
-    }
-    
+    /**
+     * @brief Main function of drawing the class, this is called 
+     *        from the game suite
+     */
     public void draw(){
          
         // Game Screen Selector
@@ -72,7 +74,13 @@ public class gameFlags{
         }
 
     }
+    /* ------------------------------------------------------
+     *                          INITS
+     * -----------------------------------------------------*/
 
+    /**
+     * @brief Create a list of flags according to the configuration file
+     */
     private void initFlags(){
         Flag flag;
         int xPos = 0;
@@ -87,24 +95,55 @@ public class gameFlags{
         }
     }
 
-    /* ------------------------------------------------------
-     *                    SCREEN CONTENTS
-     * -----------------------------------------------------*/
+    /**
+     * @brief Generate a random pattern using the maximum number 
+     *        of colors allowed
+     */
+    private void generatePattern(){
+
+        //1. Copy the elements to pattern
+        for(int i = 0; i < index_amnt; i++){
+            pattern.add(colors.get(i));
+        }
+
+        //2. Generate a random order
+        Collections.shuffle(pattern);
+        println(pattern);
+
+    }
+
+    /**
+     * @brief Configure some UI properties
+     */
     private void guiSetup(){
         fontArialBold = createFont("Arial Bold", 16);
         box = new PatternBox(250,100);
     }
 
+    /**
+     * @brief Get the information from the configuration file 
+     *        and modify it in the game
+     */
     private void getConfig(){
         // Stuff to get config.json data
     }
 
+    /* ------------------------------------------------------
+     *                    SCREEN CONTENTS
+     * -----------------------------------------------------*/
+    
+    /**
+     * @brief begin game window
+     */
     private void initScreen(){
         background(0);
         textAlign(CENTER);
         text("Click to Start", width/2, height/2);   
     }
 
+    /**
+     * @brief Main game window
+     */
     private void gameScreen(){
         background(255);
  
@@ -114,16 +153,19 @@ public class gameFlags{
         text("Attemps:"+attempts,200,20);
         text("Score:"+score,550,20);
         
-        box.setPattern(colors);
+        box.setPattern(pattern);
         box.drawBox();
          
         drawFlags();
  
-        if(colors.size() == 0){
+        if(pattern.size() == 0){
             gameScreen = 2;
         }
     }
 
+    /**
+     * @brief Final game window
+     */
     private void gameOverScreen() {
         background(44, 62, 80);
         textAlign(CENTER);
@@ -177,6 +219,7 @@ public class gameFlags{
      */
     void reset(){
 
+        generatePattern();
         score = 0;
         attempts = 0;
         successes = 0;
@@ -191,7 +234,7 @@ public class gameFlags{
      *          first of the sequence
      */ 
     boolean checkFlag(Flag flag){
-        String currentColor = colors.get(0);
+        String currentColor = pattern.get(0);
         String selectedColor = flag.getColor();
         return currentColor == selectedColor;
     }
@@ -208,7 +251,7 @@ public class gameFlags{
             if(flag.flagOver){ 
             if(checkFlag(flag)){
                 println("Correct!");
-                colors.remove(0);
+                pattern.remove(0);
                 successes++;
                 score += flag.getPoints();
             } 
@@ -235,13 +278,5 @@ public class gameFlags{
             flag.drawFlag();
         }
     }
-
-
-
-
-
-
-
-
 
 }
