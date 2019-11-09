@@ -27,10 +27,15 @@ start = 'structure'
 def p_structure(p):
     '''structure : COMMENT\
     BEGIN\
+    optionalComment\
     main\
+    optionalComment\
     game\
+    optionalComment\
     game\
+    optionalComment\
     game\
+    optionalComment\
     game\
     optionalComment\
     END SEMICOLON'''
@@ -48,21 +53,17 @@ def p_structure(p):
 
 
 def p_main(p):
-    '''main : COMMENT main
-            | MAIN LBRACE statements RBRACE'''
-    if len(p) == 5:
-        symbolsTable["main"] = copy.deepcopy(variables)
-        variables.clear()
-        p[0] = p[3]
+    '''main : MAIN LBRACE statements RBRACE'''
+    symbolsTable["main"] = copy.deepcopy(variables)
+    variables.clear()
+    p[0] = p[3]
 
 
 def p_game(p):
-    '''game : COMMENT game
-            | GAME LBRACE statements RBRACE'''
-    if len(p) == 5:
-        symbolsTable["game" + str(len(symbolsTable))] = copy.deepcopy(variables)
-        variables.clear()
-        p[0] = p[3]
+    '''game : GAME LBRACE statements RBRACE'''
+    symbolsTable["game" + str(len(symbolsTable))] = copy.deepcopy(variables)
+    variables.clear()
+    p[0] = p[3]
 
 
 def p_optionalComment(p):

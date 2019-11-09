@@ -42,15 +42,35 @@ from src.compiler.datastructures.TreeNode import *
 
 def main():
     # display_IDE_window()
-    data = '''
-    
-    
+    data = '''// Comentario inicial
+    begin
+    main{
+        int a;
+    }
+    game1{
+        int x = 0;
+        int y = 15;
+        int cant = 5;
+        dow(cant)
+            balloon(x, y);
+            inc(x, 1);
+            dec(y, 2);
+        enddo;
+    }
+    game2{
+    }
+    game3{
+    }
+    game4{
+    }
+    end;
     '''
     # Build the lexer
     lexer = lex.lex()
     # Receive input
     lexer.input(data)
     ast = parse(lexer)
+    print(ast.children[1].children)
     try:
         checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)
         print(checkSymbolTable)
