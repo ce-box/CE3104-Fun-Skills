@@ -1,22 +1,23 @@
-public class Node {
+public class Node<T> {
     public float x;
     public float y;
-    public Object data;
-    Node next;
+    public T data;
+    public int score;
+    Node<T> next;
 
-    public Node(float x, float y, Object word) {
+    public Node(float x, float y, T word) {
         this.next=null;
         this.x = x;
         this.y = y;
         this.data=word;
     }
     
-    public Node(Object data) {
+    public Node(T data) {
         this.next=null;
         this.data=data;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
@@ -33,11 +34,11 @@ public class Node {
     }
         
     
-    public Object getData() {
+    public T getData() {
         return data;
     }
     
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
     
@@ -48,4 +49,5 @@ public class Node {
     public void setY(float y) {
         this.y = y;
     }
+    
 }

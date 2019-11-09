@@ -24,7 +24,7 @@ void draw() {
   web(5,5);  
   smooth();
   popMatrix();
-  //found_Words();
+  found_Words();
   for_Asign_Word(5,5);
   word_Player_Collision();   
   LinkedList start_Line =(LinkedList) web_Vertexs.getNode(player_Column).getData();
@@ -36,12 +36,34 @@ void draw() {
 }
 
 void printScore() {
+  translate(0,0);
   textAlign(CENTER);
   fill(0);
   textSize(30); 
-  text(score, 600, 10);
+  text("Score: "+score, 600, -150);
 }
 
+void for_Asign_Word(int lines, int columns){
+  int index=0;
+  for (int i=0; i<lines; i++){    
+  LinkedList new_Line =(LinkedList) web_Vertexs.getNode(i).getData();
+    for (int j=0; j<columns;j++){ 
+      new_Line.getNode(j).setData(game_Dic[index][0]);
+      index++;
+    }
+  }  
+}
+
+void word_Player_Collision(){  
+  LinkedList new_Line =(LinkedList)  web_Vertexs.getNode(player_Column).getData();
+  for (int i=0; i<new_Line.getSize();i++){    
+    if(player_X == new_Line.getNode(i).getX() && player_Y == new_Line.getNode(i).getY()){
+      println(new_Line.getNode(i).getData());      
+      words_Found.append(new_Line.getNode(i).getData());
+      break;
+    }
+  }
+}
 
 void found_Words(){
   stroke(0);
@@ -138,29 +160,8 @@ void keyPressed(){
   player_X=(new_Line2.getNode(player_Line).getX());
   player_Y=(new_Line2.getNode(player_Line).getY());
   player_Column--;
-  }
-  
-  translate(0,0);
-}
-
-void for_Asign_Word(int lines, int columns){
-  int index=0;
-  for (int i=0; i<lines; i++){    
-  LinkedList new_Line =(LinkedList) web_Vertexs.getNode(i).getData();
-    for (int j=0; j<columns;j++){ 
-      new_Line.getNode(j).setData(game_Dic[index]);
-      index++;
-    }
   }  
-}
-
-void word_Player_Collision(){  
-  LinkedList new_Line =(LinkedList)  web_Vertexs.getNode(player_Column).getData();
-  for (int i=0; i<new_Line.getSize();i++){    
-    if(player_X == new_Line.getNode(i).getX() && player_Y == new_Line.getNode(i).getY()){
-      words_Found.append(new_Line.getNode(i).getData().toString());
-    }
-  }
+  translate(0,0);
 }
 
 

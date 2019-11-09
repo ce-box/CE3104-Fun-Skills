@@ -1,6 +1,6 @@
-public class LinkedList {
-    private Node head;
-    private Object data;
+public class LinkedList<T> {
+    private Node<T> head;
+    private T data;
     private int size;
 
     /**
@@ -15,21 +15,21 @@ public class LinkedList {
         return size;
     }
     
-    public Object getData() {
+    public T getData() {
         return data;
     }
     
     public void display(){
-        Node current = this.head;
+        Node<T> current = this.head;
         while (current!=null){
             println(current.getData());
             current = current.getNext();
         }
     }
 
-    public void append(LinkedList temp) {
-        Node node = new Node(temp);
-        Node tmp = this.head;
+    public void append(LinkedList<T> temp) {
+        Node<T> node = new Node(temp);
+        Node<T> tmp = this.head;
         if (this.head == null) {
             this.head = node;
             this.size++;
@@ -44,9 +44,9 @@ public class LinkedList {
         }
     }
 
-    public void append(float x, float y, String word) {
-        Node node = new Node(x,y,word);
-        Node tmp = this.head;
+    public void append(float x, float y, T word) {
+        Node<T> node = new Node(x,y,word);
+        Node<T> tmp = this.head;
         if (this.head == null) {
             this.head = node;
             this.size++;
@@ -61,9 +61,9 @@ public class LinkedList {
         }
     }
     
-    public void append(Object info) {
-        Node node = new Node(info);
-        Node tmp = this.head;
+    public void append(T info) {
+        Node<T> node = new Node(info);
+        Node<T> tmp = this.head;
         if (this.head == null) {
             this.head = node;
             this.size++;
@@ -80,7 +80,7 @@ public class LinkedList {
 
 
     public void search() {
-        Node tmp = this.head;
+        Node<T> tmp = this.head;
         if (this.head == null) {
             println("0");
         }
@@ -97,8 +97,8 @@ public class LinkedList {
      * @param index
      * @return nodo
      */
-    public Node getNode(int index){
-        Node current = this.head;
+    public Node<T> getNode(int index){
+        Node<T> current = this.head;
         if (index < size) {
             for (int j = 0; j < size; j++) {
                 if (index == j) {
