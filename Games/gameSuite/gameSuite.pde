@@ -10,4 +10,22 @@
  * TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
  * ------------------------------------------------------------*/
 
- 
+ gameFlags gf;
+  
+void setup(){
+  size(800,600);
+  gf = new gameFlags();
+  gf.toString();
+}
+
+
+void draw(){
+  
+  gf.draw();
+
+}
+
+
+void mousePressed(){
+  gf.mousePressed();
+}

@@ -195,7 +195,7 @@ public class gameFlags{
      * @brief - For this example the entry is the mouse. This function must 
      *  be adapted to the kinect inputs
      */
-    void mousePressed(){
+    public void mousePressed(){
 
         if(gameScreen == 0){
             startGame();
@@ -218,7 +218,7 @@ public class gameFlags{
     /** 
      * @brief - Sets the necessary variables to start the game
      */ 
-    void startGame(){
+    private void startGame(){
         gameScreen = 1;
     }
 
@@ -226,7 +226,7 @@ public class gameFlags{
     /** 
      * @brief - Return all values ​​to their initial conditions
      */
-    void reset(){
+    private void reset(){
 
         generatePattern();
         score = 0;
@@ -242,7 +242,7 @@ public class gameFlags{
      * @brief - checks if the color of the flag matches the 
      *          first of the sequence
      */ 
-    boolean checkFlag(Flag flag){
+    private boolean checkFlag(Flag flag){
         String currentColor = pattern.get(0);
         String selectedColor = flag.getColor();
         return currentColor == selectedColor;
@@ -253,7 +253,7 @@ public class gameFlags{
      * @brief - Check if the cursor is on a flag, then verify that 
      *          the flag is the one you are looking for 
      */
-    void validateFlags(){
+    private void validateFlags(){
     
         for(Flag flag: flagList){
             
@@ -280,12 +280,19 @@ public class gameFlags{
      * @brief - Maintains a loop that is drawing and 
      *          updating the flags
      */
-    void drawFlags(){
+    private void drawFlags(){
 
         for(Flag flag : flagList){
             flag.update(mouseX,mouseY);
             flag.drawFlag();
         }
+    }
+    
+    @Override
+    public String toString(){
+        String s = "FLAGS\n+colors: "+colors+"\n+points: "+points+"\ntime: "+time+"\namnt: "+index_amnt+"\ntime_dec: "+time_dec+"\namnt_inc: "+amnt_inc+"\nrepeat: "+repeat;
+        println(s);
+        return s;
     }
 
 }
