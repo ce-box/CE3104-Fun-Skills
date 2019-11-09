@@ -1,6 +1,7 @@
 from src.compiler.datastructures.TreeNode import *
 from src.json.json_balloon import *
 
+balloon_values = balloon()
 
 def iterateTree(tree):
     for child in tree.children:
@@ -23,7 +24,6 @@ def evaluateLoop(loop):
 
 def dowLoop(loop_content):
     iterations = loop_content[0]
-    balloon_values = balloon()
     balloon_values.set_repeats(iterations)
     variables_names = {}
     for reserved_function in loop_content[1:]:

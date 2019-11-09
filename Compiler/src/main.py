@@ -29,12 +29,15 @@ def main():
     }
     game1{
         int x = 0;
-        int y = 9;
-        balloon(x, y);
+        int y = 15;
+        int cant = 5;
+        dow(cant)
+            balloon(x, y);
+            inc(x, 1);
+            dec(y, 2);
+        enddo;
     }
     game2{
-        int g = 0;
-        int y = 6;
     }
     game3{
     }
@@ -48,13 +51,12 @@ def main():
     # Receive input
     lexer.input(data)
     ast = parse(lexer)
-    # iterateTree(ast)
-
     try:
         checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)
         print(checkSymbolTable)
     except TypeError:
         print("TypeError")
+    iterateTree(ast)
 
 
 if __name__ == '__main__':
