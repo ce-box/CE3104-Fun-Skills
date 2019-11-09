@@ -20,12 +20,19 @@ void setup(){
 
 
 void draw(){
-  
-  gf.draw();
-
+  if(!gf.done)
+    gf.draw();
+  else
+    foo();
 }
 
 
 void mousePressed(){
   gf.mousePressed();
+  
+}
+
+void foo(){
+  background(0);
+  text("menu",100,100);
 }

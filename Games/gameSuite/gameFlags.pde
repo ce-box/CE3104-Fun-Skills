@@ -38,7 +38,7 @@ public class gameFlags{
     // 1: Game Screen
     // 2: Game-over Screen
     private int gameScreen = 0;
-
+    public boolean done = false;
 
     // Quantization of attempts
     private int attempts = 0;
@@ -176,12 +176,12 @@ public class gameFlags{
             fill(0);
             text("Success:"+successes,50,20);
             text("Attemps:"+attempts,200,20);
-            text("SCORE:"+score,650,20);
-            text("Shifts: "+repeat,570,20);
+            text("Shifts:"+repeat,570,20);
+            text("Scores:"+score,680,20);
 
             // Count down
             run_time = duration - (millis() - begin)/1000;
-            text("Time: "+run_time+" s", 450,20);
+            text("Time: "+run_time+" s", 420,20);
             
             box.setPattern(pattern);
             box.drawBox();
@@ -229,7 +229,7 @@ public class gameFlags{
         textSize(130);
         text(score, width/2, height/2);
         textSize(15);
-        text("Click to Restart", width/2, height-30);
+        text("Click to Close", width/2, height-30);
     }
 
     /* ------------------------------------------------------
@@ -251,8 +251,7 @@ public class gameFlags{
         }
 
         if(gameScreen == 2){
-            gameScreen = 0;
-            reset();
+            done = true;
         }
     }
 
@@ -265,19 +264,6 @@ public class gameFlags{
      */ 
     private void startGame(){
         gameScreen = 1;
-    }
-
-
-    /** 
-     * @brief - Return all values ​​to their initial conditions
-     */
-    private void reset(){
-        
-        getConfig();
-        generatePattern();
-        score = 0;
-        attempts = 0;
-        successes = 0;
     }
 
     /* ------------------------------------------------------
