@@ -25,11 +25,16 @@ def main():
     // Comentario inicial
     begin
     main{
+        int a = 1;
     }
     game1{
+        int x = 0;
+        int y = 9;
         balloon(x, y);
     }
     game2{
+        int g = 0;
+        int y = 6;
     }
     game3{
     }

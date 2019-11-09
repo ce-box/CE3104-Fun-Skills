@@ -20,24 +20,24 @@ def p_statements_0(p):
     p[0] = p[1]
 
 
-def p_statements_4(p):
+def p_statements_1(p):
     '''statements : reservedFunction statements'''
     funcList.insert(0, p[1])
 
 
-def p_statements_1(p):
+def p_statements_2(p):
     '''statements : assignment statements
                   | declaration statements
                   | COMMENT statements'''
     p[0] = p[2]
 
 
-def p_statements_2(p):
+def p_statements_3(p):
     '''statements : expression SEMICOLON statements'''
     p[0] = p[3]
 
 
-def p_statements_3(p):
+def p_statements_4(p):
     '''statements : empty'''
 
 

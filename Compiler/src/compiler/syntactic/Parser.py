@@ -16,8 +16,9 @@ import ply.yacc as yacc
 from src.compiler.syntactic.Statements import *
 from src.compiler.lexer.Lexer import tokens
 from src.compiler.datastructures.TreeNode import *
+import copy
 
-
+symbolsTable = {}
 astRoot = TreeNode("structure")
 start = 'structure'
 
@@ -26,36 +27,41 @@ start = 'structure'
 def p_structure(p):
     '''structure : COMMENT\
     BEGIN\
-    MAIN LBRACE\
-    statements\
-    RBRACE\
-    GAME LBRACE\
-    statements\
-    RBRACE\
-    GAME LBRACE\
-    statements\
-    RBRACE\
-    GAME LBRACE\
-    statements\
-    RBRACE\
-    GAME LBRACE\
-    statements\
-    RBRACE\
+    main\
+    game\
+    game\
+    game\
+    game\
     END SEMICOLON'''
 
-    for i in range(3, 22, 4):
-        node = TreeNode(p[i])
-        i += 2
+    keyList = ["main", "game1", "game2", "game3", "game4"]
+    index = 0
+    for i in range(3, 8):
+        node = TreeNode(keyList[index])
         if p[i]:
             node.add_child(p[i])
         astRoot.add_child(node)
+        index += 1
 
     p[0] = astRoot
+
+def p_main(p):
+    'main : MAIN LBRACE statements RBRACE'
+    symbolsTable["main"] = copy.deepcopy(variables)
+    variables.clear()
+    p[0] = p[3]
+
+
+def p_game(p):
+    'game : GAME LBRACE statements RBRACE'
+    symbolsTable["game" + str(len(symbolsTable))] = copy.deepcopy(variables)
+    variables.clear()
+    p[0] = p[3]
 
 
 # Build the parser
 def parse(lex):
     parser = yacc.yacc()
     astTree = parser.parse(lexer = lex)
-    print(variables)
+    print(symbolsTable)
     return astTree
