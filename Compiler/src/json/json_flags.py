@@ -25,7 +25,8 @@ class flags():
         # Configuration Attributes
         self.__colors = ["river", "waterfall", "ocean", "rain", "water"]
         self.__points = [5, 10, 15, 20, 30]
-        self.__cnt_inc = 1
+        self.__amnt = 3
+        self.__amnt_inc = 1
         self.__time_dec = 1
         self.__time = 15
         self.__repeat = 1
@@ -42,8 +43,11 @@ class flags():
     def set_time_dec(self,time_dec):
         self.__time_dec = time_dec
 
-    def set_cnt_inc(self, cnt_inc):
-        self.__cnt_inc = cnt_inc
+    def set_amnt_inc(self, amnt_inc):
+        self.__amnt_inc = amnt_inc
+
+    def set_amnt(self, amnt):
+        self.__amnt = amnt
 
     def set_time(self,time):
         self.__time = time
@@ -68,10 +72,11 @@ class flags():
         game["points"] = self.__points
 
         # increase\decrease factors
-        game["cnt_inc"] = self.__cnt_inc
+        game["amnt_inc"] = self.__amnt_inc
         game["time_dec"] = self.__time_dec
 
         # iteration control
+        game["amnt"] = self.__amnt
         game["time"] = self.__time
         game["repeat"] = self.__repeat
 
