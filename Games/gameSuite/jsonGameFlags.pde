@@ -19,7 +19,8 @@ public class jsonGameFlags{
     private ArrayList<Integer> _points = new ArrayList<Integer>();
     private int _time;
     private int _repeat;
-    private int _cnt_inc;
+    private int _amnt;
+    private int _amnt_inc;
     private int _time_dec;
     
     
@@ -48,7 +49,8 @@ public class jsonGameFlags{
         int_arrayToList(pointsArray);
 
         // 2.3. Then get the int values
-        _cnt_inc = json.getInt("cnt_inc");
+        _amnt = json.getInt("amnt");
+        _amnt_inc = json.getInt("amnt_inc");
         _time_dec = json.getInt("time_dec");
         _repeat = json.getInt("repeat");
         _time = json.getInt("time");
@@ -66,8 +68,12 @@ public class jsonGameFlags{
       }
     }
 
-    public int getCntInc(){
-        return _cnt_inc;
+    public int getAmnt(){
+        return _amnt;
+    }
+
+    public int getAmntInc(){
+        return _amnt_inc;
     }
 
     public int getTimeDec(){

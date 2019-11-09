@@ -19,8 +19,9 @@
     "colors": ["red", "blue", "green", "yellow", "orange"],
     "points": [10, 20, 30, 20, 10],
     "time": 15,
+    "amnt": 3,
     "repeat": 1,
-    "cnt_inc": 1,
+    "amnt_inc": 1,
     "time_dec": 1
   },
   "spidey": {
