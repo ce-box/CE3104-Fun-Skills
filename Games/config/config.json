@@ -18,11 +18,11 @@
   "flags": {
     "colors": ["red", "blue", "green", "yellow", "orange"],
     "points": [10, 20, 30, 20, 10],
-    "time": 15,
+    "time": 40,
     "amnt": 3,
-    "repeat": 1,
+    "repeat": 2,
     "amnt_inc": 1,
-    "time_dec": 1
+    "time_dec": 10
   },
   "spidey": {
     "words": ["tree", "river", "mountain", "camp", "forest"],
