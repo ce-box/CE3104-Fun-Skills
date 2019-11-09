@@ -64,7 +64,6 @@ class balloon():
     # -------------------------------- #
     def build_json(self):
         game = self.__get_this_game()
-        print(game)
 
         # starting positions
         game["height"] = self.__height
@@ -78,5 +77,5 @@ class balloon():
 
         # iteration control
         game["repeat"] = self.__repeat
-
+        print(game)
         save_json(self.__json)

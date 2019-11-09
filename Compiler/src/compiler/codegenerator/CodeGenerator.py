@@ -1,10 +1,10 @@
 from src.compiler.datastructures.TreeNode import *
+from src.json.json_balloon import *
 
 
 def iterateTree(tree):
     for child in tree.children:
         if isinstance(child, TreeNode):
-            print(child.value)
             if child.value == "loop":
                 evaluateLoop(child.children)
             else:
@@ -23,14 +23,29 @@ def evaluateLoop(loop):
 
 def dowLoop(loop_content):
     iterations = loop_content[0]
-    args = []
-    balloon_values = []
-    for instruction in loop_content[1:]:
-        if instruction.value == "function":
-            function = instruction.children
-            function_name = function[0]
-            args = function[1].children
-            if isinstance(args[0], TreeNode) and isinstance(args[1], TreeNode):
-                print(args[0].children, args[1].children)
-            # if function_name == "balloon":
-            #     balloon_values.append(str(args[0]) + "," + str(args[1]))
+    balloon_values = balloon()
+    balloon_values.set_repeats(iterations)
+    variables_names = {}
+    for reserved_function in loop_content[1:]:
+        function_content = reserved_function.children
+        function_name = function_content[0]
+        function_args = function_content[1].children
+        balloonGameValues(function_name, function_args, variables_names, balloon_values)
+    balloon_values.build_json()
+
+
+def balloonGameValues(function_name, function_args, variables_names, json):
+    if function_name == "balloon":
+        variables_names["height"] = function_args[0].value
+        variables_names["length"] = function_args[1].value
+        json.set_position(function_args[0].children[0], function_args[1].children[0])
+    elif function_name == "inc":
+        if variables_names["height"] == function_args[0].value:
+            json.set_height_increment(function_args[1])
+        elif variables_names["length"] == function_args[0].value:
+            json.set_length_increment(function_args[1])
+    elif function_name == "dec":
+        if variables_names["height"] == function_args[0].value:
+            json.set_height_decrement(function_args[1])
+        elif variables_names["length"] == function_args[0].value:
+            json.set_length_decrement(function_args[1])

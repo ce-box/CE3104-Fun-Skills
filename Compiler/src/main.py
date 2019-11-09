@@ -28,9 +28,13 @@ def main():
         int a = 1;
     }
     game1{
-        int x = 0;
-        int y = 9;
-        balloon(x, y);
+        int x = 1;
+        int y = 15;
+        dow(5)
+            balloon(x, y);
+            inc(x, 2);
+            dec(y, 1);
+        enddo;
     }
     game2{
         int g = 0;
@@ -48,7 +52,7 @@ def main():
     # Receive input
     lexer.input(data)
     ast = parse(lexer)
-    # iterateTree(ast)
+    iterateTree(ast)
     # checkSymbolTable = Semantic.symbolAnalysis(variables)
 
 
