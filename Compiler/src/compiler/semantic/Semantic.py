@@ -12,10 +12,13 @@
 
 
 def symbolAnalysis(st):
-    for value in st.values():
-        type = value[0]
-        for index in range(1, len(value)):
-            result = isinstance(value[index], eval(type))
-            print(result)
-            print(index)
+    for dict in st.values():
+        for value in dict.values():
+            print(value)
+            type = value[0]
+            for index2 in range(1, len(value)):
+                result = isinstance(value[index2], eval(type))
+                if not result:
+                    raise TypeError
     return result
+

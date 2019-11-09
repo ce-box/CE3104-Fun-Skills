@@ -47,8 +47,9 @@ t_ignore = ' \t'
 
 # Error handling rules
 def t_error(t):
-    print("SYNTAX ERROR: Invalid character", t.value[0], "at line number", t.lexer.lineno)
+    print("LEXICAL ERROR: Invalid character", t.value[0], "at line number", t.lexer.lineno)
     t.lexer.skip(1)
+    raise exit()
 
 
 # A function that ignores comments

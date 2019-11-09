@@ -25,14 +25,12 @@ def main():
     // Comentario inicial
     begin
     main{
-        int a = 1;
-        int aaaaaaaaaaaaaa;
-        str(1) ppppp;
-        int aaaaaaaaaaaaaazzx;
+        int a;
     }
     game1{
         int x = 0;
         x = 7;
+        x = "CACA";
         int y = 9;
         balloon(x, y);
     }
@@ -53,7 +51,12 @@ def main():
     lexer.input(data)
     ast = parse(lexer)
     # iterateTree(ast)
-    # checkSymbolTable = Semantic.symbolAnalysis(variables)
+
+    try:
+        checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)
+        print(checkSymbolTable)
+    except TypeError:
+        print("TypeError")
 
 
 if __name__ == '__main__':
