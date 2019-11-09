@@ -5,10 +5,13 @@ main{
     int a;
 }
 
+// Comment outside
 game1{
-    int x = 10;
-    int y = 24;
-    int cant = 3;
+
+    // Comment Inside
+    int x = 60;
+    int y = 15;
+    int cant = 5;
     dow(cant)
         balloon(x, y);
         inc(x, 3);
