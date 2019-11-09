@@ -26,9 +26,13 @@ def main():
     begin
     main{
         int a = 1;
+        int aaaaaaaaaaaaaa;
+        str(1) ppppp;
+        int aaaaaaaaaaaaaazzx;
     }
     game1{
         int x = 0;
+        x = 7;
         int y = 9;
         balloon(x, y);
     }

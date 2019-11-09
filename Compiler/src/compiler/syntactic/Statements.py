@@ -50,7 +50,8 @@ def p_assignment_declare(p):
         value = [p[1], p[4]]
         variables[ID] = value
     else:
-        print("Syntactic Error: Variable %s identifier is too long." % ID)
+        print("Syntactic Error: Variable %s identifier is too long in line %d" %(ID, p.lineno(2)))
+        raise SyntaxError
 
 
 # Definition for reassignment of previously defined variables
@@ -62,7 +63,8 @@ def p_assignment_value(p):
         value = variables[ID] + [p[3]]
         variables[ID] = value
     else:
-        print("Syntactic Error: Variable %s has not been declared." % p[1])
+        print("Syntactic Error: Variable %s has not been declared in line %d" %(p[1], p.lineno(2)))
+        raise SyntaxError
 
 
 # Definition for value of specific position in array.
@@ -79,7 +81,8 @@ def p_assignment_array(p):
         else:
             print("Index out of range")
     else:
-        print("Syntactic Error: Variable %s has not been declared." % p[1])
+        print("Syntactic Error: Variable %s has not been declared in line %d" %(p[1], p.lineno(2)))
+        raise SyntaxError
 
 
 # Definition for declaration of variables with typification
@@ -88,7 +91,8 @@ def p_declaration_var(p):
     if len(p[2]) <= 10:
         variables[p[2]] = [p[1]]
     else:
-        print("Syntactic Error: Variable %s identifier is too long." % p[2])
+        print("Syntactic Error: Variable %s identifier is too long in line %d" %(p[2], p.lineno(2)))
+        raise SyntaxError
 
 
 def p_declaration_array(p):
@@ -100,6 +104,7 @@ def p_declaration_array(p):
         variables[p[2][0]] = [p[1] + "Array", arrayList]
     else:
         print("Syntactic Error: Variable %s identifier is too long." % p[2])
+        raise SyntaxError
 
 
 # Typification of variables
