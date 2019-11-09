@@ -23,17 +23,22 @@ public class gameFlags{
     private ArrayList<String> pattern = new ArrayList<String>();
 
     private int repeat = 0;
-    private int time = 0;
     private int index_amnt = 3;
     private int amnt_inc = 0;
+
+    // Timer vars
+    private int time = 20; //seconds - 20 s min
+    private int run_time = time;
     private int time_dec = 0;
+    private int duration = 20;
+    private int begin;
 
     // According to its status is the screen that runs
     // 0: Initial Screen
     // 1: Game Screen
     // 2: Game-over Screen
     private int gameScreen = 0;
-
+    public boolean done = false;
 
     // Quantization of attempts
     private int attempts = 0;
@@ -56,6 +61,8 @@ public class gameFlags{
         initFlags();
         generatePattern();
 
+        begin = millis();
+
     }
     
     /**
@@ -74,6 +81,7 @@ public class gameFlags{
         }
 
     }
+
     /* ------------------------------------------------------
      *                          INITS
      * -----------------------------------------------------*/
@@ -118,6 +126,7 @@ public class gameFlags{
     private void guiSetup(){
         fontArialBold = createFont("Arial Bold", 16);
         box = new PatternBox(250,100);
+
     }
 
     /**
@@ -134,6 +143,9 @@ public class gameFlags{
         index_amnt = jF.getAmnt();
         amnt_inc = jF.getAmntInc();
         time_dec = jF.getTimeDec();
+
+        duration = time;
+        run_time = time;
 
     }
 
@@ -154,20 +166,53 @@ public class gameFlags{
      * @brief Main game window
      */
     private void gameScreen(){
-        background(255);
- 
-        textFont(fontArialBold);
-        fill(0);
-        text("Success:"+successes,50,20);
-        text("Attemps:"+attempts,200,20);
-        text("Score:"+score,550,20);
-        
-        box.setPattern(pattern);
-        box.drawBox();
-         
-        drawFlags();
- 
-        if(pattern.size() == 0){
+
+        if(repeat > 0 && run_time > 0){
+           
+            background(255);
+    
+            textFont(fontArialBold);
+            
+            fill(0);
+            text("Success:"+successes,50,20);
+            text("Attemps:"+attempts,200,20);
+            text("Shifts:"+repeat,570,20);
+            text("Scores:"+score,680,20);
+
+            // Count down
+            run_time = duration - (millis() - begin)/1000;
+            text("Time: "+run_time+" s", 420,20);
+            
+            box.setPattern(pattern);
+            box.drawBox();
+            
+            drawFlags();
+
+            // When the player finishes the sequence...
+            if(pattern.size() == 0){
+                
+                // 1. The number of indexes is increased ... (if possible)
+                if((index_amnt+= amnt_inc) <= colors.size())
+                    index_amnt += amnt_inc;
+                
+                // 2. Decrease the number of iterations
+                repeat--;
+                
+                // 3. Decrease the time according to the configuration
+                if(time > 20){
+                    time -= time_dec;
+                }else{ time = 20;}
+
+                // 4. Assign the timeline values ​​again
+                begin = millis();
+                duration = time;
+                run_time = time; 
+
+                if(repeat>0)
+                    generatePattern();
+
+            }
+        } else{
             gameScreen = 2;
         }
     }
@@ -184,7 +229,7 @@ public class gameFlags{
         textSize(130);
         text(score, width/2, height/2);
         textSize(15);
-        text("Click to Restart", width/2, height-30);
+        text("Click to Close", width/2, height-30);
     }
 
     /* ------------------------------------------------------
@@ -206,8 +251,7 @@ public class gameFlags{
         }
 
         if(gameScreen == 2){
-            gameScreen = 0;
-            reset();
+            done = true;
         }
     }
 
@@ -220,18 +264,6 @@ public class gameFlags{
      */ 
     private void startGame(){
         gameScreen = 1;
-    }
-
-
-    /** 
-     * @brief - Return all values ​​to their initial conditions
-     */
-    private void reset(){
-
-        generatePattern();
-        score = 0;
-        attempts = 0;
-        successes = 0;
     }
 
     /* ------------------------------------------------------
