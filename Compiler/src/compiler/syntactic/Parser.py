@@ -26,41 +26,34 @@ start = 'structure'
 # Main structure for program
 def p_structure(p):
     '''structure : COMMENT\
-    BEGIN\
-    optionalComment\
+    BEGIN optionalComment\
     main\
-    optionalComment\
     game\
-    optionalComment\
     game\
-    optionalComment\
     game\
-    optionalComment\
     game\
-    optionalComment\
     END SEMICOLON'''
 
     keyList = ["main", "game1", "game2", "game3", "game4"]
     index = 0
-    for i in range(3, 8):
+    for i in range(4, 9):
         node = TreeNode(keyList[index])
         if p[i]:
             node.add_child(p[i])
         astRoot.add_child(node)
         index += 1
-
     p[0] = astRoot
 
 
 def p_main(p):
-    '''main : MAIN LBRACE statements RBRACE'''
+    '''main : MAIN LBRACE statements RBRACE optionalComment'''
     symbolsTable["main"] = copy.deepcopy(variables)
     variables.clear()
     p[0] = p[3]
 
 
 def p_game(p):
-    '''game : GAME LBRACE statements RBRACE'''
+    '''game : GAME LBRACE statements RBRACE optionalComment'''
     symbolsTable["game" + str(len(symbolsTable))] = copy.deepcopy(variables)
     variables.clear()
     p[0] = p[3]
@@ -75,5 +68,4 @@ def p_optionalComment(p):
 def parse(lex):
     parser = yacc.yacc()
     astTree = parser.parse(lexer = lex)
-    print(symbolsTable)
     return astTree

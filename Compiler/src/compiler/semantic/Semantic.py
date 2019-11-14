@@ -14,7 +14,6 @@
 def symbolAnalysis(st):
     for dict in st.values():
         for value in dict.values():
-            print(value)
             type = value[0]
             for index2 in range(1, len(value)):
                 result = isinstance(value[index2], eval(type))

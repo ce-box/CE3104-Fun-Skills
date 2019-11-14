@@ -7,32 +7,30 @@
         "repeat": 1
     },
     "balloon": {
-        "height": 0,
-        "length": 15,
-        "h_inc": 1,
+        "height": 3,
+        "length": 10,
+        "h_inc": 4,
         "h_dec": 0,
         "l_inc": 0,
-        "l_dec": 2,
+        "l_dec": 1,
         "repeat": 5
     },
     "flags": {
         "colors": [
-            "red",
-            "blue",
-            "green",
-            "yellow",
-            "orange"
+            "Azul",
+            "Rojo",
+            "Verde"
         ],
         "points": [
+            5,
             10,
+            15,
             20,
-            30,
-            20,
-            10
+            30
         ],
-        "time": 40,
+        "time": 60,
         "amnt": 3,
-        "repeat": 2,
+        "repeat": 5,
         "amnt_inc": 1,
         "time_dec": 10
     },

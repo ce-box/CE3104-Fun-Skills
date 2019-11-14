@@ -48,16 +48,27 @@ def main():
         int a;
     }
     game1{
-        int x = 0;
-        int y = 15;
+        int x = 3;
+        int y = 10;
         int cant = 5;
         dow(cant)
             balloon(x, y);
-            inc(x, 1);
-            dec(y, 2);
+            inc(x, 4);
+            dec(y, 1);
         enddo;
     }
     game2{
+        int tiempo = 60;
+        int cant = 3;
+        str(10) color[3];
+        color[0] = "Azul";
+        color[1] = "Rojo";
+        color[2] = "Verde";
+        for 5 times using color
+            random(cant, tiempo);
+            inc(cant, 1);
+            dec(tiempo, 10);
+        forend;
     }
     game3{
     }
@@ -70,12 +81,12 @@ def main():
     # Receive input
     lexer.input(data)
     ast = parse(lexer)
-    print(ast.children[1].children)
-    try:
-        checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)
-        print(checkSymbolTable)
-    except TypeError:
-        print("TypeError")
+    print("\n", symbolsTable)
+    print("\n\n", ast.children[2].children[0].children, "\n\n")
+    # try:
+    #     checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)
+    # except TypeError:
+    #     print("TypeError")
     iterateTree(ast)
 
 

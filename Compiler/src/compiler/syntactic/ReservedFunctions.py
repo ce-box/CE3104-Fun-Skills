@@ -15,14 +15,14 @@ from src.compiler.datastructures.TreeNode import *
 
 
 def p_reservedFunction_balloon(p):
-    'reservedFunction : BALLOON balloonArgs SEMICOLON'
+    'reservedFunction : BALLOON twoArgs SEMICOLON'
     functionNode = TreeNode("function")
     functionNode.add_children([p[1], p[2]])
     p[0] = functionNode
 
 
-def p_balloonArgs(p):
-    '''balloonArgs : LPAREN ID COMMA ID RPAREN'''
+def p_twoArgs(p):
+    '''twoArgs : LPAREN ID COMMA ID RPAREN'''
     argsNode = TreeNode("args")
     id1Node = TreeNode(p[2])
     id1Node.add_child(variables[p[2]][-1])
@@ -57,6 +57,13 @@ def p_incDecArgs(p):
 
 def p_reservedFunction_random(p):
     'reservedFunction : RANDOM randomObjectArgs SEMICOLON'
+    functionNode = TreeNode("function")
+    functionNode.add_children([p[1], p[2]])
+    p[0] = functionNode
+
+
+def p_reservedFunction_randomInFor(p):
+    'reservedFunction : RANDOM twoArgs SEMICOLON '
     functionNode = TreeNode("function")
     functionNode.add_children([p[1], p[2]])
     p[0] = functionNode
