@@ -1,0 +1,4 @@
+PyQt5==5.10.1 -i https://pypi.douban.com/simple
+QScintilla==2.10.2 -i https://pypi.douban.com/simple
+pyqt5-tools==5.10.1.1.3 -i https://pypi.douban.com/simple
+ply==3.11
