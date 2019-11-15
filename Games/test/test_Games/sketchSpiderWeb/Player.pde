@@ -1,25 +1,32 @@
 class Player{
 
-  int player_Column;
-  int player_Line;
-  int score = 0;
-  float player_X;
-  float player_Y;
-  ArrayList<String> words_Found;
+  public int column;
+  public int line;
+  public int score = 0;
+  public float x;
+  public float y;
+  public ArrayList<String> words_Found = new ArrayList<String>();
   
   public Player(){
-    draw_Player(0,0);  
+    this.column=0;
+    this.line=0;
   }
   
-  void draw_Player(int player_X, int player_Y){
-    translate(250,250);
+  void draw_Player(float player_X, float player_Y){
+    this.x=player_X;
+    this.y=player_Y;
     fill(#b5cd38);
     noStroke();
     ellipse(player_X,player_Y,15,15);
+    fill(255);
     stroke(0);
-    translate(0,0);
 }
+  void setY(float y){
+    this.y=y;}
 
+  void setX(float x){
+    this.x=x;}
 
-
+  void add_Score(int score){
+    this.score+=score;}
 }
