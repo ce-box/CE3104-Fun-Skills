@@ -1,19 +1,27 @@
+/* ------------------------------------------------------------
+ * File: sketchFlags.pde
+ * Developed by: María José Zamora Vargas
+ * Project: FunSkills - [Game]
+ * version: 2.0
+ * last edited: María José Zamora Vargas 1::59
+ * 
+ * Description: Flags Game Basic GUI
+ * 
+ * TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+ * ------------------------------------------------------------*/
+
+import processing.video.*;
 int gameScreen = 0;
 
-// gameplay settings
-float gravity = -0.01;
-float airfriction = 0.0001;
-float friction = 0.1;
+Capture cam;
+float airfriction = -0.001;
+float friction = 10; 
 int distances[]={200,50,100,70,10};
 float time_Interval;
 float last_Time_Check;
 
 // scoring
 int score = 0;
-int maxHealth = 100;
-float health = 100;
-float healthDecrease = 1;
-int healthBarWidth = 60;
 
 // ball settings
 float ballX, ballY; //ALTURA DEL SUELO,distancia desde la derecha
@@ -23,21 +31,18 @@ float ballSpeedHorizon = 0;
 float ballSize = 100;
 color ballColor = color(244,67,52);
 
-// racket settings
-color racketColor = color(0);
-float racketWidth = 100;
-float racketHeight = 10;
-
 
 /********* SETUP BLOCK *********/
 
 void setup() {
-  size(500, 500);
-  // set the initial coordinates of the ball
+  size(1000,800);
+  //set the initial coordinates of the ball
   ballX=width/4;
   ballY=height/5;
   time_Interval = 2000; // 2 SEC
   last_Time_Check = millis();
+  cam = new Capture(this, 640, 480);
+  cam.start();
   smooth();
 }
 
@@ -69,91 +74,70 @@ void initScreen() {
 }
 void gameScreen() {
   background(236, 240, 241);
-  drawRacket();
-  watchRacketBounce();
-  drawBall(); //Object(Altura, longitud, Second)
-  //applyGravity();
+  drawBall();
   movement_Balloon(distances);
   applyHorizontalSpeed();
   keepInScreen();
-  drawHealthBar();
-  printScore();
+  printScore();  
+  smooth();
 }
 void gameOverScreen() {
   background(44, 62, 80);
   textAlign(CENTER);
   fill(236, 240, 241);
   textSize(12);
-  text("Your Score", width/2, height/2 - 120);
+  if(score!=0){
+    text("¡Congratulations!", width/2, height/2 - 120);
+  }else{
+    text("¡Come on, you got this!", width/2, height/2 - 120);
+  }
   textSize(130);
   text(score, width/2, height/2);
   textSize(15);
   text("Click to Restart", width/2, height-30);
 }
 
-
-/********* INPUTS *********/
-
-public void mousePressed() {
-  // if we are on the initial screen when clicked, start the game 
-  if (gameScreen==0) { 
-    startGame();
-  }
-  if (gameScreen==2) {
-  }
-}
-
-
-
-/********* OTHER FUNCTIONS *********/
-
-// This method sets the necessery variables to start the game  
 void startGame() {
   gameScreen=1;
 }
-void gameOver() {
+void game_Over() {
   gameScreen=2;
+  gameOverScreen();
+  ballX=width/4;
+  ballY=height/5;
+}
+
+void mousePressed(){
+  if (gameScreen==0){
+  startGame();
+  }
+  if(gameScreen==2){
+    gameScreen=1;
+    score=0;
+    startGame();
+  }
+  if(ballX<mouseX && mouseX<ballX+ballSize && ballY<mouseY && mouseY<ballY+ballSize){
+    score++;
+    gameScreen=2;
+    gameOverScreen();
+  }
 }
 
 void movement_Balloon(int[] pos){ //cambia X
   if(millis()>last_Time_Check + time_Interval){
     last_Time_Check = millis();
-    ballY=pos[4];
+    ballX+=20;
+    drawBall();
     }
   }
 
 
-void drawBall() {
+void drawBall() {  
   fill(ballColor);
   ellipse(ballX, ballY, ballSize, ballSize);
 }
-void drawRacket() {
-  fill(racketColor);
-  rectMode(CENTER);
-  rect(mouseX, mouseY, racketWidth, racketHeight, 5);
-}
 
-void drawHealthBar() {
-  noStroke();
-  fill(189, 195, 199);
-  rectMode(CORNER);
-  rect(ballX-(healthBarWidth/2), ballY - 30, healthBarWidth, 5);
-  if (health > 60) {
-    fill(46, 204, 113);
-  } else if (health > 30) {
-    fill(230, 126, 34);
-  } else {
-    fill(231, 76, 60);
-  }
-  rectMode(CORNER);
-  rect(ballX-(healthBarWidth/2), ballY - 30, healthBarWidth*(health/maxHealth), 5);
-}
-void decreaseHealth() {
-  health -= healthDecrease;
-  if (health <= 0) {
-    gameOver();
-  }
-}
+
 void score() {
   score++;
 }
@@ -164,25 +148,6 @@ void printScore() {
   text(score, height/2, 50);
 }
 
-void watchRacketBounce() {
-  float overhead = mouseY - pmouseY;
-  if ((ballX+(ballSize/2) > mouseX-(racketWidth/2)) && (ballX-(ballSize/2) < mouseX+(racketWidth/2))) {
-    if (dist(ballX, ballY, ballX, mouseY)<=(ballSize/2)+abs(overhead)) {
-      makeBounceBottom(mouseY);
-      ballSpeedHorizon = (ballX - mouseX)/10;
-      // racket moving up
-      if (overhead<0) {
-        ballY+=(overhead/2);
-        ballSpeedVert+=(overhead/2);
-      }
-    }
-  }
-}
-void applyGravity() {
-  ballSpeedVert += gravity;
-  ballY += ballSpeedVert;
-  ballSpeedVert -= (ballSpeedVert * airfriction);
-}
 void applyHorizontalSpeed() {
   ballX += ballSpeedHorizon;
   ballSpeedHorizon -= (ballSpeedHorizon * airfriction);
@@ -227,6 +192,7 @@ void keepInScreen() {
   }
   // ball hits right of the screen
   if (ballX+(ballSize/2) > width) {
+    game_Over();
     makeBounceRight(width);
   }
 }
