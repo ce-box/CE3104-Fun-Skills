@@ -216,7 +216,7 @@ class MyLexer(QsciLexerCustom):
                     self.setStyling(token[1], 15)
 
                 # Data Types
-                elif token[0] in ["int", "text"]:
+                elif token[0] in ["int", "str"]:
                     # cyan
                     self.setStyling(token[1], 18)
 

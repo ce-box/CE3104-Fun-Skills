@@ -3,6 +3,8 @@
 begin
 main{
     int a;
+
+    str bb = "Bebecitaaaa";
 }
 
 // Comment outside
