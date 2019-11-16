@@ -34,11 +34,12 @@
     // Gameplay settings
     private float airfriction = -0.001;
     private float friction = 10;
-    private int distances[]={200,50,100,70,10};
-    
+    private ArrayList<Integer> distances = new ArrayList<Integer>();
+
     // Scoring
     private int score = 0;
     private PFont fontArialBold;
+    private int repeat;
 
     // Ball settings
     private float ballX, ballY; //ALTURA DEL SUELO,distancia desde la derecha
@@ -82,15 +83,19 @@
     public void setup(){
         
         ballX=width/4;
-        ballY=height/5;
-        time_Interval = 2000; // 2 s
+        ballY=height/5;// 2 s
         last_Time_Check = millis();
         smooth();
         fontArialBold = createFont("Arial Bold", 16);
     }
 
     private void getConfig(){
-
+        jsonGameObject jO = new jsonGameObject();
+        distances = jO.getPositions();
+        ballY = jO.getHeight();
+        ballX = jO.getLength();
+        repeat = jO.getRepeat();
+        time_Interval = jO.getTime();
     }
 
 
@@ -116,12 +121,12 @@
      */
     private void gameScreen() {
 
-        if(run_time > 0){
+        if(repeat > 0 && run_time > 0){
 
             background(236, 240, 241);
             
             drawBall(); 
-            movement_Balloon(distances);
+            movement_Balloon();
             
             applyHorizontalSpeed();
             
@@ -211,15 +216,16 @@
     /* ------------------------------------------------------
      *                      DYNAMICS
      * -----------------------------------------------------*/
-    
+
     /**
      * @brief Move the ball in the y axis 
      */
-    void movement_Balloon(int[] pos){ //cambia X
+    void movement_Balloon(){ //cambia X
         if(millis()>last_Time_Check + time_Interval){
             last_Time_Check = millis();
-            ballX+=20;
+            ballX = distances.get((distances.size()) - repeat);
             drawBall();
+            repeat--;
         }
     }
 
@@ -327,4 +333,11 @@
         text("Time: "+run_time+" s", height/2+300,50);
     }
 
- }
+    @Override
+    public String toString(){
+        String s = "OBJECT\n+pos: "+distances+"\n+height: "+ballY+"\nlength: "+ballX+"\ntime: "+time_Interval+"\nrepeat: "+repeat;
+        println(s);
+        return s;
+    }
+}
+    

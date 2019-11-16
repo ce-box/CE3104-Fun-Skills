@@ -1,10 +1,10 @@
 {
   "object": {
-    "pos": ["x1,y1", "x2,y2", "x3,y3"],
+    "pos": [200, 50, 100, 70, 10],
     "height": 13,
     "length": 55,
-    "time": 15,
-    "repeat": 1
+    "time": 2000,
+    "repeat": 5
   },
   "balloon": {
     "height": 10,
@@ -22,6 +22,8 @@
     "amnt": 3,
     "repeat": 2,
     "amnt_inc": 1,
+    "amnt_dec": 0,
+    "time_inc": 0,
     "time_dec": 10
   },
   "spidey": {

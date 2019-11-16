@@ -18,7 +18,7 @@ public class jsonGameObject{
     private int _length;
     private int _time;
     private int _repeat;
-    private ArrayList<String> _pos = new ArrayList<String>();
+    private ArrayList<Integer> _pos = new ArrayList<Integer>();
 
     public jsonGameObject(){
         deserealize();
@@ -35,7 +35,7 @@ public class jsonGameObject{
 
         // 2.1. Get the array of positions
         JSONArray posJson = json.getJSONArray("pos");
-        String posArray[] = posJson.getStringArray(); 
+        int posArray[] = posJson.getIntArray(); 
         arrayToList(posArray);
 
         // 2.2. Then get the int values
@@ -45,8 +45,8 @@ public class jsonGameObject{
         _time = json.getInt("time");
     }
 
-    private void arrayToList(String[] sArray){
-        for(String pos:sArray){
+    private void arrayToList(int[] sArray){
+        for(int pos:sArray){
         this._pos.add(pos);
       }
     }
@@ -67,7 +67,7 @@ public class jsonGameObject{
         return _repeat;
     }
 
-    public ArrayList<String> getPositions(){
+    public ArrayList<Integer> getPositions(){
         return _pos;
     }
 }

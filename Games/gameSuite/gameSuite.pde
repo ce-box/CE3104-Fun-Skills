@@ -11,17 +11,22 @@
  * ------------------------------------------------------------*/
 
  gameFlags gf;
+ gameObject gO;
   
 void setup(){
   size(800,600);
   gf = new gameFlags();
   gf.toString();
+
+  gO = new gameObject();
+  gO.toString();
 }
 
 
 void draw(){
   if(!gf.done)
-    gf.draw();
+    //gf.draw();
+    gO.draw();
   else
     foo();
 }
@@ -29,7 +34,7 @@ void draw(){
 
 void mousePressed(){
   gf.mousePressed();
-  
+  gO.mousePressed();
 }
 
 void foo(){
