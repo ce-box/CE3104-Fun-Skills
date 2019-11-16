@@ -11,6 +11,7 @@
 
 from src.compiler.lexer.Tokens import *
 from src.ide.ide_compile import *
+import src.ide.globals as globals
 
 
 def t_GAME(t):
@@ -49,7 +50,7 @@ t_ignore = ' \t'
 # Error handling rules
 def t_error(t):
     error_message = "LEXICAL ERROR: Invalid character '" + t.value[0] + "' at line number " + str(t.lexer.lineno)
-    file = open("tmp/error_log.txt", "w")
+    file = open(globals.projectFolderPath+"/src/tmp/error_log.txt", "w")
     file.write(error_message)
     file.close()
     raise SyntaxError

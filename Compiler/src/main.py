@@ -107,7 +107,7 @@ def main():
         error_message = file.read()
         file.close()
         print(error_message)
-        return
+        return error_message
 
     # try:
     #     checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)

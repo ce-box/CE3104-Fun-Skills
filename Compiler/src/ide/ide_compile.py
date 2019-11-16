@@ -16,6 +16,7 @@ from src.compiler.semantic import Semantic
 from src.compiler.syntactic.Parser import *
 from src.compiler.codegenerator.CodeGenerator import *
 from src.compiler.datastructures.TreeNode import *
+import src.ide.globals as globals
 
 
 def compile(data):
@@ -30,7 +31,7 @@ def compile(data):
         print("\n", symbolsTable)
         iterateTree(ast)
     except SyntaxError:
-        file = open("tmp/error_log.txt", "r")
+        file = open(globals.projectFolderPath+"/src/tmp/error_log.txt", "r")
         error_message = file.read()
         file.close()
         return error_message
@@ -45,3 +46,4 @@ def compile(data):
 
     # # Generate Code
     # iterateTree(ast)
+    return
