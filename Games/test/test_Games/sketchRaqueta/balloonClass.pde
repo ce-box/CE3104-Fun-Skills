@@ -1,104 +1,51 @@
-public class Balloon{
-    
+class Balloon {
+  float vx, vy; // The x- and y-axis velocities
+  float x, y; // The x- and y-coordinates
+  float gravity = -5;
+  float mass=10;
+  float radius = 30;
+  float stiffness = 0.1;
+  float damping = 0.7;
+  
+  float airfriction = 0.1;
+  float friction = 0.1;
+  
+  // ball settings
   float ballX, ballY;
-  int ballSize = 100;
-  int ballColor = color(0);
-  float gravity = -1;
   float ballSpeedVert = 0;
-  float airfriction = -0.001;
-  float friction = 10;    
-  float ballSpeedHorizon = 5;
+  float ballSpeedHorizon = 0;
   
+  Balloon(float xpos, float ypos) {
+    x = xpos;
+    y = ypos;
+  }
   
-  public Balloon(float x, float y) {
-    fill(ballColor);
-    this.ballX=x;
-    this.ballY=y;
-    ellipse(x, y, ballSize, ballSize);
+  void applyGravity() {
+  ballSpeedVert += gravity;
+  y += ballSpeedVert;
+  ballSpeedVert -= (ballSpeedVert * airfriction);
+  }
+  
+  void update(float targetX, float targetY) {
+    float forceX = (targetX - x) * stiffness;
+    float ax = forceX / mass;
+    vx = damping * (vx + ax);
+    this.x += vx;
     
-    }
-    
-  public void setBallSize(int ballSize){
-    this.ballSize=ballSize;
+    float forceY = (targetY - y) * stiffness;
+    forceY += gravity;
+    float ay = forceY / mass;
+    vy = damping * (vy + ay);
+    this.y += vy;
   }
   
-  void movement_Collision(){
-     if (mouseX > this.ballX && mouseX < this.ballX+this.ballSize && 
-      mouseY > this.ballY && mouseY < this.ballY+this.ballSize){
-        this.ballX=+20.5;
-        this.ballY-=10.5;
-        this.setPos(ballX+50,ballY);
-        System.out.println(this.ballX);        
-   } 
-}
-    
-  
-  public void setPos(float x, float y){
-    this.ballX=x;
-    this.ballY=y;
-    ellipse(x, y, ballSize, ballSize);
+  void display(float nx, float ny) {
+    noStroke();
+    ellipse(x, y, radius*2, radius*2);
+    stroke(255);
+    line(x, y, nx, ny);
   }
   
-  public void applyGravity(){
-    ballSpeedVert += gravity;
-    this.ballY += ballSpeedVert;
-    ballSpeedVert -= (ballSpeedVert * airfriction);
-  }
-  
-  public float getBallX(){
-    return this.ballX;
-  }
-  
-  public float getBallY(){
-    return this.ballY;
-  }
-  
-  
-  
-  void makeBounceBottom(float surface) {
-    ballY = surface-(ballSize/2);
-    ballSpeedVert*=-1;
-    ballSpeedVert -= (ballSpeedVert * friction);
-  }
-  void makeBounceTop(float surface) {
-    ballY = surface+(ballSize/2);
-    ballSpeedVert*=-1;
-    ballSpeedVert -= (ballSpeedVert * friction);
-  }
-  // keep ball in the screen
-  void keepInScreen() {
-    // ball hits floor
-    if (ballY+(ballSize/2) > height) { 
-      makeBounceBottom(height);
-    }
-    // ball hits ceiling
-    if (ballY-(ballSize/2) < 0) {
-      makeBounceTop(0);
-    }
-    if (ballX-(ballSize/2) < 0){
-      makeBounceLeft(0);
-    }
-    if (ballX+(ballSize/2) > width){
-      makeBounceRight(width);
-    }
-  }
-  
-  
-  void applyHorizontalSpeed(){
-    ballX += ballSpeedHorizon;
-    ballSpeedHorizon -= (ballSpeedHorizon * airfriction);
-  }
-  
-  void makeBounceLeft(float surface){
-    ballX = surface+(ballSize/2);
-    ballSpeedHorizon*=-1;
-    ballSpeedHorizon -= (ballSpeedHorizon * friction);
-  }
-  
-  void makeBounceRight(float surface){
-    ballX = surface-(ballSize/2);
-    ballSpeedHorizon*=-1;
-    ballSpeedHorizon -= (ballSpeedHorizon * friction);
-  }
+
 
 }

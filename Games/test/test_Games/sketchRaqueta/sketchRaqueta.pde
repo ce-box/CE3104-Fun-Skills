@@ -1,151 +1,81 @@
-import processing.video.*;
+Spring2D s1, s2;
 
-float[] x_Rope = new float[15];
-float[] y_Rope = new float[15];  
-float ballSpeedVert = 0;
-float gravity = -1;
-float airfriction = -0.001;
-float friction = 10; 
-int segLength = 14;
-Balloon playable;
-int gameScreen = 0;
-int maxHealth = 100;
-float health = 100;
-float healthDecrease = 1;
-int healthBarWidth = 60;
-Capture cam;
-/********* SETUP BLOCK *********/
+float gravity = -9.0;
+float mass = 2.0;
 
 void setup() {
-  strokeWeight(9);
-  stroke(255, 100);
-  playable=new Balloon(200,200);
-  cam = new Capture(this, 640, 480);
-  cam.start();
+  size(640, 360);
+  fill(255, 126);
+  // Inputs: x, y, mass, gravity
+  s1 = new Spring2D(0.0, width/2, mass, gravity);
+  s2 = new Spring2D(0.0, width/2, mass, gravity);
+  s1.radius=15;
 }
-
-public void settings() {
-  size(640, 480);
-}
-
-
-/********* DRAW BLOCK *********/
 
 void draw() {
-  if (gameScreen == 0) {
-    initScreen();
-  }else{
-    gameScreen();
-  } 
-}
-
-void gameScreen(){
-  if (cam.available()){
-    cam.read();
-  }
-  image(cam,0,0);
-  //playable.applyGravity();
-  dragSegment(0,mouseX,mouseY);
-    for(int i=0; i<x_Rope.length-1; i++) {
-      dragSegment(i+1, x_Rope[i], y_Rope[i]); }
-}
-
-
-
-void dragSegment(int i, float xin, float yin) {
-    float dx = xin - x_Rope[i];
-    float dy = yin - y_Rope[i];
-    float angle = atan2(dy, dx);  
-    x_Rope[i] = xin - cos(angle) * segLength;
-    y_Rope[i] = yin - sin(angle) * segLength;
-    segment(x_Rope[i], y_Rope[i], angle);
-    playable.setPos(x_Rope[x_Rope.length-1], y_Rope[y_Rope.length-1]);
-  }
-
-
-  void segment(float x, float y, float a) {
-    pushMatrix();
-    translate(x, y);
-    rotate(a);
-    line(0, 0, segLength, 0);
-    popMatrix();
-  }
-  
-  void applyRopeGravity(){
-    ballSpeedVert += gravity;
-    dragSegment(0,mouseX,mouseY);
-    for(int i=0; i<x_Rope.length-1; i++) {
-      y_Rope[i]+=ballSpeedVert;
-      dragSegment(i+1, x_Rope[i], y_Rope[i]); } 
-    ballSpeedVert -= (ballSpeedVert * airfriction);
-  }
-  
-  void dow_Cycle(int cont){ //, inc, dec 
-    for (int i=0; i<cont; i++){
-    playable.ballX-=20;
-    playable.ballY+=5;
-    }
-  }
-
-/********* SCREEN CONTENTS *********/
-
-void initScreen() {
-  background(255);
-  textAlign(CENTER);
-  text("Click to start", height/2, width/2);
-}
-
-
-
-/**
-void drawHealthBar() {
-  // Make it borderless:
-  noStroke();
-  fill(236, 240, 241);
-  rectMode(CORNER);
-  rect(ballX-(healthBarWidth/2), ballY - 30, healthBarWidth, 5);
-  if (health > 60) {
-    fill(46, 204, 113);
-  } else if (health > 30) {
-    fill(230, 126, 34);
-  } else {
-    fill(231, 76, 60);
-  }
-  rectMode(CORNER);
-  rect(ballX-(healthBarWidth/2), ballY - 30, healthBarWidth*(health/maxHealth), 5);
-}
-void decreaseHealth(){
-  health -= healthDecrease;
-  if (health <= 0){
-    gameOverScreen();
-  }
-}**/
-
-void gameOverScreen() {
   background(0);
-  textAlign(CENTER);
-  fill(255);
-  textSize(30);
-  text("Game Over", height/2, width/2 - 20);
-  textSize(15);
-  text("Click to Restart", height/2, width/2 + 10);
+  s1.update(mouseX, mouseY);
+  s1.display(mouseX, mouseY);
+  s2.update(s1.x, s1.y-100);
+  s2.display(s1.x, s1.y);
+  s2.applyGravity();
+  s2.keepInScreen();
+  
 }
 
-/********* INPUTS *********/
-
-public void mousePressed() {
-  // if we are on the initial screen when clicked, start the game
-  if (gameScreen==0) {
-    startGame();
+class Spring2D {
+float airfriction = 0.00001;
+float friction = 0.1;
+float ballSpeedVert = 0;
+float ballSpeedHorizon = 0;
+  float vx, vy; // The x- and y-axis velocities
+  float x, y; // The x- and y-coordinates
+  float gravity;
+  float mass;
+  float radius = 45;
+  float stiffness = 0.2;
+  float damping = 0.7;
+  
+  Spring2D(float xpos, float ypos, float m, float g) {
+    x = xpos;
+    y = ypos;
+    mass = m;
+    gravity = g;
   }
-  playable.movement_Collision();
+  
+  void update(float targetX, float targetY) {
+    float forceX = (targetX - x) * stiffness;
+    float ax = forceX / mass;
+    vx = damping * (vx + ax);
+    x += vx;
+    float forceY = (targetY - y) * stiffness;
+    forceY += gravity;
+    float ay = forceY / mass;
+    vy = damping * (vy + ay);
+    y += vy;
+  }
+  
+  void display(float nx, float ny) {
+    noStroke();
+    ellipse(x, y, radius*2, radius*2);
+    stroke(255);
+    line(x, y, nx, ny);
+  }
+  
+  void applyGravity() {
+    ballSpeedVert += gravity;
+    y += ballSpeedVert;
+    ballSpeedVert -= (ballSpeedVert * airfriction);
 }
+  
+  void makeBounceTop(float surface) {
+    y = surface+(radius*2);
+    ballSpeedVert*=-1;
+    ballSpeedVert -= (ballSpeedVert * friction);
+  }
 
-
-
-/********* OTHER FUNCTIONS *********/
-
-// This method sets the necessary variables to start the game  
-void startGame() {
-  gameScreen=1;
+  void keepInScreen() {
+  if (y-(radius) < 0) {
+    makeBounceTop(0);}
+  }
 }

@@ -18,7 +18,6 @@ class Player{
     fill(#b5cd38);
     noStroke();
     ellipse(player_X,player_Y,15,15);
-    fill(255);
     stroke(0);
 }
   void setY(float y){

@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 class Game{
   Player player= new Player();
   Spiderweb web;
@@ -16,11 +18,13 @@ class Game{
 
   void word_Player_Collision(){  
     ArrayList column = (ArrayList)  web.data.get(player.column);
-    ArrayList node = (ArrayList) column.get(player.line);
+    ArrayList node = (ArrayList) column.get(player.line); 
     player.words_Found.add(node.get(2).toString());
     player.add_Score((int) node.get(3));  
-    print(player.score);
+    print(player.score);    
+    
     player_Match();
+    player.draw_Player(player.x,player.y);
   }
 
 void player_Match(){  
@@ -38,8 +42,14 @@ void player_Match(){
 }
   
   
-  void translate_Player(int n){ //ARRIBA 1 DERECHA 2 ABAJO3 IZQUIERDA 4
+  void translate_Player(int n){ 
     translate(250,250); 
+    fill(#ff8203);
+    ArrayList column = (ArrayList)  web.data.get(player.column);
+    ArrayList node = (ArrayList) column.get(player.line); 
+    float x=(float)node.get(0);
+    float y=(float)node.get(1);
+    ellipse(x,y,15,15);
     if (n==1){
         if(player.column<web.columns-1){
           ArrayList col = (ArrayList)  web.data.get(player.column+1);
@@ -95,7 +105,7 @@ void player_Match(){
           player.draw_Player(player.x,player.y);
       }
     }    
-    //println("LINES            ",player.line,"esta deberia ser 4:  ",web.lines-1);
+    ////println("LINES            ",player.line,"esta deberia ser 4:  ",web.lines-1);
     //println("COLUMNS           ",player.column,"esta deberia ser 4:  ",web.columns-1);
     word_Player_Collision();
   }
