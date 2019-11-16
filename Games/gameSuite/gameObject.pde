@@ -71,6 +71,8 @@
         } else if (gameScreen == 2) { 
             gameOverScreen();
         }
+        //tocar();
+        
     }
 
     /* ------------------------------------------------------
@@ -179,7 +181,33 @@
     /* ------------------------------------------------------
      *                     INPUT EVENTS
      * -----------------------------------------------------*/
+    public void tocar(){
+      float xEscalada;
+      float yEscalada;
+      tracker.track();
+      PVector v3 = tracker.getClosest();
+        try {
+        
+           xEscalada=v3.x*2;
+           yEscalada=v3.y*2;
+   
+        } catch (Exception e) {
+           xEscalada=0;
+           yEscalada=0;
+        }
 
+           ellipse((int)xEscalada,(int)yEscalada,25,25);
+          if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
+            score++;
+            println("LO TOQUE");
+        }
+
+        //if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
+        //    score++;
+        //    println("LO TOQUE");
+        //}
+    
+    }
     /** 
      * @brief - For this example the entry is the mouse. This function must 
      *  be adapted to the kinect inputs
@@ -197,6 +225,7 @@
 
         if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
             score++;
+            println("LO TOQUE");
         }
     }
 
