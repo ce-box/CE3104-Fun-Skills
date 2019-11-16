@@ -49,6 +49,8 @@ public class gameFlags{
     // GUI Variables
     private PatternBox box;
     private PFont fontArialBold;
+    private PFont fontOpenSansBold;
+    private PImage background;
     
 
     /**
@@ -134,7 +136,9 @@ public class gameFlags{
      */
     private void guiSetup(){
         fontArialBold = createFont("Arial Bold", 16);
+        fontOpenSansBold = createFont("fonts/open-sans/OpenSans-ExtraBold.ttf",16);
         box = new PatternBox(width/2,250);
+        background = loadImage("img/imgFlagsGame.png");
 
     }
 
@@ -166,7 +170,7 @@ public class gameFlags{
      * @brief begin game window
      */
     private void initScreen(){
-        background(0);
+        
         textAlign(CENTER);
         text("Click to Start", width/2, height/2);   
     }
@@ -178,19 +182,21 @@ public class gameFlags{
 
         if(repeat > 0 && run_time > 0){
            
-            background(255);
+            background(background);
     
-            textFont(fontArialBold);
+            textFont(fontOpenSansBold);
+            textAlign(CENTER);
+            textSize(30);
             
-            fill(0);
-            text("Success:"+successes,50,20);
-            text("Attemps:"+attempts,200,20);
-            text("Shifts:"+repeat,570,20);
-            text("Scores:"+score,680,20);
+            fill(236, 240, 241);
+            text("Success:"+successes,160,60);
+            text("Attemps:"+attempts,380,60);
+            text("Shifts:"+repeat,860,60);
+            text("Scores:"+score,1100,60);
 
             // Count down
             run_time = duration - (millis() - begin)/1000;
-            text("Time: "+run_time+" s", 420,20);
+            text("Time: "+run_time+" s", 630,60);
             
             box.setPattern(pattern);
             box.drawBox();
@@ -322,8 +328,6 @@ public void update(){
                 successes++;
                 score += flag.getPoints();
 
-                
-
             } 
             else{
                 println("Bad Answer!");
@@ -344,27 +348,32 @@ public void update(){
     private void drawFlags(){
 
         for(Flag flag : flagList){
-          tracker.track();
-             PVector v3 = tracker.getClosest();
-   float xEscalada;
-    float yEscalada;
-    try {
-    xEscalada=v3.x*2;
-   yEscalada=v3.y*2;
-   
-  } catch (Exception e) {
-     xEscalada=0;
-   yEscalada=0;
-  }
-  println(xEscalada,yEscalada);
-  
-  
-  fill(0,0,0);
-   //ellipse((int)xEscalada,(int)yEscalada,25,25);
-   //flag.update((int)xEscalada,(int)yEscalada);
-   flag.update(mouseX,mouseY);
-   ellipse(mouseX,mouseY,25,25);
-   flag.drawFlag();
+            
+            tracker.track();
+            PVector v3 = tracker.getClosest();
+        
+            float xEscalada;
+            float yEscalada;
+            try {
+                xEscalada=v3.x*2;
+                yEscalada=v3.y*2;
+            } catch (Exception e) {
+                xEscalada=0;
+                yEscalada=0;
+            }
+            
+            println(xEscalada,yEscalada);
+            
+            
+            
+            //ellipse((int)xEscalada,(int)yEscalada,25,25);
+            //flag.update((int)xEscalada,(int)yEscalada);
+
+            flag.update(mouseX,mouseY);
+            flag.drawFlag();
+
+            fill(255,80);
+            ellipse(mouseX,mouseY,15,15);
         }
     }
     

@@ -27,6 +27,7 @@ public class Flag{
 
     int points = 10;
     boolean flagOver;
+    boolean colorflagOver;
     String colorName = "black";
 
     // Color Hash Map
@@ -74,12 +75,12 @@ public class Flag{
      * @param flagSize
      */
     public void drawFlag(){
-        if(flagOver){
+        if(colorflagOver){
             fill(highColor);
         } else {
             fill(flagColor);
         }
-        stroke(255);
+        stroke(0,50);
         rect(posX,posY,flagWidth,flagHeight);
     }
 
@@ -124,31 +125,35 @@ public class Flag{
      * @param y
      */
     public void update(int x, int y){
-      println(count);
-       if( overFlag(x,y)){
-         count++;
-         if(count>51){
-           flagOver = false;
-           println("YA SE PASO LA FIESTA");
-           textSize(70);
-           text("YA LO PISASTE",700,100);
-           //count++;
-         }
-         else if(count>50){
-           flagOver = true;
+        
+        
+        fill(255);
+        println(count);
+        if( overFlag(x,y)){
+            count++;
+            if(count>51){
+                colorflagOver = false;
+                flagOver = false;
+                println("YA SE PASO LA FIESTA");
+                textSize(30);
+                text("¡Ya lo pisaste!",650,400);
+                //count++;
+            }
+            else if(count>50){
+                colorflagOver = true;
+                flagOver = true;
+            }
+            else{
+                colorflagOver = true;
+                textSize(30);
+                text("¡Mantén tu pie allí!",640,400);
+            }
 
-
-         }
-         else{
-           textSize(70);
-           text("MANTENGA SU\n PIE AHI  ",700,100);
-         }
-
-       } else {
-         count=0;
-         
-           flagOver = false;
-       }
+        } else {
+            count=0;
+            colorflagOver = false;
+            flagOver = false;
+        }
     }
 
     /** 

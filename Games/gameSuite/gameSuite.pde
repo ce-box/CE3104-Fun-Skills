@@ -85,6 +85,7 @@ int mode=0;
 int cx=200, cy=200,opcionPiesX=1000,opcionPiesY=200,opcionTelaX=1000,opcionTelaY=850,opcionObjetivoX=200,opcionObjetivoY=850, r=50, i=0,c=0;
 String  instrucciones= "Apunte  con su mano \n  al punto verde\npara hacer al mounstro feliz";
 PImage fondo;
+
 void setup() {
   
   gf = new gameFlags();
@@ -93,13 +94,13 @@ void setup() {
   gf.startGame();
 
   
-   kinect = new Kinect(this);
+  kinect = new Kinect(this);
   tracker = new KinectController();
   
   noStroke();
   smooth();
   frameRate(30);
-    fondo = loadImage("monster.jpg");
+    fondo = loadImage("img/monster.jpg");
   
     AddEye(510,340,220);
     AddEye(720,340,220);
@@ -108,10 +109,12 @@ void setup() {
 
   
 }
+
 boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
   if ( dist(x, y, cx, cy) < r) return true;
   else return false;
 }
+
 void juegoPies(boolean iniciarPies){
   
   if(iniciarPies){
@@ -120,7 +123,9 @@ void juegoPies(boolean iniciarPies){
     gf.draw();
   }
 }
+
 boolean flagInicio=true;
+
 void draw() {
   juegoPies(pies);
 
