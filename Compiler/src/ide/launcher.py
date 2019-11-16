@@ -13,9 +13,9 @@
 # ------------------------------------------------------------
 
 import sys
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+import PyQt5.QtCore as QCore
+import PyQt5.QtGui as QGui
+import PyQt5.QtWidgets as QWgt
 import time
 import threading
 import src.ide.IDE as ide
@@ -37,7 +37,7 @@ QProgressBar::chunk{
 }"""
 
 # Init window class
-class launcher_window(QWidget):
+class launcher_window(QWgt.QWidget):
 
     # Constructor
     def __init__(self, parent=None):
@@ -47,17 +47,17 @@ class launcher_window(QWidget):
         self.left = 400
         self.top = 300
 
-        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setWindowFlags(QCore.Qt.FramelessWindowHint)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
         # Create widget
-        label = QLabel(self)
-        pixmap = QPixmap(img_path)
+        label = QWgt.QLabel(self)
+        pixmap = QGui.QPixmap(img_path)
         label.setPixmap(pixmap)
         self.resize(pixmap.width(), pixmap.height())
 
         # Create Progress Bar
-        self.progress = QProgressBar(self)
+        self.progress = QWgt.QProgressBar(self)
         self.progress.setGeometry(140, 210, 200, 5)
         self.progress.setMaximum(100)
         self.progress.setTextVisible(False)
@@ -77,7 +77,7 @@ def count(app,window):
 # @brief - main function that runs the animation and launches
 #          the code editor
 def init_IDE():
-    app = QApplication(sys.argv)
+    app = QWgt.QApplication(sys.argv)
     window = launcher_window()
     window.show()
 

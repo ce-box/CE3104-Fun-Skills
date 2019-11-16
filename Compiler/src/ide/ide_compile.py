@@ -21,6 +21,7 @@ def compile(data):
 
     # Build the lexer
     lexer = lex.lex()
+
     # Receive input
     lexer.input(data)
 

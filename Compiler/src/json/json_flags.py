@@ -25,10 +25,17 @@ class flags():
         # Configuration Attributes
         self.__colors = ["river", "waterfall", "ocean", "rain", "water"]
         self.__points = [5, 10, 15, 20, 30]
+
+        # Flags amount
         self.__amnt = 3
         self.__amnt_inc = 1
+        self.__amnt_dec = 0
+
+        # Wait time
+        self.__time_inc = 0
         self.__time_dec = 1
         self.__time = 15
+
         self.__repeat = 1
 
     # -------------------------------- #
@@ -40,17 +47,26 @@ class flags():
     def set_points(self,points):
         self.__points = points
 
+
+    def set_time(self,time):
+        self.__time = time
+
+    def set_time_inc(self,time_inc):
+        self.__time_inc = time_inc
+
     def set_time_dec(self,time_dec):
         self.__time_dec = time_dec
 
-    def set_amnt_inc(self, amnt_inc):
-        self.__amnt_inc = amnt_inc
 
     def set_amnt(self, amnt):
         self.__amnt = amnt
 
-    def set_time(self,time):
-        self.__time = time
+    def set_amnt_inc(self, amnt_inc):
+        self.__amnt_inc = amnt_inc
+
+    def set_amnt_dec(self, amnt_dec):
+        self.__amnt_dec = amnt_dec
+
 
     def set_repeats(self,repeat):
         self.__repeat = repeat
@@ -73,6 +89,8 @@ class flags():
 
         # increase\decrease factors
         game["amnt_inc"] = self.__amnt_inc
+        game["amnt_dec"] = self.__amnt_dec
+        game["time_inc"] = self.__time_inc
         game["time_dec"] = self.__time_dec
 
         # iteration control
@@ -80,5 +98,4 @@ class flags():
         game["time"] = self.__time
         game["repeat"] = self.__repeat
 
-        print(game)
         save_json(self.__json)
