@@ -14,7 +14,7 @@ void setup() {
   background(255);
   stroke(0);
   strokeWeight(2);
-  game = new Game(5,5,game_Dic,game_Score);
+  game = new Game();
 }
 
 void draw() { 
