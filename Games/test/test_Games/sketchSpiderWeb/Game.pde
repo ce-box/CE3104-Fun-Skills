@@ -4,11 +4,31 @@ class Game{
   Player player= new Player();
   Spiderweb web;
   
-  public Game(int columns, int lines, ArrayList<String> game_Dic, ArrayList<Integer> game_Score){
-    web = new Spiderweb(columns,lines,game_Dic,game_Score);
-    player_Match();
+  int columns;
+  int lines;
+  ArrayList<String> game_Dic;
+  ArrayList<Integer> game_Score;
+  Game gameInstance;
+  
+  public Game(){
+      getConfig();
+      web = new Spiderweb(columns,lines,game_Dic,game_Score);
+      player_Match();
+
   }
   
+  private void getConfig(){
+    // TODO: Get json data
+    columns = 5;
+    lines = 5;
+    game_Dic = new ArrayList(Arrays.asList("Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba",
+                                        "Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba",
+                                        "Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba",
+                                        "Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba",
+                                        "Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba",
+                                        "Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba","Sandia","Guayaba"));
+    game_Score = new ArrayList(Arrays.asList(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1));
+  }
   
   void printScore() {
   textAlign(CENTER);
