@@ -83,9 +83,9 @@ def p_randomObjectArgs(p):
 
 
 def p_reservedFunction_telaarana(p):
-    'reservedFunction : TELAARANA expression COMMA expression SEMICOLON'
+    'reservedFunction : TELAARANA LPAREN expression COMMA expression RPAREN SEMICOLON'
     functionNode = TreeNode("function")
-    functionNode.add_children([p[1], p[2], p[4]])
+    functionNode.add_children([p[1], p[3], p[5]])
     p[0] = functionNode
 
 
@@ -97,7 +97,7 @@ def p_reservedFunction_assignword(p):
 
 
 def p_assignWordArgs(p):
-    '''assignWordArgs : LPAREN STRING COMMA expression RPAREN'''
+    '''assignWordArgs : LPAREN ID COMMA ID RPAREN'''
     # Validar que primer parametro sea Texto y segundo sea entero.
     argsNode = TreeNode("args")
     id1Node = TreeNode(p[2])

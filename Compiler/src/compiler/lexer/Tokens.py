@@ -43,6 +43,7 @@ reserved = {
     'main': 'MAIN',
 
      # Loops
+    'forAssignWord': 'FORASSIGNWORD',
     'while': 'WHILE',
     'for': 'FOR',
     'dow': 'DOW',
@@ -63,7 +64,6 @@ reserved = {
     'balloon': 'BALLOON',
     'random': 'RANDOM',
     'telaArana': 'TELAARANA',
-    'forAssignWord':'FORASSIGNWORD',
     'assignWord':'ASSIGNWORD',
     'object': 'OBJECT',
     'inc' : 'INC',

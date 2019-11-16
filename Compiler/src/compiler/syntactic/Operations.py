@@ -102,4 +102,6 @@ def p_empty(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error")
+    if p:
+        print("Syntax error in line: ", p.lineno)
+        raise SyntaxError

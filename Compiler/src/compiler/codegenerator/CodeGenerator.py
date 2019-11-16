@@ -27,14 +27,15 @@ def evaluateLoop(loop):
         dowLoop(loop[1:])
     elif loopName == "for":
         forLoop(loop[1:])
-    elif loopName == "forAssign":
-        return
+    elif loopName == "forAssignWord":
+        forAssignWordLoop(loop[1:])
 
 
 def dowLoop(loop_content):
     iterations = loop_content[0]
     balloon_values.set_repeats(iterations)
     variables_names = {}
+    print(loop_content)
     for reserved_function in loop_content[1:]:
         function_content = reserved_function.children
         function_name = function_content[0]
@@ -63,7 +64,6 @@ def balloon_game_values(function_name, function_args, variables_names, json):
 def forLoop(loop_content):
     iterations = loop_content[0]
     flags_values.set_repeats(iterations)
-    variables_names = {}
     if variables[loop_content[1]][0][3:] == "Array":
         flags_values.set_colors(variables[loop_content[1]][1])
         for reserved_function in loop_content[2:]:
@@ -82,3 +82,8 @@ def flags_game_values(function_name, function_args, json):
         json.set_amnt_inc(function_args[1])
     elif function_name == "dec":
         json.set_time_dec(function_args[1])
+
+
+def forAssignWordLoop(loop_content):
+    print(loop_content)
+    loop_name = loop_content[0]
