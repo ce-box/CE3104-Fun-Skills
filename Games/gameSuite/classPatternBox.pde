@@ -43,7 +43,8 @@
      * @param y
      */
     public PatternBox(int x, int y){
-        this.posX = x;
+        // To set the box in the middle of the screen
+        this.posX = x - boxWidth/2;
         this.posY = y;
 
         initDict();

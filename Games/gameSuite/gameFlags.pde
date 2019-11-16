@@ -91,15 +91,21 @@ public class gameFlags{
      */
     private void initFlags(){
         Flag flag;
-        int xPos = 0;
+        
+        // Forever center the flags
+        int spaceBtwFlag  = 20;
+        int usedSpace = (colors.size()*(150+ spaceBtwFlag)) - spaceBtwFlag;
+        
+        int xPos = (width - usedSpace)/2;
         int yPos = height/2 - 50;
+
         for(int index = 0; index < colors.size(); index++){
 
             String fColor = colors.get(index);
             int fPoints = points.get(index);
             flag = new Flag(xPos,yPos,fColor,fPoints);
             flagList.add(flag);
-            xPos+=155;
+            xPos+= 150+spaceBtwFlag;
         }
     }
 
@@ -125,7 +131,7 @@ public class gameFlags{
      */
     private void guiSetup(){
         fontArialBold = createFont("Arial Bold", 16);
-        box = new PatternBox(250,100);
+        box = new PatternBox(width/2,250);
 
     }
 

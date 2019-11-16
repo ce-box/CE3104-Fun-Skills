@@ -22,13 +22,13 @@ void setup(){
   gO = new gameObject();
   gO.toString();
   
-  gS = new gameSpidey();
+  //gS = new gameSpidey();
 }
 
 
 void draw(){
   //if(!gf.done)
-    //gf.draw();
+    gf.draw();
     //gO.draw();
  
 }
