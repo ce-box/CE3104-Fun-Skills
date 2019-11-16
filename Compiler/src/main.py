@@ -100,9 +100,12 @@ def main():
 
     try:
         ast = parse(lexer)
-        # print("\n", symbolsTable)
+        print("\n", symbolsTable)
         iterateTree(ast)
     except SyntaxError:
+        file = open("tmp/error_log.txt", "r")
+        error_message = file.read()
+        file.close()
         print(error_message)
         return
 

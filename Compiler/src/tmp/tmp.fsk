@@ -1,29 +1,29 @@
-// Comentario inicial
-
-begin
-main{
-    int A;
-
-    str(20) bb = "Bebecitaaaa";
-}
-
-// Comment outside
-game1{
-
-    // Comment Inside
-    int x = 60;
-    int y = 15;
-    int cant = 5;
-    dow(cant)
-        balloon(x, y);
-        inc(x, 3);
-        dec(y, 5);
-    enddo;
-}
-game2{
-}
-game3{
-}
-game4{
-}
-end;
+// Comentario inicial
+
+begin
+main{
+    int A;
+
+    str(20) bb = "Bebecitaaaa";
+}
+
+// Comment outside
+game1{
+
+    // Comment Inside
+    int x = 60;
+    int y = 15;
+    int cant = 5;
+    dow(cant)
+        balloon(x, y);
+        inc(x, 3);
+        dec(y, 5);
+    enddo;
+}
+game2{
+}
+game3{
+}
+game4{
+}
+end;

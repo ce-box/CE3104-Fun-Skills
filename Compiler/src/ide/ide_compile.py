@@ -25,12 +25,15 @@ def compile(data):
     # Receive input
     lexer.input(data)
 
-    # Build AST
     try:
         ast = parse(lexer)
+        print("\n", symbolsTable)
+        iterateTree(ast)
     except SyntaxError:
-        state = SyntaxError
-        return state
+        file = open("tmp/error_log.txt", "r")
+        error_message = file.read()
+        file.close()
+        return error_message
 
     # Check Semantic
     # try:

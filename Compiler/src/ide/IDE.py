@@ -209,7 +209,7 @@ class CustomMainWindow(QMainWindow):
         f.close()
         compiler_state = compile(data)
         print("STATE: ", compiler_state)
-        # self.__textbox.setText(str(compiler_state))
+        self.__textbox.setText(str(compiler_state))
 
     # @brief - Open a file explorer that allows you to open a
     #          * .fsk file
