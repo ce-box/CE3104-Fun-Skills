@@ -88,11 +88,12 @@
         else if (onScreen<40){
           tocar();
         }
+        
         //MODO KINECT
-      float xEscalada;
-      float yEscalada;
-      tracker.track();
-      PVector v3 = tracker.getClosest();
+        float xEscalada;
+        float yEscalada;
+        tracker.track();
+        PVector v3 = tracker.getClosest();
         try {
         
            xEscalada=v3.x*2;
@@ -249,17 +250,17 @@
         }
 
            
-          if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
-            score++;
-            println("LO TOQUE");
-            touched=true;
-        }
+        // if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
+        //     score++;
+        //     println("LO TOQUE");
+        //     touched=true;
+        // }
 
-//        if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
-//            score++;
-//            println("LO TOQUE");
-//            touched=true;
-//        }
+       if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
+           score++;
+           println("LO TOQUE");
+           touched=true;
+       }
     
     }
     /** 

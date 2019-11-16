@@ -38,7 +38,7 @@ public class gameFlags{
     // 0: Initial Screen
     // 1: Game Screen
     // 2: Game-over Screen
-    private int gameScreen = 0;
+    private int gameScreen = 1;
     public boolean done = false;
 
     // Quantization of attempts
@@ -171,8 +171,12 @@ public class gameFlags{
      */
     private void initScreen(){
         
+        background(0);
         textAlign(CENTER);
-        text("Click to Start", width/2, height/2);   
+        textSize(50);
+        text("¡FLAGS GAME!", width/2, height/2);
+        delay(3000);
+        startGame();
     }
 
     /**
@@ -244,7 +248,8 @@ public class gameFlags{
         textSize(130);
         text(score, width/2, height/2);
         textSize(15);
-        text("Click to Close", width/2, height-30);
+        text("Great Job!", width/2, height-30);
+        done = true;
     }
 
     /* ------------------------------------------------------
@@ -253,9 +258,9 @@ public class gameFlags{
 
 
 
-public void update(){
-  
-       if(gameScreen == 0){
+    public void update(){
+    
+        if(gameScreen == 0){
             startGame();
         }
 
@@ -264,9 +269,10 @@ public void update(){
         }
 
         if(gameScreen == 2){
-            done = true;
+            //done = true;
         }
-}
+    }
+
     /** 
      * @brief - For this example the entry is the mouse. This function must 
      *  be adapted to the kinect inputs
