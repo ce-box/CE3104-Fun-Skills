@@ -30,6 +30,7 @@
     private int time_dec = 0;
     private int duration = 60;
     private int begin;
+    private int onScreen=0;
 
     // Gameplay settings
     private float airfriction = -0.001;
@@ -71,7 +72,7 @@
         } else if (gameScreen == 2) { 
             gameOverScreen();
         }
-        //tocar();
+        tocar();
         
     }
 
@@ -196,16 +197,16 @@
            yEscalada=0;
         }
 
-           ellipse((int)xEscalada,(int)yEscalada,25,25);
-          if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
-            score++;
-            println("LO TOQUE");
-        }
-
-        //if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
+        //   ellipse((int)xEscalada,(int)yEscalada,25,25);
+        //  if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
         //    score++;
         //    println("LO TOQUE");
         //}
+
+        if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
+            score++;
+            println("LO TOQUE");
+        }
     
     }
     /** 
