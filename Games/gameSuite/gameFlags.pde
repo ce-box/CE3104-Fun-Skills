@@ -354,9 +354,10 @@ public void update(){
   
   
   fill(0,0,0);
-   ellipse((int)xEscalada,(int)yEscalada,25,25);
-   flag.update((int)xEscalada,(int)yEscalada);
-   //flag.update(mouseX,mouseY);
+   //ellipse((int)xEscalada,(int)yEscalada,25,25);
+   //flag.update((int)xEscalada,(int)yEscalada);
+   flag.update(mouseX,mouseY);
+   ellipse(mouseX,mouseY,25,25);
    flag.drawFlag();
         }
     }
