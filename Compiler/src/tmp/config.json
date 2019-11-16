@@ -1,18 +1,24 @@
 {
     "object": {
-        "pos": [],
-        "height": 13,
-        "length": 55,
-        "time": 15,
-        "repeat": 1
+        "pos": [
+            2,
+            5,
+            1,
+            7,
+            1
+        ],
+        "height": 2,
+        "length": 0,
+        "time": 25,
+        "repeat": 5
     },
     "balloon": {
-        "height": 60,
-        "length": 15,
-        "h_inc": 3,
+        "height": 3,
+        "length": 10,
+        "h_inc": 4,
         "h_dec": 0,
         "l_inc": 0,
-        "l_dec": 5,
+        "l_dec": 1,
         "repeat": 5
     },
     "flags": {

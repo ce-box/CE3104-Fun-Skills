@@ -47,6 +47,14 @@ def p_assignment_declare(p):
     'assignment : type ID EQUAL atom SEMICOLON'
 
     ID = p[2]
+
+    if isinstance(p[1], list):
+        if len(p[4]) > p[1][1]:
+            error_message = "Syntactic Error: Variable '%s' string value is too long in line %d" % (ID, p.lineno(2))
+            file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+            file.write(error_message)
+            file.close()
+            raise Exception
     if len(ID) <= 10:
         value = [p[1], p[4]]
         variables[ID] = value
@@ -55,7 +63,7 @@ def p_assignment_declare(p):
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
         file.write(error_message)
         file.close()
-        raise SyntaxError
+        raise Exception
 
 
 # Definition for reassignment of previously defined variables
@@ -64,6 +72,14 @@ def p_assignment_value(p):
 
     if p[1] in variables:
         ID = p[1]
+        type = variables[ID][0]
+        if isinstance(type, list):
+            if len(p[3]) > type[1]:
+                error_message = "Syntactic Error: Variable '%s' string value is too long in line %d" % (ID, p.lineno(2))
+                file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+                file.write(error_message)
+                file.close()
+                raise Exception
         value = variables[ID] + [p[3]]
         variables[ID] = value
     else:
@@ -71,7 +87,7 @@ def p_assignment_value(p):
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
         file.write(error_message)
         file.close()
-        raise SyntaxError
+        raise Exception
 
 
 # Definition for value of specific position in array.
@@ -92,7 +108,7 @@ def p_assignment_array(p):
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
         file.write(error_message)
         file.close()
-        raise SyntaxError
+        raise Exception
 
 
 # Definition for declaration of variables with typification
@@ -105,7 +121,7 @@ def p_declaration_var(p):
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
         file.write(error_message)
         file.close()
-        raise SyntaxError
+        raise Exception
 
 
 def p_declaration_array(p):
@@ -114,20 +130,27 @@ def p_declaration_array(p):
         arrayList = []
         for index in range(p[2][1]):
             arrayList.append(None)
-        variables[p[2][0]] = [p[1] + "Array", arrayList]
+        type = p[1]
+        if isinstance(type, list):
+            type = p[1][0]
+        variables[p[2][0]] = [type + "Array", arrayList]
     else:
         error_message = "Syntactic Error: Variable '%s' identifier is too long in line %d" % (p[2], p.lineno(2))
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
         file.write(error_message)
         file.close()
-        raise SyntaxError
+        raise Exception
 
 
 # Typification of variables
-def p_type(p):
-    '''type : INT
-            | STR LPAREN NUMBER RPAREN'''
+def p_type_int(p):
+    'type : INT'
     p[0] = p[1]
+
+
+def p_type_str(p):
+    'type : STR LPAREN NUMBER RPAREN'
+    p[0] = [p[1], p[3]]
 
 
 def p_array(p):

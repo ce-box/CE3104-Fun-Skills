@@ -15,6 +15,8 @@ variables = {}
 def iterateTree(tree):
     global variables
     keyList = ["main", "game1", "game2", "game3", "game4"]
+    if not tree:
+        return
     for child in tree.children:
         if child.value in keyList:
             variables = symbolsTable[child.value]
@@ -77,7 +79,11 @@ def forLoop(loop_content):
         flags_json.build_json()
     else:
         object_json.set_repeats(iterations)
-        print(loop_content[1:][2].children)
+        object_args = loop_content[2].children[1].children
+        object_json.set_position(object_args[0], 0)
+        object_json.set_time(object_args[3])
+        object_json.set_positions(object_args[1].children[0])
+        object_json.build_json()
 
 
 def flags_game_values(function_name, function_args, json):

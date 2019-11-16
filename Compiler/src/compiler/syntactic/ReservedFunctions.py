@@ -81,9 +81,9 @@ def p_randomObjectArgs(p):
 
 
 def p_reservedFunction_telaarana(p):
-    'reservedFunction : TELAARANA LPAREN expression COMMA expression RPAREN SEMICOLON'
+    'reservedFunction : TELAARANA twoArgs SEMICOLON'
     functionNode = TreeNode("function")
-    functionNode.add_children([p[1], p[3], p[5]])
+    functionNode.add_children([p[1], p[2]])
     p[0] = functionNode
 
 

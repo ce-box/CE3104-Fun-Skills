@@ -37,7 +37,6 @@ def main():
     // Comentario inicial
     begin
     main{
-        int aaa;
     }
     game1{
         int x = 3;
@@ -78,13 +77,15 @@ def main():
         score[1] = 50;
         score[2] = 15;
         
+        str(5) ppppppppppppppppppa;
+        
         str(10) palabras[3];
         palabras[0] = "Oceano";
         palabras[1] = "Ganja";
         palabras[2] = "Pene";
-        
+                
         telaArana(miFila, miCol);
-        
+
         forAssignWord(miFila, miCol) do
             assignWord(palabras, score);
         forend;
@@ -107,6 +108,7 @@ def main():
     }
     end;
     '''
+
     # Build the lexer
     lexer = lex.lex()
     # Receive input
@@ -114,10 +116,10 @@ def main():
 
     try:
         ast = parse(lexer)
-        print("\n", symbolsTable, "\n\n\n")
+        print("\n", symbolsTable)
         iterateTree(ast)
-    except SyntaxError:
-        file = open("tmp/error_log.txt", "r")
+    except Exception:
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "r")
         error_message = file.read()
         file.close()
         print(error_message)

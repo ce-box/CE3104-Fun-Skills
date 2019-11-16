@@ -1,1 +1,1 @@
-Syntax error in line: 69
+Syntactic Error: Variable 'ppppppppppppppppppa' identifier is too long in line 45
