@@ -21,6 +21,7 @@ public class Flag{
     int posY;
     int flagHeight = 300;
     int flagWidth = 150;
+    int count=0;
     color flagColor = color(0);
     color highColor = color(255);
 
@@ -122,9 +123,29 @@ public class Flag{
      * @param y
      */
     public void update(int x, int y){
+      println(count);
        if( overFlag(x,y)){
+         count++;
+         if(count>51){
+           flagOver = false;
+           println("YA SE PASO LA FIESTA");
+           textSize(70);
+           text("YA LO PISASTE",700,100);
+           //count++;
+         }
+         else if(count>50){
            flagOver = true;
+
+
+         }
+         else{
+           textSize(70);
+           text("MANTENGA SU\n PIE AHI  ",700,100);
+         }
+
        } else {
+         count=0;
+         
            flagOver = false;
        }
     }

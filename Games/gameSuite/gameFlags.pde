@@ -32,6 +32,7 @@ public class gameFlags{
     private int time_dec = 0;
     private int duration = 20;
     private int begin;
+    private int presionado=0;
 
     // According to its status is the screen that runs
     // 0: Initial Screen
@@ -76,9 +77,11 @@ public class gameFlags{
             initScreen();
         } else if(gameScreen == 1){
             gameScreen();
+            update();
         } else if(gameScreen == 2){
             gameOverScreen();
         }
+        
 
     }
 
@@ -236,6 +239,22 @@ public class gameFlags{
      *                     INPUT EVENTS
      * -----------------------------------------------------*/
 
+
+
+public void update(){
+  
+       if(gameScreen == 0){
+            startGame();
+        }
+
+        if(gameScreen == 1){
+            validateFlags();
+        }
+
+        if(gameScreen == 2){
+            done = true;
+        }
+}
     /** 
      * @brief - For this example the entry is the mouse. This function must 
      *  be adapted to the kinect inputs
@@ -293,8 +312,12 @@ public class gameFlags{
             if(checkFlag(flag)){
                 println("Correct!");
                 pattern.remove(0);
+              
                 successes++;
                 score += flag.getPoints();
+
+                
+
             } 
             else{
                 println("Bad Answer!");
@@ -315,8 +338,26 @@ public class gameFlags{
     private void drawFlags(){
 
         for(Flag flag : flagList){
-            flag.update(mouseX,mouseY);
-            flag.drawFlag();
+          tracker.track();
+             PVector v3 = tracker.getClosest();
+   float xEscalada;
+    float yEscalada;
+    try {
+    xEscalada=v3.x*2;
+   yEscalada=v3.y*2;
+   
+  } catch (Exception e) {
+     xEscalada=0;
+   yEscalada=0;
+  }
+  println(xEscalada,yEscalada);
+  
+  
+  fill(0,0,0);
+   ellipse((int)xEscalada,(int)yEscalada,25,25);
+   flag.update((int)xEscalada,(int)yEscalada);
+   //flag.update(mouseX,mouseY);
+   flag.drawFlag();
         }
     }
     
