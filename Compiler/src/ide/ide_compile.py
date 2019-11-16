@@ -17,23 +17,28 @@ from src.compiler.syntactic.Parser import *
 from src.compiler.codegenerator.CodeGenerator import *
 from src.compiler.datastructures.TreeNode import *
 
+
 def compile(data):
 
     # Build the lexer
     lexer = lex.lex()
-
     # Receive input
     lexer.input(data)
 
     # Build AST
-    ast = parse(lexer)
+    try:
+        ast = parse(lexer)
+    except SyntaxError:
+        state = SyntaxError
+        return state
 
     # Check Semantic
-    try:
-        checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)
-        print(checkSymbolTable)
-    except TypeError:
-        print("TypeError")
+    # try:
+    #     checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)
+    #     print(checkSymbolTable)
+    # except TypeError:
+    #     state = TypeError
+    #     return state
 
-    # Generate Code
-    iterateTree(ast)
+    # # Generate Code
+    # iterateTree(ast)

@@ -23,6 +23,7 @@ from PyQt5.QtCore import *
 from src.ide.editor import ScintillaEditor
 import src.ide.globals as globals
 
+compiler_state = "Welcome to FunSkills Playground!"
 '''================================================================================'''
 '''|                                TABMASTER                                     |'''
 '''================================================================================'''
@@ -138,18 +139,11 @@ class CustomMainWindow(QMainWindow):
         self.__lyt.addWidget(self.__tabMaster,1,0)
         self.show()
 
-        #7. Insert message Text Box
-        # -------------------------
-        self.__textbox = QLineEdit()
-        self.__textbox.setStyleSheet("QWidget { background-color: #000000; color: #bd4f00}") # Black Bg
-        self.__textbox.setText("Welcome to FunSkills Playground!")
-        self.__lyt.addWidget(self.__textbox,3,0)
-
         # 7. Insert message Text Box
         # -------------------------
-        self.__ = QLineEdit()
+        self.__textbox = QLineEdit()
         self.__textbox.setStyleSheet("QWidget { background-color: #000000; color: #bd4f00}")  # Black Bg
-        self.__textbox.setText("Welcome to FunSkills Playground!")
+        self.__textbox.setText(compiler_state)
         self.__lyt.addWidget(self.__textbox, 3, 0)
 
 
@@ -209,11 +203,13 @@ class CustomMainWindow(QMainWindow):
     # @brief - Send the text in the code editor to be reviewed and
     #          analyzed by the compiler
     def __run_btn_action(self):
+        global compiler_state
         f = open(globals.projectTempFile, "r")
         data = f.read()
         f.close()
-
-        compile(data)
+        compiler_state = compile(data)
+        print("STATE: ", compiler_state)
+        # self.__textbox.setText(str(compiler_state))
 
     # @brief - Open a file explorer that allows you to open a
     #          * .fsk file

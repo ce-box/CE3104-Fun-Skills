@@ -10,6 +10,9 @@
 # ------------------------------------------------------------
 
 from src.compiler.lexer.Tokens import *
+from src.ide.ide_compile import *
+
+error_message = ""
 
 
 def t_GAME(t):
@@ -47,9 +50,10 @@ t_ignore = ' \t'
 
 # Error handling rules
 def t_error(t):
-    print("LEXICAL ERROR: Invalid character", t.value[0], "at line number", t.lexer.lineno)
-    t.lexer.skip(1)
-    raise exit()
+    global error_message
+    print("AAAAAAAAAAAAAAAAAAAAAAAAA")
+    error_message = "LEXICAL ERROR: Invalid character " + t.value[0] + " at line number " + str(t.lexer.lineno)
+    raise SyntaxError
 
 
 # A function that ignores comments

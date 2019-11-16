@@ -1,10 +1,12 @@
 from src.compiler.datastructures.TreeNode import *
 from src.json.json_balloon import *
 from src.json.json_flags import *
+from src.json.json_spidey import *
 from src.compiler.syntactic.Parser import symbolsTable
 
-balloon_values = balloon()
-flags_values = flags()
+balloon_json = balloon()
+flags_json = flags()
+spidey_json = spidey()
 variables = {}
 
 
@@ -33,14 +35,14 @@ def evaluateLoop(loop):
 
 def dowLoop(loop_content):
     iterations = loop_content[0]
-    balloon_values.set_repeats(iterations)
+    balloon_json.set_repeats(iterations)
     variables_names = {}
     for reserved_function in loop_content[1:]:
         function_content = reserved_function.children
         function_name = function_content[0]
         function_args = function_content[1].children
-        balloon_game_values(function_name, function_args, variables_names, balloon_values)
-    balloon_values.build_json()
+        balloon_game_values(function_name, function_args, variables_names, balloon_json)
+    balloon_json.build_json()
 
 
 def balloon_game_values(function_name, function_args, variables_names, json):
@@ -62,15 +64,15 @@ def balloon_game_values(function_name, function_args, variables_names, json):
 
 def forLoop(loop_content):
     iterations = loop_content[0]
-    flags_values.set_repeats(iterations)
+    flags_json.set_repeats(iterations)
     if variables[loop_content[1]][0][3:] == "Array":
-        flags_values.set_colors(variables[loop_content[1]][1])
+        flags_json.set_colors(variables[loop_content[1]][1])
         for reserved_function in loop_content[2:]:
             function_content = reserved_function.children
             function_name = function_content[0]
             function_args = function_content[1].children
-            flags_game_values(function_name, function_args, flags_values)
-        flags_values.build_json()
+            flags_game_values(function_name, function_args, flags_json)
+        flags_json.build_json()
 
 
 def flags_game_values(function_name, function_args, json):
@@ -84,5 +86,13 @@ def flags_game_values(function_name, function_args, json):
 
 
 def forAssignWordLoop(loop_content):
-    print(loop_content)
-    loop_name = loop_content[0]
+    spidey_json.set_rows(loop_content[0])
+    spidey_json.set_cols(loop_content[1])
+
+    function_content = loop_content[2].children
+    function_args = function_content[1].children
+    spidey_json.set_words(variables[function_args[0].value][-1])
+    spidey_json.set_points(variables[function_args[1].value][-1])
+
+    spidey_json.build_json()
+

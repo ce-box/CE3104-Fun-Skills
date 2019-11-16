@@ -2,7 +2,7 @@
 
 begin
 main{
-    int a;
+    int A;
 
     str(20) bb = "Bebecitaaaa";
 }

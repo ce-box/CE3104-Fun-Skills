@@ -37,7 +37,7 @@ def main():
     // Comentario inicial
     begin
     main{
-        int a;
+        int Aaaa;
     }
     game1{
         int x = 3;
@@ -97,11 +97,13 @@ def main():
     lexer = lex.lex()
     # Receive input
     lexer.input(data)
+
     try:
         ast = parse(lexer)
-        print("\n", symbolsTable)
+        # print("\n", symbolsTable)
         iterateTree(ast)
     except SyntaxError:
+        print(error_message)
         return
 
     # try:
