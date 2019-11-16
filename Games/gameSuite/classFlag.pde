@@ -19,7 +19,7 @@ public class Flag{
     // Atributes
     int posX;
     int posY;
-    int flagHeight = 300;
+    int flagHeight = 300; 
     int flagWidth = 150;
     color flagColor = color(0);
     color highColor = color(255);
@@ -58,6 +58,7 @@ public class Flag{
         this.points = points;
 
         this.initDict();
+        this.initHColor();
         this.flagColor = colorDict.get(colorName);
     }
 
@@ -154,6 +155,29 @@ public class Flag{
         colorDict.put("yellow",#ffff33);
         colorDict.put("green",#009a00);
         colorDict.put("blue",#1a1aff);
+    }
+
+    // Initialize the content of the color-name dictionary
+    private void initHColor(){
+        switch (colorName) {
+            case "red":
+                highColor = #ff4066;
+                break;
+            case "orange":
+                highColor = #ffbb00;
+                break;
+            case "yellow":
+                highColor = #faff99;
+                break;
+            case "green":
+                highColor = #0cfa40;
+                break;
+            case "blue":
+                highColor = #5784ff;
+                break;
+            default:
+                break;
+        }
     }
 
 }
