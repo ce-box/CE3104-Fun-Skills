@@ -37,7 +37,7 @@ def main():
     // Comentario inicial
     begin
     main{
-        int a
+        int a;
     }
     game1{
         int x = 3;
@@ -100,15 +100,14 @@ def main():
     try:
         ast = parse(lexer)
         print("\n", symbolsTable)
+        iterateTree(ast)
     except SyntaxError:
         return
 
-    print("\n", symbolsTable)
     # try:
     #     checkSymbolTable = Semantic.symbolAnalysis(symbolsTable)
     # except TypeError:
     #     print("TypeError")
-    # iterateTree(ast)
 
 
 if __name__ == '__main__':

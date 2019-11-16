@@ -35,7 +35,6 @@ def dowLoop(loop_content):
     iterations = loop_content[0]
     balloon_values.set_repeats(iterations)
     variables_names = {}
-    print(loop_content)
     for reserved_function in loop_content[1:]:
         function_content = reserved_function.children
         function_name = function_content[0]

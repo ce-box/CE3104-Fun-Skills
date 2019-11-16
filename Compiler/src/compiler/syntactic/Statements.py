@@ -23,6 +23,7 @@ def p_statements_0(p):
 def p_statements_1(p):
     '''statements : reservedFunction statements'''
     funcList.insert(0, p[1])
+    p[0] = p[2]
 
 
 def p_statements_2(p):
