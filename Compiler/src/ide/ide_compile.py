@@ -30,7 +30,8 @@ def compile(data):
         ast = parse(lexer)
         print("\n", symbolsTable)
         iterateTree(ast)
-    except SyntaxError:
+        return "Source code compiled successfully"
+    except Exception:
         file = open(globals.projectFolderPath+"/src/tmp/error_log.txt", "r")
         error_message = file.read()
         file.close()
