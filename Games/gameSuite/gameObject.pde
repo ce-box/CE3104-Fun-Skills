@@ -23,6 +23,9 @@
     private int seconds; // Wait time
     private float time_Interval;
     private float last_Time_Check;
+    
+    //Flag
+    boolean touched=false;
 
     // Timer vars
     private int time = 60; //seconds - 20 s min
@@ -72,7 +75,55 @@
         } else if (gameScreen == 2) { 
             gameOverScreen();
         }
-        tocar();
+        //MODO MOUSE;
+        onScreen++;
+        if(mouseX>800){
+        onScreen=0;
+        touched=false;
+        }
+        else if(touched){
+          println("YA LO TOCASTE");
+        
+        }
+        else if (onScreen<40){
+          tocar();
+        }
+        //MODO KINECT
+      float xEscalada;
+      float yEscalada;
+      tracker.track();
+      PVector v3 = tracker.getClosest();
+        try {
+        
+           xEscalada=v3.x*2;
+           yEscalada=v3.y*2;
+   
+        } catch (Exception e) {
+           xEscalada=0;
+           yEscalada=0;
+        }
+        ellipse((int)xEscalada,(int)yEscalada,25,25);
+
+        
+         //onScreen++;
+        if(xEscalada==-20&&yEscalada==-20){
+        onScreen=0;
+        touched=false;
+        }
+        if(xEscalada!=-20&&yEscalada!=-20){
+        onScreen++;
+        }
+        else if(touched){
+          println("YA LO TOCASTE");
+        
+        }
+        else if (onScreen<40){
+          tocar();
+        }
+        
+        
+        
+        //tocar();
         
     }
 
@@ -197,16 +248,18 @@
            yEscalada=0;
         }
 
-        //   ellipse((int)xEscalada,(int)yEscalada,25,25);
-        //  if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
-        //    score++;
-        //    println("LO TOQUE");
-        //}
-
-        if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
+           
+          if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
             score++;
             println("LO TOQUE");
+            touched=true;
         }
+
+//        if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
+//            score++;
+//            println("LO TOQUE");
+//            touched=true;
+//        }
     
     }
     /** 
