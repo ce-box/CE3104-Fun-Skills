@@ -31,12 +31,13 @@
 //  gO = new gameObject();
 //  gO.toString();
 //  gf.startGame();
+//  gO.mousePressed();
 //  gS = new gameSpidey();
 //}
 
 //void draw(){
 //  //if(!gf.done)
-//    gf.draw();
+//    gO.draw();
 //    //if(!gO.done()){
 //    //  gO.draw();
     
@@ -46,7 +47,7 @@
 
 //void mousePressed(){
 //  gf.mousePressed();
-//  gO.mousePressed();
+//  //gO.mousePressed();
 //}
 //void keyPressed(){
 //  //gS.keyPressed();
@@ -78,7 +79,7 @@ VARIABLES NECESARIAS PARA EL FUNCIONAMIENTO DEL JUEGO COMO CLASES
 ArrayList<Eye> eyes = new ArrayList<Eye>();
 int numEyes = 2;
 static boolean inicio=true;
-boolean calibracion=false,dis=false,der=false,izq=false,downR=false,downI=false,pies=false;
+boolean calibracion=false,dis=false,der=false,izq=false,downR=false,downI=false,pies=false,juegoObjetivo=false;
 color fondoColor = #e25822;
 int tempo=0;
 int mode=0;
@@ -106,6 +107,7 @@ void setup() {
     AddEye(720,340,220);
   gO = new gameObject();
   gO.toString();
+  gO.mousePressed();
 
   
 }
@@ -114,12 +116,21 @@ boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
   if ( dist(x, y, cx, cy) < r) return true;
   else return false;
 }
+void juegoObjetivo(boolean iniciarObjetivo){
+    if(iniciarObjetivo){
+    flagInicio=false;
+    gO.startGame();
+    
+    gO.draw();
+  }
+}
 
 void juegoPies(boolean iniciarPies){
   
   if(iniciarPies){
     flagInicio=false;
     gf.startGame();
+    //gO.mousePressed();
     gf.draw();
   }
 }
@@ -128,6 +139,7 @@ boolean flagInicio=true;
 
 void draw() {
   juegoPies(pies);
+  juegoObjetivo(juegoObjetivo);
 
 if(!flagInicio){
   flagInicio=false;
@@ -355,7 +367,7 @@ boolean pantallaInicio(boolean inicio){
       //stop();
       fondoColor=#23374d;
       //calibracion=true;
-      pies=true;
+      //pies=true;
 
       tempo=millis();
       
@@ -370,13 +382,14 @@ boolean pantallaInicio(boolean inicio){
     else if(opcion3){
       termine=false;
       fondoColor=#55ae95;
-      calibracion=true;
+     // calibracion=true;
       tempo=millis();
     }
     else if (opcion4){
       termine=false;
       fondoColor=#8186d5;
-      calibracion=true;
+     // calibracion=true;
+     juegoObjetivo=true;
       tempo=millis();
     }
     
