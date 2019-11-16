@@ -17,9 +17,11 @@
     },
     "flags": {
         "colors": [
-            "Azul",
-            "Rojo",
-            "Verde"
+            "river",
+            "waterfall",
+            "ocean",
+            "rain",
+            "water"
         ],
         "points": [
             5,
@@ -28,11 +30,13 @@
             20,
             30
         ],
-        "time": 60,
+        "time": 15,
         "amnt": 3,
-        "repeat": 5,
+        "repeat": 1,
         "amnt_inc": 1,
-        "time_dec": 10
+        "amnt_dec": 0,
+        "time_inc": 0,
+        "time_dec": 1
     },
     "spidey": {
         "words": [
