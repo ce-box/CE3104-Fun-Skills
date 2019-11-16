@@ -32,6 +32,7 @@ public class gameFlags{
     private int time_dec = 0;
     private int duration = 20;
     private int begin;
+    private int presionado=0;
 
     // According to its status is the screen that runs
     // 0: Initial Screen
@@ -76,9 +77,11 @@ public class gameFlags{
             initScreen();
         } else if(gameScreen == 1){
             gameScreen();
+            update();
         } else if(gameScreen == 2){
             gameOverScreen();
         }
+        
 
     }
 
@@ -91,15 +94,21 @@ public class gameFlags{
      */
     private void initFlags(){
         Flag flag;
-        int xPos = 0;
+        
+        // Forever center the flags
+        int spaceBtwFlag  = 20;
+        int usedSpace = (colors.size()*(150+ spaceBtwFlag)) - spaceBtwFlag;
+        
+        int xPos = (width - usedSpace)/2;
         int yPos = height/2 - 50;
+
         for(int index = 0; index < colors.size(); index++){
 
             String fColor = colors.get(index);
             int fPoints = points.get(index);
             flag = new Flag(xPos,yPos,fColor,fPoints);
             flagList.add(flag);
-            xPos+=155;
+            xPos+= 150+spaceBtwFlag;
         }
     }
 
@@ -125,7 +134,7 @@ public class gameFlags{
      */
     private void guiSetup(){
         fontArialBold = createFont("Arial Bold", 16);
-        box = new PatternBox(250,100);
+        box = new PatternBox(width/2,250);
 
     }
 
@@ -236,6 +245,22 @@ public class gameFlags{
      *                     INPUT EVENTS
      * -----------------------------------------------------*/
 
+
+
+public void update(){
+  
+       if(gameScreen == 0){
+            startGame();
+        }
+
+        if(gameScreen == 1){
+            validateFlags();
+        }
+
+        if(gameScreen == 2){
+            done = true;
+        }
+}
     /** 
      * @brief - For this example the entry is the mouse. This function must 
      *  be adapted to the kinect inputs
@@ -293,8 +318,12 @@ public class gameFlags{
             if(checkFlag(flag)){
                 println("Correct!");
                 pattern.remove(0);
+              
                 successes++;
                 score += flag.getPoints();
+
+                
+
             } 
             else{
                 println("Bad Answer!");
@@ -315,8 +344,27 @@ public class gameFlags{
     private void drawFlags(){
 
         for(Flag flag : flagList){
-            flag.update(mouseX,mouseY);
-            flag.drawFlag();
+          tracker.track();
+             PVector v3 = tracker.getClosest();
+   float xEscalada;
+    float yEscalada;
+    try {
+    xEscalada=v3.x*2;
+   yEscalada=v3.y*2;
+   
+  } catch (Exception e) {
+     xEscalada=0;
+   yEscalada=0;
+  }
+  println(xEscalada,yEscalada);
+  
+  
+  fill(0,0,0);
+   //ellipse((int)xEscalada,(int)yEscalada,25,25);
+   //flag.update((int)xEscalada,(int)yEscalada);
+   flag.update(mouseX,mouseY);
+   ellipse(mouseX,mouseY,25,25);
+   flag.drawFlag();
         }
     }
     

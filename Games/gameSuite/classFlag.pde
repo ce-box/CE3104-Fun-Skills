@@ -19,8 +19,9 @@ public class Flag{
     // Atributes
     int posX;
     int posY;
-    int flagHeight = 300;
+    int flagHeight = 300; 
     int flagWidth = 150;
+    int count=0;
     color flagColor = color(0);
     color highColor = color(255);
 
@@ -58,6 +59,7 @@ public class Flag{
         this.points = points;
 
         this.initDict();
+        this.initHColor();
         this.flagColor = colorDict.get(colorName);
     }
 
@@ -122,9 +124,29 @@ public class Flag{
      * @param y
      */
     public void update(int x, int y){
+      println(count);
        if( overFlag(x,y)){
+         count++;
+         if(count>51){
+           flagOver = false;
+           println("YA SE PASO LA FIESTA");
+           textSize(70);
+           text("YA LO PISASTE",700,100);
+           //count++;
+         }
+         else if(count>50){
            flagOver = true;
+
+
+         }
+         else{
+           textSize(70);
+           text("MANTENGA SU\n PIE AHI  ",700,100);
+         }
+
        } else {
+         count=0;
+         
            flagOver = false;
        }
     }
@@ -154,6 +176,29 @@ public class Flag{
         colorDict.put("yellow",#ffff33);
         colorDict.put("green",#009a00);
         colorDict.put("blue",#1a1aff);
+    }
+
+    // Initialize the content of the color-name dictionary
+    private void initHColor(){
+        switch (colorName) {
+            case "red":
+                highColor = #ff4066;
+                break;
+            case "orange":
+                highColor = #ffbb00;
+                break;
+            case "yellow":
+                highColor = #faff99;
+                break;
+            case "green":
+                highColor = #0cfa40;
+                break;
+            case "blue":
+                highColor = #5784ff;
+                break;
+            default:
+                break;
+        }
     }
 
 }

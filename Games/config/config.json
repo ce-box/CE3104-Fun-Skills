@@ -1,10 +1,10 @@
 {
   "object": {
-    "pos": ["x1,y1", "x2,y2", "x3,y3"],
-    "height": 13,
+    "pos": [200, 50, 100, 70, 10],
+    "height": 200,
     "length": 55,
-    "time": 15,
-    "repeat": 1
+    "time": 2000,
+    "repeat": 5
   },
   "balloon": {
     "height": 10,
@@ -22,12 +22,24 @@
     "amnt": 3,
     "repeat": 2,
     "amnt_inc": 1,
+    "amnt_dec": 0,
+    "time_inc": 0,
     "time_dec": 10
   },
   "spidey": {
-    "words": ["tree", "river", "mountain", "camp", "forest"],
-    "points": [12, 23, 34, 45, 56],
-    "rows": 5,
-    "cols": 5
+    "words": [
+      "tree",
+      "river",
+      "mountain",
+      "camp",
+      "fire",
+      "bear",
+      "rocks",
+      "waterfall",
+      "canopy"
+    ],
+    "points": [12, 23, 34, 45, 12, 23, 56, 33, 89],
+    "rows": 3,
+    "cols": 3
   }
 }
