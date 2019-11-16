@@ -12,29 +12,35 @@
 
  gameFlags gf;
  gameObject gO;
+ gameSpidey gS;
   
 void setup(){
-  size(800,600);
+  size(1250,1040);
   gf = new gameFlags();
   gf.toString();
 
   gO = new gameObject();
   gO.toString();
+  
+  gS = new gameSpidey();
 }
 
 
 void draw(){
-  if(!gf.done)
+  //if(!gf.done)
     //gf.draw();
-    gO.draw();
-  else
-    foo();
+    //gO.draw();
+ 
 }
 
 
 void mousePressed(){
   gf.mousePressed();
   gO.mousePressed();
+}
+
+void keyPressed(){
+  gS.keyPressed();
 }
 
 void foo(){
