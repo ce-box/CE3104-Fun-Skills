@@ -11,6 +11,8 @@
 # -------------------------------------------------------------
 
 import sys
+import src.ide.globals as globals
+
 
 funcList = []
 variables = {}
@@ -103,5 +105,8 @@ def p_empty(p):
 # Error rule for syntax errors
 def p_error(p):
     if p:
-        print("Syntax error in line: ", p.lineno)
+        error_message = "Syntax error in line: " + str(p.lineno)
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+        file.write(error_message)
+        file.close()
         raise SyntaxError

@@ -37,7 +37,7 @@ def main():
     // Comentario inicial
     begin
     main{
-        int Aaaa;
+        int aaa;
     }
     game1{
         int x = 3;
@@ -90,6 +90,20 @@ def main():
         forend;
     }
     game4{
+        int alt = 2;
+        int tiempo = 25;
+        int dist[5];
+        dist[0] = 2;
+        dist[1] = 5;
+        dist[2] = 1;
+        dist[3] = 7;
+        dist[4] = 1;
+       
+        int var1 = 0; 
+        for 5 times using var1
+            object(alt, dist[var1], tiempo);
+        forend;
+        
     }
     end;
     '''
@@ -100,7 +114,7 @@ def main():
 
     try:
         ast = parse(lexer)
-        print("\n", symbolsTable)
+        print("\n", symbolsTable, "\n\n\n")
         iterateTree(ast)
     except SyntaxError:
         file = open("tmp/error_log.txt", "r")

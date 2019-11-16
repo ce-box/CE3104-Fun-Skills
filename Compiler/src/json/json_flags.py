@@ -98,4 +98,6 @@ class flags():
         game["time"] = self.__time
         game["repeat"] = self.__repeat
 
+        print(game)
+
         save_json(self.__json)

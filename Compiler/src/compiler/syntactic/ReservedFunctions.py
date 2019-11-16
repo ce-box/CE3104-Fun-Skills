@@ -70,15 +70,13 @@ def p_reservedFunction_randomInFor(p):
 
 
 def p_randomObjectArgs(p):
-    '''randomObjectArgs : LPAREN ID COMMA ID COMMA ID RPAREN'''
+    '''randomObjectArgs : LPAREN expression COMMA ID LBRACKET ID RBRACKET COMMA expression RPAREN'''
     argsNode = TreeNode("args")
-    id1Node = TreeNode(p[2])
-    id1Node.add_child(variables[p[2]][-1])
-    id2Node = TreeNode(p[4])
-    id2Node.add_child(variables[p[4]][-1])
-    id3Node = TreeNode(p[6])
-    id3Node.add_child(variables[p[6]][-1])
-    argsNode.add_children([id1Node, id2Node, id3Node])
+    id1Node = TreeNode(p[4])
+    id1Node.add_child(variables[p[4]][-1])
+    id2Node = TreeNode(p[6])
+    id2Node.add_child(variables[p[6]][-1])
+    argsNode.add_children([p[2], id1Node, id2Node, p[9]])
     p[0] = argsNode
 
 

@@ -2,11 +2,13 @@ from src.compiler.datastructures.TreeNode import *
 from src.json.json_balloon import *
 from src.json.json_flags import *
 from src.json.json_spidey import *
+from src.json.json_object import *
 from src.compiler.syntactic.Parser import symbolsTable
 
 balloon_json = balloon()
 flags_json = flags()
 spidey_json = spidey()
+object_json = object()
 variables = {}
 
 
@@ -64,8 +66,8 @@ def balloon_game_values(function_name, function_args, variables_names, json):
 
 def forLoop(loop_content):
     iterations = loop_content[0]
-    flags_json.set_repeats(iterations)
     if variables[loop_content[1]][0][3:] == "Array":
+        flags_json.set_repeats(iterations)
         flags_json.set_colors(variables[loop_content[1]][1])
         for reserved_function in loop_content[2:]:
             function_content = reserved_function.children
@@ -73,6 +75,9 @@ def forLoop(loop_content):
             function_args = function_content[1].children
             flags_game_values(function_name, function_args, flags_json)
         flags_json.build_json()
+    else:
+        object_json.set_repeats(iterations)
+        print(loop_content[1:][2].children)
 
 
 def flags_game_values(function_name, function_args, json):

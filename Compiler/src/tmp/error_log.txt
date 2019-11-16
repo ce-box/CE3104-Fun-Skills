@@ -1,1 +1,1 @@
-LEXICAL ERROR: Invalid character 'A' at line number 5
+Syntax error in line: 69

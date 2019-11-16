@@ -51,7 +51,10 @@ def p_assignment_declare(p):
         value = [p[1], p[4]]
         variables[ID] = value
     else:
-        print("Syntactic Error: Variable %s identifier is too long in line %d" %(ID, p.lineno(2)))
+        error_message = "Syntactic Error: Variable '%s' identifier is too long in line %d" % (ID, p.lineno(2))
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+        file.write(error_message)
+        file.close()
         raise SyntaxError
 
 
@@ -64,7 +67,10 @@ def p_assignment_value(p):
         value = variables[ID] + [p[3]]
         variables[ID] = value
     else:
-        print("Syntactic Error: Variable %s has not been declared in line %d" %(p[1], p.lineno(2)))
+        error_message = "Syntactic Error: Variable '%s' has not been declared in line %d" %(p[1], p.lineno(2))
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+        file.write(error_message)
+        file.close()
         raise SyntaxError
 
 
@@ -82,7 +88,10 @@ def p_assignment_array(p):
         else:
             print("Index out of range")
     else:
-        print("Syntactic Error: Variable %s has not been declared in line %d" %(p[1], p.lineno(2)))
+        error_message = "Syntactic Error: Variable '%s' has not been declared in line %d" % (p[1], p.lineno(2))
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+        file.write(error_message)
+        file.close()
         raise SyntaxError
 
 
@@ -92,7 +101,10 @@ def p_declaration_var(p):
     if len(p[2]) <= 10:
         variables[p[2]] = [p[1]]
     else:
-        print("Syntactic Error: Variable %s identifier is too long in line %d" %(p[2], p.lineno(2)))
+        error_message = "Syntactic Error: Variable '%s' identifier is too long in line %d" % (p[2], p.lineno(2))
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+        file.write(error_message)
+        file.close()
         raise SyntaxError
 
 
@@ -104,7 +116,10 @@ def p_declaration_array(p):
             arrayList.append(None)
         variables[p[2][0]] = [p[1] + "Array", arrayList]
     else:
-        print("Syntactic Error: Variable %s identifier is too long." % p[2])
+        error_message = "Syntactic Error: Variable '%s' identifier is too long in line %d" % (p[2], p.lineno(2))
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+        file.write(error_message)
+        file.close()
         raise SyntaxError
 
 
