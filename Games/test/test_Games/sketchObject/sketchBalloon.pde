@@ -34,7 +34,7 @@ color ballColor = color(244,67,52);
 
 /********* SETUP BLOCK *********/
 
-void setup() {
+void _setup() {
   size(1000,800);
   //set the initial coordinates of the ball
   ballX=width/4;
@@ -49,7 +49,7 @@ void setup() {
 
 /********* DRAW BLOCK *********/
 
-void draw() {
+void _draw() {
   // Display the contents of the current screen
   if (gameScreen == 0) { 
     initScreen();
@@ -107,7 +107,7 @@ void game_Over() {
   ballY=height/5;
 }
 
-void mousePressed(){
+void _mousePressed(){
   if (gameScreen==0){
   startGame();
   }
