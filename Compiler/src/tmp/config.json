@@ -1,31 +1,32 @@
 {
     "object": {
         "pos": [
-            2,
-            5,
-            1,
-            7,
-            1
+            200,
+            50,
+            100,
+            70,
+            10
         ],
-        "height": 2,
-        "length": 0,
-        "time": 25,
+        "height": 200,
+        "length": 55,
+        "time": 2000,
         "repeat": 5
     },
     "balloon": {
-        "height": 3,
-        "length": 10,
-        "h_inc": 4,
-        "h_dec": 0,
-        "l_inc": 0,
-        "l_dec": 1,
-        "repeat": 5
+        "height": 600,
+        "length": 100,
+        "h_inc": 0,
+        "h_dec": 2,
+        "l_inc": 1,
+        "l_dec": 0,
+        "repeat": 2
     },
     "flags": {
         "colors": [
-            "Azul",
-            "Rojo",
-            "Verde"
+            "blue",
+            "red",
+            "green",
+            "yellow"
         ],
         "points": [
             5,
@@ -44,16 +45,28 @@
     },
     "spidey": {
         "words": [
-            "Oceano",
-            "Ganja",
-            "Pene"
+            "tree",
+            "river",
+            "mountain",
+            "camp",
+            "fire",
+            "bear",
+            "rocks",
+            "waterfall",
+            "canopy"
         ],
         "points": [
-            5,
-            50,
-            15
+            12,
+            23,
+            34,
+            45,
+            12,
+            23,
+            56,
+            33,
+            89
         ],
         "rows": 3,
-        "cols": 5
+        "cols": 3
     }
 }

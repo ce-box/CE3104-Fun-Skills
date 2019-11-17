@@ -13,6 +13,17 @@ game2{
 }
 
 game3{
+ int tiempo = 60;
+ int cant = 3;
+ str(10) color[3];
+ color[0] = "blue";
+ color[1] = "red";
+ color[2] = "green";
+ for 5 times using color
+   random(cant, tiempo);
+   inc(cant, 1);
+   dec(tiempo, 10);
+ forend;
 }
 
 game4{

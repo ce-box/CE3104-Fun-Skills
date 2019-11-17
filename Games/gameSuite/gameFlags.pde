@@ -121,7 +121,7 @@ public class gameFlags{
     private void generatePattern(){
 
         //1. Copy the elements to pattern
-        for(int i = 0; i < index_amnt; i++){
+        for(int i = 0; i < index_amnt && i < colors.size(); i++){
             pattern.add(colors.get(i));
         }
 

@@ -160,6 +160,7 @@
             printScore();
 
         }else{
+            // EL JUEGO TERMINA EN ESTA FUNCION
             gameOverScreen();
         }
     }
@@ -167,6 +168,7 @@
     /**
      * @brief Final game window
      */
+    // EL JUEGO TERMINA EN ESTA FUNCION
     private void gameOverScreen() {
         background(44, 62, 80);
         textAlign(CENTER);

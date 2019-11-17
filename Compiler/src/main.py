@@ -52,17 +52,17 @@ def main():
         int tiempo = 60;
         int cant = 3;
         
-        str(10) color[3];
+        str(10) color[4];
         color[0] = "Azul";
         color[1] = "Rojo";
         color[2] = "Verde";
         
-        int score[3];
-        score[0] = 5;
-        score[1] = 15;
-        score[2] = 50;
-        
-        for 5 times using color
+        int a[3];
+        a[0] = 10;
+        a[1] = 22;
+        a[2] = 33;
+                
+        for 3 times using color
           random(cant, tiempo);
           inc(cant, 1);
           dec(tiempo, 10);
@@ -73,11 +73,10 @@ def main():
         int miCol = 5;
         
         int score[3];
-        score[0] = 5;
-        score[1] = 50;
-        score[2] = 15;
+        score[0] = 4;
+        score[1] = 5;
+        score[2] = 6;
         
-        str(5) a;
         
         str(10) palabras[3];
         palabras[0] = "Oceano";
@@ -85,7 +84,7 @@ def main():
         palabras[2] = "Lago";
                 
         telaArana(miFila, miCol);
-
+    
         forAssignWord(miFila, miCol) do
             assignWord(palabras, score);
         forend;
@@ -100,7 +99,7 @@ def main():
         dist[3] = 7;
         dist[4] = 1;
        
-        int var1 = 0; 
+        int var1; 
         for 5 times using var1
             object(alt, dist[var1], tiempo);
         forend;
@@ -118,12 +117,13 @@ def main():
         ast = parse(lexer)
         print("\n", symbolsTable)
         iterateTree(ast)
-        Semantic.checkVariables(symbolsTable)
+        Semantic.symbolAnalysis(symbolsTable)
         return "CODE COMPILED SUCCESFULLY"
     except Exception:
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "r")
         error_message = file.read()
         file.close()
+        print(error_message)
         return error_message
 
 

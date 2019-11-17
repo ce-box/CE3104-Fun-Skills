@@ -57,6 +57,18 @@ void mouseDragged() {
     gB.mouseDragged();
 }
 
+
+void keyPressed(){  
+  if (keyCode == UP){
+      gS.translate_Player(1);}
+  else if (keyCode == DOWN){
+      gS.translate_Player(3);}
+  else if (keyCode == LEFT){
+      gS.translate_Player(4);}
+  else if (keyCode == RIGHT){
+      gS.translate_Player(2);}
+}
+
 //void keyPressed(){
 //  //gS.keyPressed();
 //}
@@ -120,6 +132,8 @@ void setup() {
 
   gB = new gameBalloon();
   gB.toString();
+
+  gS = new gameSpidey();
 }
 
 boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
@@ -159,7 +173,8 @@ void juegoPies(boolean iniciarPies){
 boolean flagInicio=true;
 
 void draw() {
-  
+
+  //gS.init(); 
   juegoBallon(ballon);
   juegoPies(pies);
   juegoObjetivo(juegoObjetivo);

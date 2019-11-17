@@ -37,12 +37,11 @@ class Game{
   
   private void getConfig(){
     // TODO: Get json data
-    columns = 5;
-    lines = 5;
-    game_Dic = new ArrayList(Arrays.asList("amar","aprender","caminar","comer","comprar","conducir","conectar/se","conocer",
-    "dar","decir","dejar","dormir","encontrar","estar","estudiar","intentar","ir","jugar","leer","llamar","mirar","opinar",
-    "parecer","pensar","preguntar"));
-    game_Score = new ArrayList(Arrays.asList(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1));
+    jsonGameSpidey jS = new jsonGameSpidey();
+    columns = jS.getCols();
+    lines = jS.getRows();
+    game_Dic = jS.getWords();
+    game_Score = jS.getPoints();
   }
   
   void printScore() {

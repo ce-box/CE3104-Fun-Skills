@@ -77,8 +77,10 @@
         } else if (gameScreen == 1) { 
             gameScreen();
         } else if (gameScreen == 2) { 
+            // EL JUEGO TERMINA EN ESTA FUNCION
             gameOverScreen();
         }
+
         //MODO MOUSE;
         onScreen++;
         if(mouseX>800){
@@ -196,6 +198,7 @@
             printScore();
             smooth();
         }else{
+            // EL JUEGO TERMINA EN ESTA FUNCION
             gameScreen = 2;
         }
     }
@@ -203,6 +206,7 @@
     /**
      * @brief Final game window
      */
+     // EL JUEGO TERMINA EN ESTA FUNCION
     void gameOverScreen() {
         background(44, 62, 80);
         textAlign(CENTER);
