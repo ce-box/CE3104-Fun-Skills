@@ -88,7 +88,7 @@ VARIABLES NECESARIAS PARA EL FUNCIONAMIENTO DEL JUEGO COMO CLASES
 ArrayList<Eye> eyes = new ArrayList<Eye>();
 int numEyes = 2;
 static boolean inicio=true;
-boolean calibracion=false,dis=false,der=false,izq=false,downR=false,downI=false,pies=false,juegoObjetivo=false;
+boolean calibracion=false,dis=false,der=false,izq=false,downR=false,downI=false,pies=false,juegoObjetivo=false,ballon=false;
 color fondoColor = #e25822;
 int tempo=0;
 int mode=0;
@@ -119,6 +119,7 @@ void setup() {
   gO.mousePressed();
 
   gB = new gameBalloon();
+  gB.toString();
 }
 
 boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
@@ -147,17 +148,23 @@ void juegoPies(boolean iniciarPies){
     }
   }
 }
+ void juegoBallon(boolean iniciarBallon){
+   if(iniciarBallon){
+     flagInicio=false;
+     gB.draw();
+   }
+   
+ }
 
 boolean flagInicio=true;
 
 void draw() {
-  //gB.draw();
+  
+  juegoBallon(ballon);
   juegoPies(pies);
   juegoObjetivo(juegoObjetivo);
-
   if(!flagInicio){
     flagInicio=false;
-
   }
   else{
     flagInicio=pantallaInicio(inicio);
@@ -385,11 +392,12 @@ boolean pantallaInicio(boolean inicio){
     if(opcion1){
       termine=false;
       
-      
+     
       //stop();
       fondoColor=#23374d;
       //calibracion=true;
       //pies=true;
+      ballon=true;
 
       tempo=millis();
       

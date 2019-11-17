@@ -24,6 +24,9 @@
 
     private int _heigth;
     private int _lenght;
+    private boolean pull=false;
+    boolean ableTouch=false;
+    private  int pullCounter=0;
 
     // GUI Variables
     private PFont fontOpenSansBold;
@@ -43,6 +46,61 @@
      */
     public void draw(){
         gameScreen();
+        float xEscalada;
+        float yEscalada;
+        tracker.track();
+        PVector v3 = tracker.getClosest();
+        try {
+        
+           xEscalada=v3.x*2;
+           yEscalada=v3.y*2;
+   
+        } catch (Exception e) {
+           xEscalada=0;
+           yEscalada=0;
+        }
+        ellipse((int)xEscalada,(int)yEscalada,25,25);
+        if(xEscalada==-20&&yEscalada==-20){
+          pullCounter=0;
+        
+          pull=false;
+        }
+        if(xEscalada!=-20&&yEscalada!=-20&&!ableTouch){
+        pullCounter++;
+        pull=true;
+       //ableTouch=true;
+        }
+        //if(xEscalada!=-20&&yEscalada!=-20&&ableTouch){
+        //pullCounter++;
+        // //pull=true;
+        ////ableTouch=true;
+        //}
+        if(pull&&pullCounter<60){
+          println("YA LO   ESTAS JALANDO");
+          jalo((int)xEscalada,(int)yEscalada);
+        
+        }
+       else if(pull&&pullCounter>60){
+          println("YA NO   PUEDES JALAR");
+          pull=false;
+          ableTouch=true;
+          //jalo((int)xEscalada,(int)yEscalada);
+        
+        }
+        else if(ableTouch&&pullCounter<40){
+          println("YA  PUEDES TOCAR EL BALLON");
+          touching();
+          //jalo((int)xEscalada,(int)yEscalada);
+        
+        }
+        // else if(ableTouch&&pullCounter>40){
+        //   //pull=true;
+        //   ableTouch=false;
+        //  println("YA PUEDES VOLVER A JALAR");
+        //  //jalo((int)xEscalada,(int)yEscalada);
+        
+        //}
+
     }
 
     /* ------------------------------------------------------
@@ -130,6 +188,40 @@
      * @brief - For this example the entry is the mouse. This function must 
      *  be adapted to the kinect inputs
      */
+    public void jalo(int x,int y){
+      handle.x=x;
+        handle.y=y;
+    } 
+    public void touching(){
+        float xEscalada;
+        float yEscalada;
+        tracker.track();
+        PVector v3 = tracker.getClosest();
+        try {
+        
+           xEscalada=v3.x*2;
+           yEscalada=v3.y*2;
+   
+        } catch (Exception e) {
+           xEscalada=0;
+           yEscalada=0;
+        }
+      
+    if (playable.x-playable.radius-20<xEscalada && playable.x+playable.radius+20>xEscalada && playable.y-playable.radius-20<yEscalada && playable.y+playable.radius+20>yEscalada){
+            playable.update(playable.x+400,playable.y+600);
+            playable.gravity=-11;
+            handle.gravity=-6;
+            playable.update(handle.x, handle.y-170);
+            playable.display(handle.x, handle.y);      
+            score++;
+            repeat--;
+            ableTouch=false;
+            }
+        else if (playable.x-playable.radius-100<xEscalada && playable.x+playable.radius+100>xEscalada && playable.y-playable.radius-100<yEscalada && playable.y+playable.radius+100>yEscalada){
+            attemps++;
+
+        } 
+    }
     public void mouseClicked(){
         if (playable.x-playable.radius-20<mouseX && playable.x+playable.radius+20>mouseX && playable.y-playable.radius-20<mouseY && playable.y+playable.radius+20>mouseY){
             playable.update(playable.x+400,playable.y+600);
