@@ -77,5 +77,5 @@ class balloon():
 
         # iteration control
         game["repeat"] = self.__repeat
-        print(game)
+        #print(game)
         save_json(self.__json)
