@@ -52,6 +52,10 @@
     private float ballSize = 100;
     private color ballColor = color(244,67,52);
 
+    // GUI vars
+    private PFont fontOpenSansBold;
+    private PImage background;
+
     /**
      * @brief Constructor
      */
@@ -141,7 +145,8 @@
         ballY=height/5;// 2 s
         last_Time_Check = millis();
         smooth();
-        fontArialBold = createFont("Arial Bold", 16);
+        fontOpenSansBold = createFont("fonts/open-sans/OpenSans-ExtraBold.ttf",16);
+        background = loadImage("img/imgObjectGame.png");
     }
 
     private void getConfig(){
@@ -178,7 +183,7 @@
 
         if(repeat > 0 && run_time > 0){
 
-            background(236, 240, 241);
+            background(background);
             
             drawBall(); 
             movement_Balloon();
@@ -201,6 +206,7 @@
     void gameOverScreen() {
         background(44, 62, 80);
         textAlign(CENTER);
+        textFont(fontOpenSansBold);
         fill(236, 240, 241);
         textSize(12);
         if(score!=0){
@@ -211,7 +217,7 @@
         textSize(130);
         text(score, width/2, height/2);
         textSize(15);
-        text("Click to Restart", width/2, height-30);
+        text("Great Job!", width/2, height-30);
     }
 
     /* ------------------------------------------------------
@@ -399,22 +405,22 @@
      * @brief Display the score on the screen
      */
     void printScore() {
-        textFont(fontArialBold);
+        textFont(fontOpenSansBold);
         textAlign(CENTER);
-        fill(0);
+        fill(255);
         textSize(30); 
-        text("Score:"+score, height/2, 50);
+        text("Score:"+score, 1100, 60);
     }
 
     void printTime() {
-        textFont(fontArialBold);
+        textFont(fontOpenSansBold);
         textAlign(CENTER);
         textSize(30); 
-        fill(0);
+        fill(255);
 
         // Count down
         run_time = duration - (millis() - begin)/1000;
-        text("Time: "+run_time+" s", height/2+300,50);
+        text("Time: "+run_time+" s", 630,60);
     }
 
     @Override
