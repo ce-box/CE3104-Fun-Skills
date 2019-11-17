@@ -77,12 +77,12 @@ def main():
         score[1] = 50;
         score[2] = 15;
         
-        str(5) ppppppppppppppppppa;
+        str(5) a;
         
         str(10) palabras[3];
         palabras[0] = "Oceano";
-        palabras[1] = "Ganja";
-        palabras[2] = "Pene";
+        palabras[1] = "Lluvia";
+        palabras[2] = "Lago";
                 
         telaArana(miFila, miCol);
 
@@ -118,11 +118,11 @@ def main():
         ast = parse(lexer)
         print("\n", symbolsTable)
         iterateTree(ast)
+        return "CODE COMPILED SUCCESFULLY"
     except Exception:
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "r")
         error_message = file.read()
         file.close()
-        print(error_message)
         return error_message
 
     # try:

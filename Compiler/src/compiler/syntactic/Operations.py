@@ -17,7 +17,6 @@ import src.ide.globals as globals
 funcList = []
 variables = {}
 precedence = (
-    ('nonassoc', 'LESSTHAN', 'GREATERTHAN'),  # Nonassociative operators
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('right', 'NEGATIVE'),  # Unary minus operator
