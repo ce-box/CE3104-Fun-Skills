@@ -1,0 +1,59 @@
+{
+    "object": {
+        "pos": [
+            2,
+            5,
+            1,
+            7,
+            1
+        ],
+        "height": 2,
+        "length": 0,
+        "time": 25,
+        "repeat": 5
+    },
+    "balloon": {
+        "height": 3,
+        "length": 10,
+        "h_inc": 4,
+        "h_dec": 0,
+        "l_inc": 0,
+        "l_dec": 1,
+        "repeat": 5
+    },
+    "flags": {
+        "colors": [
+            "Azul",
+            "Rojo",
+            "Verde"
+        ],
+        "points": [
+            5,
+            10,
+            15,
+            20,
+            30
+        ],
+        "time": 60,
+        "amnt": 3,
+        "repeat": 5,
+        "amnt_inc": 1,
+        "amnt_dec": 0,
+        "time_inc": 0,
+        "time_dec": 10
+    },
+    "spidey": {
+        "words": [
+            "Oceano",
+            "Ganja",
+            "Pene"
+        ],
+        "points": [
+            5,
+            50,
+            15
+        ],
+        "rows": 3,
+        "cols": 5
+    }
+}
