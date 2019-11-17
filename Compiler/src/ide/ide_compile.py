@@ -21,6 +21,7 @@ import src.ide.globals as globals
 
 def compile(data):
 
+    symbolsTable.clear()
     # Build the lexer
     lexer = lex.lex()
     # Receive input
@@ -30,12 +31,16 @@ def compile(data):
         ast = parse(lexer)
         print("\n", symbolsTable)
         iterateTree(ast)
+        Semantic.checkVariables(symbolsTable)
         return "Source code compiled successfully"
+
     except Exception:
         file = open(globals.projectFolderPath+"/src/tmp/error_log.txt", "r")
         error_message = file.read()
         file.close()
+        print(error_message)
         return error_message
+
 
     # Check Semantic
     # try:

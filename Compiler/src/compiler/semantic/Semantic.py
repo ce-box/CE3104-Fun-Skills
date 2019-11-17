@@ -35,3 +35,5 @@ def checkVariables(st):
         return
     else:
         raise Exception
+
+
