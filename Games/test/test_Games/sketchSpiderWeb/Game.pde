@@ -17,9 +17,23 @@ class Game{
   }
   
   public void init(){
-    web = new Spiderweb(columns,lines,game_Dic,game_Score);
-    player_Match();
+    if (player.i<(columns*lines)){
+      web = new Spiderweb(columns,lines,game_Dic,game_Score);
+      player_Match();}
+    else{
+      gameOverScreen();
+    }
   }
+  
+  void gameOverScreen() {
+    background(0);
+    textAlign(CENTER);
+    fill(255);
+    textSize(30);
+    text("Game Over", height/2, width/2 - 20);
+    textSize(15);
+    text("Click to Restart", height/2, width/2 + 10);
+}
   
   private void getConfig(){
     // TODO: Get json data
@@ -43,7 +57,8 @@ class Game{
     println(player.words_Found.contains(node.get(2)),"\n");
     if(player.words_Found.contains(node.get(2))){
       return;}
-    else{
+    else{      
+      player.i++;
       player.words_Found.add(node.get(2).toString());
       player.add_Score((int) node.get(3));
     }

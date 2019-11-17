@@ -2,6 +2,7 @@ class Player{
 
   public int column = -1;
   public int line;
+  public int i=0;
   public int score = 0;
   public float x;
   public float y;
