@@ -45,10 +45,10 @@
 
 //}
 
-//void mousePressed(){
-//  gf.mousePressed();
+// void mousePressed(){
+//  gO.mousePressed();
 //  //gO.mousePressed();
-//}
+// }
 //void keyPressed(){
 //  //gS.keyPressed();
 //}
@@ -86,40 +86,42 @@ int mode=0;
 int cx=200, cy=200,opcionPiesX=1000,opcionPiesY=200,opcionTelaX=1000,opcionTelaY=850,opcionObjetivoX=200,opcionObjetivoY=850, r=50, i=0,c=0;
 String  instrucciones= "Apunte  con su mano \n  al punto verde\npara hacer al mounstro feliz";
 PImage fondo;
+
 void setup() {
   
   gf = new gameFlags();
   gf.toString();
   size(1280, 1040);
-  gf.startGame();
 
   
-   kinect = new Kinect(this);
+  kinect = new Kinect(this);
   tracker = new KinectController();
   
   noStroke();
   smooth();
   frameRate(30);
-    fondo = loadImage("monster.jpg");
+  fondo = loadImage("img/monster.jpg");
   
-    AddEye(510,340,220);
-    AddEye(720,340,220);
+  AddEye(510,340,220);
+  AddEye(720,340,220);
+  
   gO = new gameObject();
   gO.toString();
   gO.mousePressed();
 
   
 }
+
 boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
   if ( dist(x, y, cx, cy) < r) return true;
   else return false;
 }
 void juegoObjetivo(boolean iniciarObjetivo){
-    if(iniciarObjetivo){
+  if(iniciarObjetivo){
     flagInicio=false;
     gO.startGame();
-    
     gO.draw();
+    
   }
 }
 
@@ -127,29 +129,34 @@ void juegoPies(boolean iniciarPies){
   
   if(iniciarPies){
     flagInicio=false;
-    gf.startGame();
-    //gO.mousePressed();
     gf.draw();
+    
   }
 }
+
 boolean flagInicio=true;
+
 void draw() {
+  
   juegoPies(pies);
   juegoObjetivo(juegoObjetivo);
 
-if(!flagInicio){
-  flagInicio=false;
+  if(!flagInicio){
+    flagInicio=false;
 
+  }
+  else{
+    flagInicio=pantallaInicio(inicio);
+  }
+
+  pantallaConfig(fondoColor,calibracion,mode);
+
+  println("PIES"+pies);
 }
-else{
-  flagInicio=pantallaInicio(inicio);
-}
-
- pantallaConfig(fondoColor,calibracion,mode);
- println("PIES"+pies);
 
 
-}
+
+
 void pantallaConfig( color fondo,boolean calibracion,int mode){
   //flagInicio=false;
   
@@ -247,6 +254,11 @@ void pantallaConfig( color fondo,boolean calibracion,int mode){
 
 }
 }
+
+
+
+
+
 boolean pantallaInicio(boolean inicio){
   dis=false;
   der=false;
@@ -257,11 +269,11 @@ boolean pantallaInicio(boolean inicio){
   boolean termine = true;
   calibracion=false;
 
-      background(32);  
+  background(32);  
   fondo.resize(1280,1040);
   
   tracker.track();
-    image(fondo, 0, 0);
+  image(fondo, 0, 0);
 
   PVector v3 = tracker.getClosest();
 
@@ -429,6 +441,11 @@ void AddEye(int x, int y,int size){
 void DelEye(){
   if(eyes.size()>0)eyes.remove(0);  
 }
+
+
+
+
+
 
 class Eye {
   float x, y;

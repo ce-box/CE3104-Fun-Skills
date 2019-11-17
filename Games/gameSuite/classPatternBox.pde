@@ -26,8 +26,8 @@
      ArrayList<String> colorPattern = new ArrayList<String>();
 
      // GUI Variables
-     int boxColor = #807b7a;
-     int offColor = color(0);
+     int boxColor = #701100;
+     int offColor = #222a33;
      int borderColor = #325e63;
      color doneColor;
 
@@ -76,8 +76,9 @@
      * @brief - Draw the pattern box
      */
     public void drawBox(){
-        fill(boxColor);
-        rect(posX, posY, boxWidth, boxHeight);
+        fill(boxColor,120);
+        rect(posX, posY, boxWidth, boxHeight, 7);
+        stroke(10,20);
         
         drawCircles();
     }
@@ -96,15 +97,19 @@
             
             if(pattern){
                 try {
-                String currentColorCode = colorPattern.get(listIndex);
-                int currentColor = colorDict.get(currentColorCode);
-                fill(currentColor);
+                    String currentColorCode = colorPattern.get(listIndex);
+                    int currentColor = colorDict.get(currentColorCode);
+                    fill(currentColor);
+                    stroke(strikeColor(currentColorCode));
                 } catch (Exception e) {
                     fill(offColor);
                 }
+                
             } 
 
-            ellipseMode(RADIUS);ellipse(tmpX,tmpY,circleRad,circleRad);
+            ellipseMode(RADIUS);
+            ellipse(tmpX,tmpY,circleRad,circleRad);
+            
             tmpX += ((2*circleRad)+12);
             listIndex++;
         }
@@ -125,5 +130,27 @@
         colorDict.put("blue",#1a1aff); // BLUE
     }
 
-
+    private int strikeColor(String colorName){
+        color highColor = color(0);
+        switch (colorName) {
+            case "red":
+                highColor = #ff4066;
+                break;
+            case "orange":
+                highColor = #ffbb00;
+                break;
+            case "yellow":
+                highColor = #faff99;
+                break;
+            case "green":
+                highColor = #0cfa40;
+                break;
+            case "blue":
+                highColor = #5784ff;
+                break;
+            default:
+                break;
+        }
+        return highColor;
+    }
 }

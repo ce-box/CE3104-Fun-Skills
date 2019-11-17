@@ -69,7 +69,8 @@ void player_Match(){
 }
   
   
-  void translate_Player(int n){
+  void translate_Player(int n){ 
+    translate(250,250); 
     fill(#ff8203);
     ArrayList column = (ArrayList)  web.data.get(player.column);
     ArrayList node = (ArrayList) column.get(player.line);
