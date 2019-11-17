@@ -72,12 +72,14 @@ def forLoop(loop_content):
         flags_json.set_repeats(iterations)
         colors = variables[loop_content[1]][1]
         flags_json.set_colors(colors)
-        score = variables.get("score", [])[-1]
+        score = variables.get("score", [])
         if not score:
-            cont = 5;
+            cont = 5
             for i in range(len(colors)):
                 score.append(cont)
                 cont += 5
+        else:
+            score = score[-1]
         flags_json.set_points(score)
         for reserved_function in loop_content[2:]:
             function_content = reserved_function.children

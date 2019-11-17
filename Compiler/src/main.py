@@ -42,7 +42,6 @@ def main():
         int x = 3;
         int y = 10;
         int cant = 5;
-        int s[8];
         dow(cant)
             balloon(x, y);
             inc(x, 4);
@@ -78,7 +77,6 @@ def main():
         score[1] = 5;
         score[2] = 6;
         
-        
         str(10) palabras[3];
         palabras[0] = "Rio";
         palabras[1] = "Lluvia";
@@ -94,6 +92,7 @@ def main():
         int alt = 2;
         int tiempo = 25;
         int dist[5];
+        dist[0] = 9;
         dist[1] = 5;
         dist[2] = 1;
         dist[3] = 7;
