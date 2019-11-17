@@ -19,8 +19,6 @@ t_MINUS = r'\-'
 t_MULT = r'\*'
 t_DIVIDE = r'\/'
 t_EQUAL = r'\='
-t_LESSTHAN = r'\<'
-t_GREATERTHAN = r'\>'
 
 
 # Symbols
@@ -36,15 +34,10 @@ t_COMMA = r','
 
 # Reserved tokens (terminals)
 reserved = {
-    # Conditionals
-    'if': 'IF',
-    'then': 'THEN',
-    'else': 'ELSE',
     'main': 'MAIN',
 
      # Loops
     'forAssignWord': 'FORASSIGNWORD',
-    'while': 'WHILE',
     'for': 'FOR',
     'dow': 'DOW',
     'enddo': 'ENDDO',
@@ -52,7 +45,6 @@ reserved = {
     'do': 'DO',
     'times': 'TIMES',
     'using': 'USING',
-    'fend': 'FEND',
     'begin': 'BEGIN',
     'end': 'END',
 
@@ -72,5 +64,4 @@ reserved = {
 
 # List of tokens
 tokens = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'PLUS', 'MINUS', 'MULT', 'DIVIDE',
-          'EQUAL', 'LESSTHAN', 'GREATERTHAN', 'ID', 'NUMBER', 'SEMICOLON', 'GAME', 'RESERVED', 'COMMA',
-          'STRING', 'COMMENT'] + list(reserved.values())
+          'EQUAL', 'ID', 'NUMBER', 'SEMICOLON', 'GAME', 'COMMA', 'STRING', 'COMMENT'] + list(reserved.values())

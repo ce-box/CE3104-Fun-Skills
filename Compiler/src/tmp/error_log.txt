@@ -1,1 +1,1 @@
-Semantic Error: Must at least use one identifier
+Syntax error in line: 62
