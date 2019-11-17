@@ -20,7 +20,7 @@ public class Spiderweb<T>{
     noFill();
     int seg_Column = 125/n;
     float angle = TWO_PI / n;
-    while(seg_Column<255 && n!=0) {
+    while(seg_Column<255 && n!=0 && i<game_Dic.size()-1) {
       ArrayList circle = new ArrayList();
       noFill();
       beginShape();
@@ -30,15 +30,12 @@ public class Spiderweb<T>{
         vertex(sx, sy); 
         ArrayList tmp = new ArrayList(Arrays.asList(sx,sy,game_Dic.get(i).toString(),game_Score.get(i)));
         circle.add(tmp);
-        i++;
-      if(i>= game_Dic.size()) break;
-          } 
+        i++;} 
       smooth();
       endShape(CLOSE);
       data.add(circle);
       seg_Column+=(125/n)*(n/2);
       n--;
-      i++;
       
      
    }
