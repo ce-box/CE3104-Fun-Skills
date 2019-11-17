@@ -111,7 +111,11 @@ def p_assignment_array(p):
             arrayList[position] = p[6]
             variables[ID] = [variables[ID][0]] + [arrayList]
         else:
-            print("Index out of range")
+            error_message = "Syntactic Error: Index out of range in line %d" % p.lineno(2)
+            file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+            file.write(error_message)
+            file.close()
+            raise Exception
     else:
         error_message = "Syntactic Error: Variable '%s' has not been declared in line %d" % (p[1], p.lineno(2))
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
