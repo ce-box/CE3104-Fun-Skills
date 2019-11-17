@@ -70,7 +70,17 @@ def forLoop(loop_content):
     iterations = loop_content[0]
     if variables[loop_content[1]][0][3:] == "Array":
         flags_json.set_repeats(iterations)
-        flags_json.set_colors(variables[loop_content[1]][1])
+        colors = variables[loop_content[1]][1]
+        flags_json.set_colors(colors)
+        score = variables.get("score", [])
+        if not score:
+            cont = 5
+            for i in range(len(colors)):
+                score.append(cont)
+                cont += 5
+        else:
+            score = score[-1]
+        flags_json.set_points(score)
         for reserved_function in loop_content[2:]:
             function_content = reserved_function.children
             function_name = function_content[0]
@@ -84,6 +94,8 @@ def forLoop(loop_content):
         object_json.set_time(object_args[3])
         object_json.set_positions(object_args[1].children[0])
         object_json.build_json()
+    # They need to be build
+    flags_json.build_json()
 
 
 def flags_game_values(function_name, function_args, json):
