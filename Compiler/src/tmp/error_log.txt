@@ -1,1 +1,1 @@
-Syntactic Error: Variable 'a' in line 6 has been previously declared
+Syntactic Error: Index out of range in line 66
