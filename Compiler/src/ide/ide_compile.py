@@ -31,7 +31,7 @@ def compile(data):
         ast = parse(lexer)
         print("\n", symbolsTable)
         iterateTree(ast)
-        Semantic.checkVariables(symbolsTable)
+        Semantic.symbolAnalysis(symbolsTable)
         return "Source code compiled successfully"
 
     except Exception:

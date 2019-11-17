@@ -48,6 +48,15 @@ def p_assignment_declare(p):
 
     ID = p[2]
 
+    id_in_variables = variables.get(ID, False)
+
+    if id_in_variables:
+        error_message = "Syntactic Error: Variable '%s' in line %d has been previously declared" % (ID, p.lineno(2))
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+        file.write(error_message)
+        file.close()
+        raise Exception
+
     if isinstance(p[1], list):
         if len(p[4]) > p[1][1]:
             error_message = "Syntactic Error: Variable '%s' string value is too long in line %d" % (ID, p.lineno(2))

@@ -1,1 +1,1 @@
-Syntax error in line: 62
+Syntactic Error: Variable 'a' in line 6 has been previously declared
