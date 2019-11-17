@@ -42,6 +42,7 @@ def main():
         int x = 3;
         int y = 10;
         int cant = 5;
+        int s[8];
         dow(cant)
             balloon(x, y);
             inc(x, 4);
@@ -52,15 +53,15 @@ def main():
         int tiempo = 60;
         int cant = 3;
         
-        str(10) color[4];
+        str(10) color[3];
         color[0] = "Azul";
         color[1] = "Rojo";
         color[2] = "Verde";
         
-        int a[3];
-        a[0] = 10;
-        a[1] = 22;
-        a[2] = 33;
+        int score[3];
+        score[0] = 10;
+        score[1] = 22;
+        score[2] = 33;
                 
         for 3 times using color
           random(cant, tiempo);
@@ -79,7 +80,7 @@ def main():
         
         
         str(10) palabras[3];
-        palabras[0] = "Oceano";
+        palabras[0] = "Rio";
         palabras[1] = "Lluvia";
         palabras[2] = "Lago";
                 
@@ -93,7 +94,6 @@ def main():
         int alt = 2;
         int tiempo = 25;
         int dist[5];
-        dist[0] = 2;
         dist[1] = 5;
         dist[2] = 1;
         dist[3] = 7;

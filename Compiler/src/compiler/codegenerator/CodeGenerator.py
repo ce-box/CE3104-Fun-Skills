@@ -70,7 +70,15 @@ def forLoop(loop_content):
     iterations = loop_content[0]
     if variables[loop_content[1]][0][3:] == "Array":
         flags_json.set_repeats(iterations)
-        flags_json.set_colors(variables[loop_content[1]][1])
+        colors = variables[loop_content[1]][1]
+        flags_json.set_colors(colors)
+        score = variables.get("score", [])[-1]
+        if not score:
+            cont = 5;
+            for i in range(len(colors)):
+                score.append(cont)
+                cont += 5
+        flags_json.set_points(score)
         for reserved_function in loop_content[2:]:
             function_content = reserved_function.children
             function_name = function_content[0]

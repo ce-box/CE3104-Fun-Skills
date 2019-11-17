@@ -64,6 +64,6 @@ class spidey():
         game["cols"] = self.__cols
 
 
-        #print(game)
+        print(game)
 
         save_json(self.__json)

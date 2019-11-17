@@ -1,1 +1,1 @@
-Syntactic Error: Index out of range in line 66
+Syntax error in line: 22
