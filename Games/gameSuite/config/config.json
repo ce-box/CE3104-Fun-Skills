@@ -1,0 +1,45 @@
+{
+  "object": {
+    "pos": [200, 50, 100, 70, 10],
+    "height": 200,
+    "length": 55,
+    "time": 2000,
+    "repeat": 5
+  },
+  "balloon": {
+    "height": 600,
+    "length": 100,
+    "h_inc": 0,
+    "h_dec": 2,
+    "l_inc": 1,
+    "l_dec": 0,
+    "repeat": 2
+  },
+  "flags": {
+    "colors": ["red", "blue", "green", "yellow", "orange"],
+    "points": [10, 20, 30, 20, 10],
+    "time": 40,
+    "amnt": 3,
+    "repeat": 2,
+    "amnt_inc": 1,
+    "amnt_dec": 0,
+    "time_inc": 0,
+    "time_dec": 10
+  },
+  "spidey": {
+    "words": [
+      "tree",
+      "river",
+      "mountain",
+      "camp",
+      "fire",
+      "bear",
+      "rocks",
+      "waterfall",
+      "canopy"
+    ],
+    "points": [12, 23, 34, 45, 12, 23, 56, 33, 89],
+    "rows": 3,
+    "cols": 3
+  }
+}
