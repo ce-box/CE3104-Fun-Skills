@@ -37,6 +37,8 @@ def main():
     // Comentario inicial
     begin
     main{
+    int a = 0;
+    int a = 8;
     }
     game1{
     }

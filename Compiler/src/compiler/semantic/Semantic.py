@@ -22,6 +22,10 @@ def symbolAnalysis(st):
             else:
                 for index in range(1, len(value)):
                     if not isinstance(value[index], eval(type)):
+                        error_message = "Type error in " + value[index]
+                        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+                        file.write(error_message)
+                        file.close()
                         raise Exception
                     else:
                         continue

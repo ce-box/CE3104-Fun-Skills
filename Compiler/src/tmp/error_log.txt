@@ -1,1 +1,1 @@
-LEXICAL ERROR: Invalid character '"' at line number 12
+Syntactic Error: Variable 'a' in line 6 has been previously declared
