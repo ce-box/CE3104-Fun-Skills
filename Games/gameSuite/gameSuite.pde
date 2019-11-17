@@ -174,20 +174,20 @@ boolean flagInicio=true;
 
 void draw() {
 
-  gS.init(); 
-  // juegoBallon(ballon);
-  // juegoPies(pies);
-  // juegoObjetivo(juegoObjetivo);
-  // if(!flagInicio){
-  //   flagInicio=false;
-  // }
-  // else{
-  //   flagInicio=pantallaInicio(inicio);
-  // }
+  //gS.init(); 
+  juegoBallon(ballon);
+  juegoPies(pies);
+  juegoObjetivo(juegoObjetivo);
+  if(!flagInicio){
+    flagInicio=false;
+  }
+  else{
+    flagInicio=pantallaInicio(inicio);
+  }
 
-  // pantallaConfig(fondoColor,calibracion,mode);
+  pantallaConfig(fondoColor,calibracion,mode);
 
-  // println("PIES"+pies);
+  println("PIES"+pies);
 }
 
 

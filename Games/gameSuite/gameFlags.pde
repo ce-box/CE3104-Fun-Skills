@@ -121,7 +121,7 @@ public class gameFlags{
     private void generatePattern(){
 
         //1. Copy the elements to pattern
-        for(int i = 0; i < index_amnt; i++){
+        for(int i = 0; i < index_amnt && i < colors.size(); i++){
             pattern.add(colors.get(i));
         }
 
@@ -287,7 +287,6 @@ public class gameFlags{
             validateFlags();
         }
 
-        // EL JUEGO TERMINA EN ESTA FUNCION
         if(gameScreen == 2){
             gameScreen = 1;
             done = true;
