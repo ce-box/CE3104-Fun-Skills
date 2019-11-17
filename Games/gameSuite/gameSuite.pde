@@ -49,6 +49,14 @@ void mousePressed(){
  gf.mousePressed();
  //gO.mousePressed();
 }
+
+void mouseClicked(){
+    gB.mouseClicked();
+}
+void mouseDragged() {
+    gB.mouseDragged();
+}
+
 //void keyPressed(){
 //  //gS.keyPressed();
 //}
@@ -72,6 +80,7 @@ VARIABLES NECESARIAS PARA EL FUNCIONAMIENTO DEL JUEGO COMO CLASES
  gameFlags gf;
  gameObject gO;
  gameSpidey gS;
+ gameBalloon gB;
 
  //gameSpidey gS;
  //  gf.toString();
@@ -109,7 +118,7 @@ void setup() {
   gO.toString();
   gO.mousePressed();
 
-  
+  gB = new gameBalloon();
 }
 
 boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
@@ -142,7 +151,7 @@ void juegoPies(boolean iniciarPies){
 boolean flagInicio=true;
 
 void draw() {
-  
+  //gB.draw();
   juegoPies(pies);
   juegoObjetivo(juegoObjetivo);
 

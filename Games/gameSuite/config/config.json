@@ -7,13 +7,13 @@
     "repeat": 5
   },
   "balloon": {
-    "height": 10,
-    "length": 20,
+    "height": 600,
+    "length": 100,
     "h_inc": 0,
-    "h_dec": 0,
-    "l_inc": 0,
+    "h_dec": 2,
+    "l_inc": 1,
     "l_dec": 0,
-    "repeat": 1
+    "repeat": 2
   },
   "flags": {
     "colors": ["red", "blue", "green", "yellow", "orange"],

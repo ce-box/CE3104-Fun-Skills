@@ -1,3 +1,16 @@
+/* ------------------------------------------------------------
+ * File: FlagClass.pde
+ * Developed by: María José Zamora
+ * Project: FunSkills - [Game]
+ * version: 3.0
+ * last edited: Esteban Alvarado:: 16/11/2019 | 18.30
+ * 
+ * Description: Implementation of the functionalities and 
+ *              attributes of the Balloon.
+ * 
+ * TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+ * ------------------------------------------------------------*/
+
 class Balloon {
   float vx, vy; // The x- and y-axis velocities
   float x, y; // The x- and y-dinamic coordinates
@@ -11,8 +24,8 @@ class Balloon {
   float airfriction = 0.1;
   float friction = 0.1;
   
-  int ballY_dec=1; //INCS Y DECS
-  int ballX_inc=2;
+  public int ballY_dec=1; //INCS Y DECS
+  public int ballX_inc=2;
   
   // ball settings
   float ballX, ballY;
@@ -77,7 +90,7 @@ class Balloon {
   }
   
   void keepInScreen() {
-  if (y-(radius) < 0) {
+  if (y-(radius) < 200) {
     if (radius==5){
       BounceTop_Aux();}
     else{          
@@ -93,5 +106,13 @@ class Balloon {
     x = width-(radius);
   }
 }
+
+  public void setInc(int inc){
+    this.ballX_inc = inc;
+  }
+
+  public void  setDec(int dec){
+    this.ballY_dec = dec;
+  }
 
 }
