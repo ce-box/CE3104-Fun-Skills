@@ -10,6 +10,7 @@
 # TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
 # -------------------------------------------------------------
 
+import src.ide.globals as globals
 
 def symbolAnalysis(st):
     for dict in st.values():
@@ -21,3 +22,16 @@ def symbolAnalysis(st):
                     raise TypeError
     return result
 
+
+def checkVariables(st):
+    a = 0
+    for dict in st.values():
+        a += len(dict)
+    if a > 0:
+        error_message = "Semantic Error: Must at least use one identifier"
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "w")
+        file.write(error_message)
+        file.close()
+        return
+    else:
+        raise Exception
