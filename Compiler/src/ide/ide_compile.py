@@ -35,7 +35,7 @@ def compile(data):
         return "Source code compiled successfully"
 
     except Exception:
-        file = open(globals.projectFolderPath+"/src/tmp/error_log.txt", "r")
+        file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "r")
         error_message = file.read()
         file.close()
         print(error_message)

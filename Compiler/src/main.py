@@ -118,17 +118,13 @@ def main():
         ast = parse(lexer)
         print("\n", symbolsTable)
         iterateTree(ast)
+        Semantic.checkVariables(symbolsTable)
         return "CODE COMPILED SUCCESFULLY"
     except Exception:
         file = open(globals.projectFolderPath + "/src/tmp/error_log.txt", "r")
         error_message = file.read()
         file.close()
         return error_message
-
-    try:
-        Semantic.checkVariables(symbolsTable)
-    except Exception:
-        print("Exception: Must at least use one identifier")
 
 
 if __name__ == '__main__':
