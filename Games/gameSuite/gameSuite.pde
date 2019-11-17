@@ -45,10 +45,10 @@
 
 //}
 
-// void mousePressed(){
-//  gO.mousePressed();
-//  //gO.mousePressed();
-// }
+void mousePressed(){
+ gf.mousePressed();
+ //gO.mousePressed();
+}
 //void keyPressed(){
 //  //gS.keyPressed();
 //}
@@ -130,7 +130,12 @@ void juegoPies(boolean iniciarPies){
   if(iniciarPies){
     flagInicio=false;
     gf.draw();
-    
+    if(gf.done){
+      println("Terminado");
+      pies = false;
+      inicio = true;
+      flagInicio = true;
+    }
   }
 }
 

@@ -249,7 +249,6 @@ public class gameFlags{
         text(score, width/2, height/2);
         textSize(15);
         text("Great Job!", width/2, height-30);
-        done = true;
     }
 
     /* ------------------------------------------------------
@@ -270,6 +269,7 @@ public class gameFlags{
 
         if(gameScreen == 2){
             //done = true;
+            
         }
     }
 
@@ -288,6 +288,7 @@ public class gameFlags{
         }
 
         if(gameScreen == 2){
+            gameScreen = 1;
             done = true;
         }
     }
