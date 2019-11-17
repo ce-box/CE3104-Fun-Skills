@@ -200,6 +200,7 @@
         }else{
             // EL JUEGO TERMINA EN ESTA FUNCION
             gameScreen = 2;
+            gameOver();
         }
     }
 

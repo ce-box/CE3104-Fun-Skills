@@ -46,8 +46,8 @@
 //}
 
 void mousePressed(){
- gf.mousePressed();
- //gO.mousePressed();
+  gf.mousePressed();
+  gO.mousePressed();
 }
 
 void mouseClicked(){
@@ -128,7 +128,6 @@ void setup() {
   
   gO = new gameObject();
   gO.toString();
-  gO.mousePressed();
 
   gB = new gameBalloon();
   gB.toString();
