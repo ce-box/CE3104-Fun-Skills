@@ -9,13 +9,20 @@ class gameSpidey{
   ArrayList<String> game_Dic;
   ArrayList<Integer> game_Score;
   
+  
+  PFont fontOpenSansBold;
+  PImage background;
+
   public gameSpidey(){
       getConfig();
-      
+      fontOpenSansBold = createFont("fonts/open-sans/OpenSans-ExtraBold.ttf",16);
+      background = loadImage("img/imgSpideyGame.png");
+      background(background);
 
   }
   
   public void init(){
+    
     if (player.i<(columns*lines)){
       web = new Spiderweb(columns,lines,game_Dic,game_Score);
       player_Match();}
@@ -27,11 +34,12 @@ class gameSpidey{
   void gameOverScreen() {
     background(0);
     textAlign(CENTER);
+    textFont(fontOpenSansBold);
     fill(255);
     textSize(30);
     text("Game Over", height/2, width/2 - 20);
     textSize(15);
-    text("Click to Restart", height/2, width/2 + 10);
+    text("Great Job", height/2, width/2 + 10);
 }
   
   private void getConfig(){
@@ -44,10 +52,10 @@ class gameSpidey{
   }
   
   void printScore() {
-  textAlign(CENTER);
-  textSize(30); 
-  text("Score: "+Integer.toString(player.score), 600, -150);
-}
+    textAlign(CENTER);
+    textSize(30); 
+    text("Score: "+Integer.toString(player.score), 600, -150);
+  }
 
   void word_Player_Collision(){  
     ArrayList column = (ArrayList)  web.data.get(player.column);
@@ -64,19 +72,19 @@ class gameSpidey{
     player.draw_Player(player.x,player.y);
   }
 
-void player_Match(){  
-  String words="";
-  for (int i=0;i<player.words_Found.size()-1;i++){
-    words+=player.words_Found.get(i).toString()+"   ";}
-    fill(255);
-    rect(-250, 250, 500,300);
-    rect(590, -230, 120,50);
-    fill(0);
-    textSize(20);
-    strokeWeight(1);
-    text("Score: "+Integer.toString(player.score), 600, -220, 150,50);
-    text(words, -250, 270, 500,300); 
-}
+  void player_Match(){  
+    String words="";
+    for (int i=0;i<player.words_Found.size()-1;i++){
+      words+=player.words_Found.get(i).toString()+"   ";}
+      fill(255);
+      rect(-250, 250, 500,300);
+      rect(590, -230, 120,50);
+      fill(0);
+      textSize(20);
+      strokeWeight(1);
+      text("Score: "+Integer.toString(player.score), 600, -220, 150,50);
+      text(words, -250, 270, 500,300); 
+  }
   
   
   void translate_Player(int n){ 
