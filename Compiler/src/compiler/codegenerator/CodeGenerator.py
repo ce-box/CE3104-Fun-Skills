@@ -94,6 +94,8 @@ def forLoop(loop_content):
         object_json.set_time(object_args[3])
         object_json.set_positions(object_args[1].children[0])
         object_json.build_json()
+    # They need to be build
+    flags_json.build_json()
 
 
 def flags_game_values(function_name, function_args, json):

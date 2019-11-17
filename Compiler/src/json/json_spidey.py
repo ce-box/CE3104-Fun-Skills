@@ -63,7 +63,5 @@ class spidey():
         game["rows"] = self.__rows
         game["cols"] = self.__cols
 
-
-        #print(game)
-
+        self.__json["spidey"] = game
         save_json(self.__json)

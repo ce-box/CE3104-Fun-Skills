@@ -23,8 +23,8 @@ class flags():
         self.__json = get_json()
 
         # Configuration Attributes
-        self.__colors = ["river", "waterfall", "ocean", "rain", "water"]
-        self.__points = [5, 10, 15, 20, 30]
+        self.__colors = ["red","blue","yellow","orange","green"]
+        self.__points = [5,10,15,20,25]
 
         # Flags amount
         self.__amnt = 3
@@ -85,6 +85,7 @@ class flags():
 
         # starting arrays
         game["colors"] = self.__colors
+        print("points: ",self.__points)
         game["points"] = self.__points
 
         # increase\decrease factors
@@ -98,6 +99,6 @@ class flags():
         game["time"] = self.__time
         game["repeat"] = self.__repeat
 
-        #print(game)
 
+        self.__json["flags"] = game
         save_json(self.__json)
