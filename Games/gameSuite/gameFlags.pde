@@ -287,6 +287,7 @@ public class gameFlags{
             validateFlags();
         }
 
+        // EL JUEGO TERMINA EN ESTA FUNCION
         if(gameScreen == 2){
             gameScreen = 1;
             done = true;

@@ -27,10 +27,13 @@ class gameSpidey{
       web = new Spiderweb(columns,lines,game_Dic,game_Score);
       player_Match();}
     else{
+      // EL JUEGO TERMINA EN ESTA FUNCION
       gameOverScreen();
     }
   }
   
+
+  // EL JUEGO TERMINA EN ESTA FUNCION
   void gameOverScreen() {
     background(0);
     textAlign(CENTER);
