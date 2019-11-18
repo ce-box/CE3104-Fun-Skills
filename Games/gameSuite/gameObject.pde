@@ -199,7 +199,6 @@
             smooth();
         }else{
             // EL JUEGO TERMINA EN ESTA FUNCION
-            gameScreen = 2;
             gameOver();
         }
     }
@@ -285,8 +284,7 @@
         }
 
         if (gameScreen==2) {
-            gameScreen=1;
-            score=0;
+            // foo
         }
 
         if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
