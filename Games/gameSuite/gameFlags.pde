@@ -241,7 +241,7 @@ public class gameFlags{
      */
     private void gameOverScreen() {
         background(44, 62, 80);
-        textAlign(CENTER);
+        //textAlign(CENTER);
         fill(236, 240, 241);
         textSize(12);
         text("Your Score", width/2, height/2 - 120);
@@ -290,6 +290,14 @@ public class gameFlags{
         if(gameScreen == 2){
             gameScreen = 1;
             done = true;
+            eyes.remove(0);
+            eyes.remove(0);
+            AddEye(510,340,110);
+            AddEye(720,340,110);
+            gf = new gameFlags();
+            gf.toString();
+            pies=false;
+            flagInicio=true;
         }
     }
 
@@ -373,14 +381,15 @@ public class gameFlags{
             
             
             
-            //ellipse((int)xEscalada,(int)yEscalada,25,25);
-            //flag.update((int)xEscalada,(int)yEscalada);
+            
+            flag.update((int)xEscalada,(int)yEscalada);
 
-            flag.update(mouseX,mouseY);
+            //flag.update(mouseX,mouseY);
             flag.drawFlag();
+            ellipse((int)xEscalada,(int)yEscalada,25,25);
 
             fill(255,80);
-            ellipse(mouseX,mouseY,15,15);
+            //ellipse(mouseX,mouseY,15,15);
         }
     }
     

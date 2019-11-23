@@ -8,7 +8,7 @@ class gameSpidey{
   int lines;
   ArrayList<String> game_Dic;
   ArrayList<Integer> game_Score;
-  
+  boolean finishSpidey=false;
   
   PFont fontOpenSansBold;
   PImage background;
@@ -24,8 +24,10 @@ class gameSpidey{
   public void init(){
     
     if (player.i<(columns*lines)){
+      
       web = new Spiderweb(columns,lines,game_Dic,game_Score);
-      player_Match();}
+      player_Match();
+      }
     else{
       // EL JUEGO TERMINA EN ESTA FUNCION
       gameOverScreen();
@@ -43,6 +45,7 @@ class gameSpidey{
     text("Game Over", height/2, width/2 - 20);
     textSize(15);
     text("Great Job", height/2, width/2 + 10);
+    finishSpidey=true;
 }
   
   private void getConfig(){

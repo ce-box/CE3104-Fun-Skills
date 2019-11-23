@@ -51,7 +51,16 @@ void mousePressed(){
 }
 
 void mouseClicked(){
+
     gB.mouseClicked();
+    if(gS.finishSpidey){
+      gS = new gameSpidey();
+      gS.toString();
+      flagSpidey=false;
+      flagInicio=true;
+      
+      
+    }
 }
 void mouseDragged() {
     gB.mouseDragged();
@@ -67,6 +76,56 @@ void keyPressed(){
       gS.translate_Player(4);}
   else if (keyCode == RIGHT){
       gS.translate_Player(2);}
+}
+void kinectSpidey(){
+  if(flagSpidey){
+    tracker.track();
+    //println("KINECTSPIDEY");
+  PVector v3 = tracker.getClosest();
+  PVector v4 = tracker.getPos();
+
+   float xEscalada;
+    float yEscalada;
+    float posX;
+    float posY;
+    try {
+    xEscalada=v3.x*2;
+   yEscalada=v3.y*2;
+   
+  } catch (Exception e) {
+     xEscalada=0;
+   yEscalada=0;
+  }
+      try {
+   posX=v4.x*2;
+   posY=v4.y*2;
+   
+  } catch (Exception e) {
+     posX=0;
+   posY=0;
+  }
+  int dif=recordX-(int)xEscalada;
+  recordX=(int)xEscalada;
+  println(dif);
+  if(dif>45&&xEscalada<400&&xEscalada!=-20){
+    println("RIGHT");
+    gS.translate_Player(4);
+    
+  }
+  else if(dif>45&&xEscalada>=400&&xEscalada<=800&&xEscalada!=-20){
+   gS.translate_Player(1);
+   println("MIDDLE");
+  
+  }
+  else if(dif>45&&xEscalada<800&&xEscalada!=-20){
+    gS.translate_Player(2);
+       println("LEFT");
+
+  }
+  }
+  
+
+
 }
 
 //void keyPressed(){
@@ -100,13 +159,15 @@ VARIABLES NECESARIAS PARA EL FUNCIONAMIENTO DEL JUEGO COMO CLASES
 ArrayList<Eye> eyes = new ArrayList<Eye>();
 int numEyes = 2;
 static boolean inicio=true;
-boolean calibracion=false,dis=false,der=false,izq=false,downR=false,downI=false,pies=false,juegoObjetivo=false,ballon=false;
+boolean calibracion=false,dis=false,der=false,izq=false,downR=false,downI=false,pies=false,juegoObjetivo=false,ballon=false,flagSpidey=false;
 color fondoColor = #e25822;
 int tempo=0;
 int mode=0;
 int cx=200, cy=200,opcionPiesX=1000,opcionPiesY=200,opcionTelaX=1000,opcionTelaY=850,opcionObjetivoX=200,opcionObjetivoY=850, r=50, i=0,c=0;
 String  instrucciones= "Apunte  con su mano \n  al punto verde\npara hacer al mounstro feliz";
 PImage fondo;
+PImage background;
+int recordX=0;
 
 void setup() {
   
@@ -133,6 +194,7 @@ void setup() {
   gB.toString();
 
   gS = new gameSpidey();
+  gS.toString();
 }
 
 boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
@@ -144,6 +206,8 @@ void juegoObjetivo(boolean iniciarObjetivo){
     flagInicio=false;
     gO.startGame();
     gO.draw();
+    tracker.display(640,900,3);
+
     
   }
 }
@@ -168,25 +232,31 @@ void juegoPies(boolean iniciarPies){
    }
    
  }
+ 
+  void juegoSpidey(boolean iniciarSpidey){
+   if(iniciarSpidey){
+     
+     flagInicio=false;
+
+     gS.init();
+     kinectSpidey();
+     tracker.display(800,200,3);
+   }
+   
+ }
 
 boolean flagInicio=true;
 
 void draw() {
 
+
   //gS.init(); 
+  juegoSpidey(flagSpidey);
   juegoBallon(ballon);
   juegoPies(pies);
   juegoObjetivo(juegoObjetivo);
-  if(!flagInicio){
-    flagInicio=false;
-  }
-  else{
-    flagInicio=pantallaInicio(inicio);
-  }
-
-  pantallaConfig(fondoColor,calibracion,mode);
-
-  println("PIES"+pies);
+  pantallaInicio(flagInicio);
+  
 }
 
 
@@ -295,7 +365,9 @@ void pantallaConfig( color fondo,boolean calibracion,int mode){
 
 
 boolean pantallaInicio(boolean inicio){
-  dis=false;
+  if(inicio){
+    tracker.modeHands();
+     dis=false;
   der=false;
   izq=false;
   downR=false;
@@ -325,7 +397,7 @@ boolean pantallaInicio(boolean inicio){
   
   fill(100, 10, 150, 200);
   noStroke();
- // if(keyPressed && key == '+') AddEye();
+  if(keyPressed && key == '+') ;
   if(keyPressed && key == '-') DelEye();
   
   for(int i=0;i<eyes.size();i++){
@@ -345,6 +417,7 @@ boolean pantallaInicio(boolean inicio){
   
   // Aqui lo que que ponemos es los titulos de las muchas ventanas de juegos que existen
   fill(#f6f6f6);
+  textAlign(50, 150);
   text("Raqueta Globo",50,150);
   ellipse(200, 200, r/2, r/2);
   
@@ -367,15 +440,15 @@ boolean pantallaInicio(boolean inicio){
   fill(#f6f6f6);
   text("Alcanzando el objetivo",50,800);
   ellipse(200, 850, r/2, r/2);
-  //boolean opcion1 = HoverTimer((int)xEscalada,(int)yEscalada, cx, cy, r);
-  boolean opcion1 = HoverTimer(mouseX,mouseY, cx, cy, r);
-  //boolean opcion2 = HoverTimer((int)xEscalada,(int)yEscalada, opcionPiesX, opcionPiesY, r);
-  boolean opcion2 = HoverTimer(mouseX,mouseY, opcionPiesX, opcionPiesY, r);
+  boolean opcion1 = HoverTimer((int)xEscalada,(int)yEscalada, cx, cy, r);
+  //boolean opcion1 = HoverTimer(mouseX,mouseY, cx, cy, r);
+  boolean opcion2 = HoverTimer((int)xEscalada,(int)yEscalada, opcionPiesX, opcionPiesY, r);
+  //boolean opcion2 = HoverTimer(mouseX,mouseY, opcionPiesX, opcionPiesY, r);
 
   //boolean opcion3 = HoverTimer((int)xEscalada,(int)yEscalada,opcionTelaX, opcionTelaY, r);
   boolean opcion3 = HoverTimer(mouseX,mouseY,opcionTelaX, opcionTelaY, r);
-  //boolean opcion4 = HoverTimer((int)xEscalada,(int)yEscalada,opcionObjetivoY, opcionObjetivoY, r);
-  boolean opcion4 = HoverTimer(mouseX,mouseY,opcionObjetivoX, opcionObjetivoY, r);
+  boolean opcion4 = HoverTimer((int)xEscalada,(int)yEscalada,opcionObjetivoX, opcionObjetivoY, r);
+  //boolean opcion4 = HoverTimer(mouseX,mouseY,opcionObjetivoX, opcionObjetivoY, r);
     if (opcion1) {
       mode=1;
     cargarArcoOpcion(cx,cy);
@@ -404,6 +477,7 @@ boolean pantallaInicio(boolean inicio){
     println("primer if");
     fill(#ffedbc);
     if(opcion1){
+      flagInicio=false;
       termine=false;
       
      
@@ -412,28 +486,39 @@ boolean pantallaInicio(boolean inicio){
       //calibracion=true;
       //pies=true;
       ballon=true;
+      tracker.modeHands();
 
       tempo=millis();
       
     }
     else if(opcion2){
+      flagInicio=false;
       termine=false;
       fondoColor=#e25822;
       pies=true;
+      tracker.modeFeets();
       //calibracion=true;
       tempo=millis();
     }
     else if(opcion3){
+      flagInicio=false;
       termine=false;
+      
       fondoColor=#55ae95;
+      flagSpidey=true;
+      tracker.modeFeets();
      // calibracion=true;
+      background = loadImage("img/imgSpideyGame.png");
+      background(background);
       tempo=millis();
     }
     else if (opcion4){
+      flagInicio=false;
       termine=false;
       fondoColor=#8186d5;
      // calibracion=true;
      juegoObjetivo=true;
+     tracker.modeHands();
       tempo=millis();
     }
     
@@ -457,6 +542,14 @@ boolean pantallaInicio(boolean inicio){
 
   return termine;
   }
+  else{
+  return false;
+}
+  
+  }
+  
+  
+ 
 
 //ESTE METODO LO QUE HACE ES GENERAR EL ARCO QUE SE VA AUMENTANDO EN LA OPCION ESCOGIDA
 void cargarArcoOpcion(int opX,int opY){

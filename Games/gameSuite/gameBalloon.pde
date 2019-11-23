@@ -24,7 +24,7 @@
 
     private int _heigth;
     private int _lenght;
-    private boolean pull=false;
+    private boolean pull=false,finishBallon=false;
     boolean ableTouch=false;
     private  int pullCounter=0;
 
@@ -45,6 +45,7 @@
      *        from the game suite
      */
     public void draw(){
+        
         gameScreen();
         float xEscalada;
         float yEscalada;
@@ -180,6 +181,7 @@
         text(score, width/2, height/2);
         textSize(15);
         text("Great Job!", width/2, height-30);
+        finishBallon=true;
     }
 
     /* ------------------------------------------------------
@@ -225,6 +227,18 @@
         } 
     }
     public void mouseClicked(){
+      if(finishBallon){
+            //gameScreen = 1;
+            //done = true;
+            //eyes.remove(0);
+            //eyes.remove(0);
+            //AddEye(510,340,110);
+            //AddEye(720,340,110);
+            gB = new gameBalloon();
+            gB.toString();
+            ballon=false;
+            flagInicio=true;
+        }
         if (playable.x-playable.radius-20<mouseX && playable.x+playable.radius+20>mouseX && playable.y-playable.radius-20<mouseY && playable.y+playable.radius+20>mouseY){
             playable.update(playable.x+400,playable.y+600);
             playable.gravity=-11;

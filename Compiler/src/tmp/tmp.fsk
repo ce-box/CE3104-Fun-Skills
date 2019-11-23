@@ -1,33 +1,76 @@
 // Comentario inicial
-
 begin
-
 main{
-
 }
-
 game1{
+    int x = 3;
+    int y = 10;
+    int cant = 5;
+    dow(cant)
+        balloon(x, y);
+        inc(x, 4);
+        dec(y, 1);
+    enddo;
 }
-
 game2{
+    int tiempo = 60;
+    int cant = 3;
+    
+    str(10) color[5];
+    color[0] = "blue";
+    color[1] = "red";
+    color[2] = "green";
+    color[3] = "yellow";
+    color[4] = "orange";
+    
+    int score[5];
+    score[0] = 10;
+    score[1] = 22;
+    score[2] = 33;
+    score[3] = 22;
+    score[4] = 33;
+            
+    for 2 times using color
+      random(cant, tiempo);
+      inc(cant, 2);
+      dec(tiempo, 5);
+    forend;
 }
-
 game3{
- int tiempo = 60;
- int cant = 3;
- str(10) color[4];
- color[0] = "blue";
- color[1] = "red";
- color[2] = "green";
- color[3] = "yellow";
- for 5 times using color
-   random(cant, tiempo);
-   inc(cant, 1);
-   dec(tiempo, 10);
- forend;
-}
+    int miFila = 3;
+    int miCol = 5;
+    
+    int score[3];
+    score[0] = 4;
+    score[1] = 5;
+    score[2] = 6;
+    
+    
+    str(10) palabras[3];
+    palabras[0] = "Oceano";
+    palabras[1] = "Lluvia";
+    palabras[2] = "Lago";
+            
+    telaArana(miFila, miCol);
 
+    forAssignWord(miFila, miCol) do
+        assignWord(palabras, score);
+    forend;
+}
 game4{
+    int alt = 2;
+    int tiempo = 25;
+    int dist[5];
+    dist[0] = 2;
+    dist[1] = 5;
+    dist[2] = 1;
+    dist[3] = 7;
+    dist[4] = 1;
+   
+    int var1; 
+    for 5 times using var1
+        object(alt, dist[var1], tiempo);
+    forend;
+    
 }
-
 end;

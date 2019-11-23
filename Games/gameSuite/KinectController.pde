@@ -10,7 +10,7 @@ class KinectController {
 *******************************************************************************************Aqui declaramos las variables necesarias*******************************************************************************************************************************
 */
 // Depth threshold
-  int threshold = 745;
+  int threshold = 805;
 
 
   // Raw location
@@ -143,9 +143,9 @@ class KinectController {
 /*
 *******************************************************************************************Aqui  lo que  hace es le metodo  es  dibujar los pixeles que estan mas cercanos del  limite(threshold) *******************************************************************************************************************************
 */
-  void display() {
+  void display(int posx, int posy,int escala ) {
     PImage img = kinect.getDepthImage();
-
+    display = createImage(kinect.width, kinect.height, RGB);
     // Being overly cautious here
     if (depth == null || img == null) return;
     int rx=-10;
@@ -182,9 +182,11 @@ class KinectController {
       }
     }
     display.updatePixels();
+    display.resize(640/escala, 520/escala);
+
 
     // Draw the image
-    image(display, 0, 0);
+    image(display, posx, posy);
     line(0,0,520,460);
    //  fill(200, 250, 50, 200);
    //ellipse(rx,ry,32,32);

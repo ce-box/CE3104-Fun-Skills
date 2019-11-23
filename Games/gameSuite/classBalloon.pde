@@ -21,7 +21,7 @@ class Balloon {
   
   float gravity = 0.0001;
   float mass=10;
-  float radius = 30;
+  float radius = 90;
   float stiffness = 0.1;
   float damping = 0.7;
   int ballColor=#a6e3b3;

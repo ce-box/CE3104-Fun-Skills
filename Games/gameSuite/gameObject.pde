@@ -51,6 +51,7 @@
     private float ballSpeedHorizon = 0;
     private float ballSize = 100;
     private color ballColor = color(244,67,52);
+    private boolean finishObject=false;
 
     // GUI vars
     private PFont fontOpenSansBold;
@@ -79,7 +80,9 @@
         } else if (gameScreen == 2) { 
             // EL JUEGO TERMINA EN ESTA FUNCION
             gameOverScreen();
+            
         }
+        tracker.display(640,800,3);
 
         //MODO MOUSE;
         onScreen++;
@@ -131,6 +134,7 @@
         
         
         //tocar();
+        
         
     }
 
@@ -222,6 +226,7 @@
         text(score, width/2, height/2);
         textSize(15);
         text("Great Job!", width/2, height-30);
+        finishObject=true;
     }
 
     /* ------------------------------------------------------
@@ -260,17 +265,17 @@
         }
 
            
-        // if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
-        //     score++;
-        //     println("LO TOQUE");
-        //     touched=true;
-        // }
+         if((ballX-ballSize/2)<xEscalada && xEscalada<(ballX+ballSize/2) && (ballY-ballSize/2)<yEscalada && yEscalada<(ballY+ballSize/2)){
+             score++;
+             println("LO TOQUE");
+             touched=true;
+         }
 
-       if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
-           score++;
-           println("LO TOQUE");
-           touched=true;
-       }
+//       if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
+//           score++;
+//           println("LO TOQUE");
+//           touched=true;
+//       }
     
     }
     /** 
@@ -290,6 +295,12 @@
         if((ballX-ballSize/2)<mouseX && mouseX<(ballX+ballSize/2) && (ballY-ballSize/2)<mouseY && mouseY<(ballY+ballSize/2)){
             score++;
             println("LO TOQUE");
+        }
+        if(finishObject ){
+            gO = new gameObject();
+            gO.toString();
+            juegoObjetivo=false;
+            flagInicio=true;
         }
     }
 

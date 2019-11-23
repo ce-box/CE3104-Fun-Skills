@@ -25,24 +25,20 @@
         "colors": [
             "blue",
             "red",
-            "green",
-            "yellow",
-            "orange"
+            "green"
         ],
         "points": [
             10,
-            22,
-            33,
             22,
             33
         ],
         "time": 60,
         "amnt": 3,
-        "repeat": 2,
-        "amnt_inc": 2,
+        "repeat": 3,
+        "amnt_inc": 1,
         "amnt_dec": 0,
         "time_inc": 0,
-        "time_dec": 5
+        "time_dec": 10
     },
     "spidey": {
         "words": [
