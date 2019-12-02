@@ -20,9 +20,29 @@
 
 
 <p align='justify'>
-𝗙𝘂𝗻 𝗦𝗸𝗶𝗹𝗹𝘀™ corresponds to the final project of the CE-3104 course on languages, interpreters and compilers. It consists of a device that helps children in their <b>gross motor therapy</b>. For this, a <b>five-game suite (VR)</b> has been developed that encourages the child to perform stimulation exercises while playing.</br>
-  To connect the real world with the software, we have implemented the microsoft <b>kinect</b>, from which we can read and interpret the signals and thus detect the movements and reflect them on the screen. The games seek to stimulate the basic movements of children: A, B and C.</br>
-In addition, a <b>command language</b> has been created to configure the game. This language is interpreted by a "small compiler" that we have developed with the knowledge acquired throughout the course. <i>Python</i> and its <i>PLY</i> library have been used to make the compiler.
+𝗙𝘂𝗻 𝗦𝗸𝗶𝗹𝗹𝘀™ corresponds to the final project of the CE-3104 course on languages, interpreters and compilers. It consists of a device that helps children in their <b>gross motor therapy</b>. For this, a <b> game suite </b> has been developed that encourages the child to perform stimulation exercises while playing.</br>
+
+To connect the real world with the software, we have implemented the microsoft <b>kinect</b>, from which we can read and interpret the signals and thus detect the movements and reflect them on the screen. The games seek to stimulate the basic movements of children: Foot movement, jumping, hitting and reaching.</br></p>
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/estalvgs1999/CE3104-Fun-Skills/blob/master/Games/gameSuite/img/Game%20-%20icons/balloonIcon.png">
+    </td>
+    <td>
+      <img src="https://github.com/estalvgs1999/CE3104-Fun-Skills/blob/master/Games/gameSuite/img/Game%20-%20icons/flagIcon.png">
+    </td>
+    <td>
+      <img src="https://github.com/estalvgs1999/CE3104-Fun-Skills/blob/master/Games/gameSuite/img/Game%20-%20icons/objectiveIcon.png">
+    </td>
+    <td>
+      <img src="https://github.com/estalvgs1999/CE3104-Fun-Skills/blob/master/Games/gameSuite/img/Game%20-%20icons/spiderIcon.png">
+    </td>
+  </tr>
+</table>
+
+<p align='justify'>
+In addition, a <b>command language</b> has been created to configure the game.This language is interpreted by a "small compiler" that we have developed with the knowledge acquired throughout the course. <i>Python</i> and its <i>PLY</i> library have been used to make the compiler.
 </p>
 
 ## Getting Started 🚀
@@ -42,6 +62,30 @@ In addition, a <b>command language</b> has been created to configure the game. T
 7. Press Enter. Your local clone will be created for [CE3104-Fun-Skills](https://github.com/estalvgs1999/CE3104-Fun-Skills).
 8. Now you can access the examples contained in this repository.
 
+### Fun Skills Game Suite
+#### 
+
+---
+### Fun Skills Playground
+
+<p align='justify'>
+A small IDE to program your games! The team developed a programming environment in which the games for the suite can be programmed. For this, a new interpreter was developed, capable of recognizing the syntax of our command language, using the python libraries PLY and Qscintilla.
+You can find the source code of this IDE in the Compiler folder.
+</p>
+
+<table>
+  <tr>
+    <td>
+      <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1575325244/CE3104/Fun%20Skills/demo_lfmpjq.gif" width="300">
+    </td>
+    <td>
+      <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1575326273/CE3104/Fun%20Skills/Captura_de_pantalla_de_2019-12-02_15-44-38_vpqu3g.png" width="300">
+    </td>
+    <td>
+      <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1575326263/CE3104/Fun%20Skills/Captura_de_pantalla_de_2019-12-02_15-45-31_izodyu.png" width="300">
+    </td>
+  </tr>
+</table>
 
 ### Prerequisites 📋
 
@@ -50,12 +94,6 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 ```
 Da un ejemplo
 ```
-
-### Demo
-
-<p align="center">
-<img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1575325244/CE3104/Fun%20Skills/demo_lfmpjq.gif" width="300">
-</p>
 
 ## Built With
 
