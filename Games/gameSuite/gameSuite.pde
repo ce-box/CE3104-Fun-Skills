@@ -91,8 +91,6 @@ void keyPressed(){
 
 void setup() {
   
-  gf = new gameFlags();
-  gf.toString();
   size(1280, 1040);
 
   
@@ -104,7 +102,7 @@ void setup() {
   noStroke();
   smooth();
   frameRate(30);
-  fondo = loadImage("img/imgGameSuite.png");
+  fondo = loadImage("img/Game - Backgrounds/imgGameSuite.png");
   
   AddEye(510,340,220);
   AddEye(720,340,220);
@@ -117,6 +115,9 @@ void setup() {
 
   gS = new gameSpidey();
   gS.toString();
+
+  gf = new gameFlags();
+  gf.toString();
 }
 
 

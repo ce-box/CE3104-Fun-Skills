@@ -152,7 +152,7 @@
         last_Time_Check = millis();
         smooth();
         fontOpenSansBold = createFont("fonts/open-sans/OpenSans-ExtraBold.ttf",16);
-        background = loadImage("img/imgObjectGame.png");
+        background = loadImage("img//Game - Backgrounds/imgObjectGame.png");
     }
 
     private void getConfig(){

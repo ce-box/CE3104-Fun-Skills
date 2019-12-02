@@ -16,7 +16,7 @@ class gameSpidey{
   public gameSpidey(){
       getConfig();
       fontOpenSansBold = createFont("fonts/open-sans/OpenSans-ExtraBold.ttf",16);
-      background = loadImage("img/imgSpideyGame.png");
+      background = loadImage("img//Game - Backgrounds/imgSpideyGame.png");
       background(background);
 
   }

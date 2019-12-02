@@ -106,7 +106,7 @@
         handle.radius=5;
         handle.mass=10;
         fontOpenSansBold = createFont("fonts/open-sans/OpenSans-ExtraBold.ttf",16);
-        background = loadImage("img/imgBalloonGame.png");
+        background = loadImage("img//Game - Backgrounds/imgBalloonGame.png");
 
     }
 

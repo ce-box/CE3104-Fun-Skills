@@ -138,7 +138,7 @@ public class gameFlags{
         fontArialBold = createFont("Arial Bold", 16);
         fontOpenSansBold = createFont("fonts/open-sans/OpenSans-ExtraBold.ttf",16);
         box = new PatternBox(width/2,250);
-        background = loadImage("img/imgFlagsGame.png");
+        background = loadImage("img//Game - Backgrounds/imgFlagsGame.png");
 
     }
 
