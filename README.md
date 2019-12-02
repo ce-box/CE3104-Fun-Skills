@@ -54,7 +54,7 @@ Da un ejemplo
 ### Demo
 
 <p align="center">
-<img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1572718337/CE3104/Fun%20Skills/demo_mxc0qd.gif" width="300">
+<img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1575325244/CE3104/Fun%20Skills/demo_lfmpjq.gif" width="300">
 </p>
 
 ## Built With
