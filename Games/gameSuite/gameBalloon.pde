@@ -50,7 +50,9 @@
         float xEscalada;
         float yEscalada;
         tracker.track();
+        
         PVector v3 = tracker.getClosest();
+
         try {
         
            xEscalada=v3.x*2;
@@ -67,41 +69,27 @@
           pull=false;
         }
         if(xEscalada!=-20&&yEscalada!=-20&&!ableTouch){
-        pullCounter++;
-        pull=true;
-       //ableTouch=true;
+            pullCounter++;
+            pull=true;
+            
         }
-        //if(xEscalada!=-20&&yEscalada!=-20&&ableTouch){
-        //pullCounter++;
-        // //pull=true;
-        ////ableTouch=true;
-        //}
+        
         if(pull&&pullCounter<60){
           println("YA LO   ESTAS JALANDO");
           jalo((int)xEscalada,(int)yEscalada);
         
         }
-       else if(pull&&pullCounter>60){
+        else if(pull&&pullCounter>60){
           println("YA NO   PUEDES JALAR");
           pull=false;
           ableTouch=true;
-          //jalo((int)xEscalada,(int)yEscalada);
-        
         }
         else if(ableTouch&&pullCounter<40){
           println("YA  PUEDES TOCAR EL BALLON");
           touching();
-          //jalo((int)xEscalada,(int)yEscalada);
+          
         
         }
-        // else if(ableTouch&&pullCounter>40){
-        //   //pull=true;
-        //   ableTouch=false;
-        //  println("YA PUEDES VOLVER A JALAR");
-        //  //jalo((int)xEscalada,(int)yEscalada);
-        
-        //}
-
     }
 
     /* ------------------------------------------------------
@@ -197,6 +185,7 @@
         handle.y=y;
     } 
     public void touching(){
+
         float xEscalada;
         float yEscalada;
         tracker.track();
@@ -211,29 +200,25 @@
            yEscalada=0;
         }
       
-    if (playable.x-playable.radius-20<xEscalada && playable.x+playable.radius+20>xEscalada && playable.y-playable.radius-20<yEscalada && playable.y+playable.radius+20>yEscalada){
-            playable.update(playable.x+400,playable.y+600);
-            playable.gravity=-11;
-            handle.gravity=-6;
-            playable.update(handle.x, handle.y-170);
-            playable.display(handle.x, handle.y);      
-            score++;
-            repeat--;
-            ableTouch=false;
-            }
+        if (playable.x-playable.radius-20<xEscalada && playable.x+playable.radius+20>xEscalada && playable.y-playable.radius-20<yEscalada && playable.y+playable.radius+20>yEscalada){
+                playable.update(playable.x+400,playable.y+600);
+                playable.gravity=-11;
+                handle.gravity=-6;
+                playable.update(handle.x, handle.y-170);
+                playable.display(handle.x, handle.y);      
+                score++;
+                repeat--;
+                ableTouch=false;
+        }
         else if (playable.x-playable.radius-100<xEscalada && playable.x+playable.radius+100>xEscalada && playable.y-playable.radius-100<yEscalada && playable.y+playable.radius+100>yEscalada){
             attemps++;
 
         } 
     }
+    
     public void mouseClicked(){
       if(finishBallon){
-            //gameScreen = 1;
-            //done = true;
-            //eyes.remove(0);
-            //eyes.remove(0);
-            //AddEye(510,340,110);
-            //AddEye(720,340,110);
+          
             gB = new gameBalloon();
             gB.toString();
             ballon=false;

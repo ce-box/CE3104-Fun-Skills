@@ -379,17 +379,17 @@ public class gameFlags{
             
             println(xEscalada,yEscalada);
             
-            
-            
-            
-            flag.update((int)xEscalada,(int)yEscalada);
-
-            //flag.update(mouseX,mouseY);
+            if(kinectOn){
+                flag.update((int)xEscalada,(int)yEscalada);
+                fill(255,80);
+                ellipse((int)xEscalada,(int)yEscalada,15,15);
+            }
+            else{
+                flag.update(mouseX,mouseY);
+                fill(255,80);
+                ellipse(mouseX,mouseY,15,15);
+            }
             flag.drawFlag();
-            ellipse((int)xEscalada,(int)yEscalada,25,25);
-
-            fill(255,80);
-            //ellipse(mouseX,mouseY,15,15);
         }
     }
     

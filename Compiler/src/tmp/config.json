@@ -1,69 +1,45 @@
 {
-    "object": {
-        "pos": [
-            200,
-            50,
-            100,
-            70,
-            10
-        ],
-        "height": 200,
-        "length": 55,
-        "time": 2000,
-        "repeat": 5
-    },
-    "balloon": {
-        "height": 600,
-        "length": 100,
-        "h_inc": 0,
-        "h_dec": 2,
-        "l_inc": 1,
-        "l_dec": 0,
-        "repeat": 2
-    },
-    "flags": {
-        "colors": [
-            "blue",
-            "red",
-            "green"
-        ],
-        "points": [
-            10,
-            22,
-            33
-        ],
-        "time": 60,
-        "amnt": 3,
-        "repeat": 3,
-        "amnt_inc": 1,
-        "amnt_dec": 0,
-        "time_inc": 0,
-        "time_dec": 10
-    },
-    "spidey": {
-        "words": [
-            "tree",
-            "river",
-            "mountain",
-            "camp",
-            "fire",
-            "bear",
-            "rocks",
-            "waterfall",
-            "canopy"
-        ],
-        "points": [
-            12,
-            23,
-            34,
-            45,
-            12,
-            23,
-            56,
-            33,
-            89
-        ],
-        "rows": 3,
-        "cols": 3
-    }
+  "object": {
+    "pos": [200, 500, 100, 700, 1000],
+    "height": 200,
+    "length": 55,
+    "time": 2000,
+    "repeat": 5
+  },
+  "balloon": {
+    "height": 600,
+    "length": 100,
+    "h_inc": 0,
+    "h_dec": 2,
+    "l_inc": 1,
+    "l_dec": 0,
+    "repeat": 2
+  },
+  "flags": {
+    "colors": ["orange", "blue", "red", "green", "yellow"],
+    "points": [10, 22, 33, 45, 56],
+    "time": 60,
+    "amnt": 5,
+    "repeat": 3,
+    "amnt_inc": 1,
+    "amnt_dec": 0,
+    "time_inc": 0,
+    "time_dec": 10
+  },
+  "spidey": {
+    "words": [
+      "tree",
+      "river",
+      "mountain",
+      "camp",
+      "fire",
+      "bear",
+      "rocks",
+      "waterfall",
+      "canopy"
+    ],
+    "points": [12, 23, 34, 45, 12, 23, 56, 33, 89],
+    "rows": 3,
+    "cols": 3
+  }
 }

@@ -1,49 +1,57 @@
-///* ------------------------------------------------------------
-// * File: gameSuite.pde
-// * Developed by: Esteban Alvarado Vargas
-// * Project: FunSkills - [Game]
-// * version: 1.0
-// * last edited: Esteban Alvarado:: 09/11/2019 | 00.10
-// *
-// * Description: Main Game Window.
-// * 
-// * TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
-// * ------------------------------------------------------------
-//*/
+/* ------------------------------------------------------------
+* File: gameSuite.pde
+* Developed by: Esteban Alvarado Vargas, Sahid Rojass
+* Project: FunSkills - [Game]
+* version: 1.0
+* last edited: Esteban Alvarado:: 09/11/2019 | 00.10
+*
+* Description: Main Game Window.
+* 
+* TEC 2019 | CE3104 - Lenguajes, Compiladores e Interpretes
+* ------------------------------------------------------------
+*/
 
-//import org.openkinect.freenect.*;
-//import org.openkinect.processing.*;
-//import java.io.*;
 
-//KinectController tracker;
-//Kinect kinect;
+import org.openkinect.freenect.*;
+import org.openkinect.processing.*;
+import java.io.*;
 
-// gameFlags gf;
-// gameObject gO;
-// gameSpidey gS;
-  
-//void setup(){
-//  kinect = new Kinect(this);
-//  tracker = new KinectController();
-//  size(1250,1040);
-//  gf = new gameFlags();
-//  gf.toString();
-//  gO = new gameObject();
-//  gO.toString();
-//  gf.startGame();
-//  gO.mousePressed();
-//  gS = new gameSpidey();
-//}
 
-//void draw(){
-//  //if(!gf.done)
-//    gO.draw();
-//    //if(!gO.done()){
-//    //  gO.draw();
-    
-//    //}
+// Game instances
+gameFlags gf;
+gameObject gO;
+gameSpidey gS;
+gameBalloon gB;
 
-//}
+// Main menu <cookie monster>
+ArrayList<Eye> eyes = new ArrayList<Eye>();
+int numEyes = 2;
+
+static boolean inicio=true;
+boolean calibracion=false,dis=false,der=false,izq=false,downR=false,downI=false,pies=false,juegoObjetivo=false,ballon=false,flagSpidey=false;
+boolean flagInicio=true;
+int recordX=0;
+
+int tempo=0;
+int mode=0;
+
+int cx=190, cy=200,opcionPiesX=1030,opcionPiesY=200,opcionTelaX=1030,opcionTelaY=850,opcionObjetivoX=250,opcionObjetivoY=850, r=50, i=0,c=0;
+
+// GUI
+PImage fondo;
+PImage background;
+PFont fontOpenSansBold;
+color fondoColor = #e25822;
+
+// Kinect
+KinectController tracker;
+Kinect kinect;
+boolean kinectOn = false;
+
+
+/* ---------------------------
+ *    MOUSE/KEYBOARD EVENTS
+ * --------------------------*/
 
 void mousePressed(){
   gf.mousePressed();
@@ -57,11 +65,10 @@ void mouseClicked(){
       gS = new gameSpidey();
       gS.toString();
       flagSpidey=false;
-      flagInicio=true;
-      
-      
+      flagInicio=true;      
     }
 }
+
 void mouseDragged() {
     gB.mouseDragged();
 }
@@ -77,97 +84,10 @@ void keyPressed(){
   else if (keyCode == RIGHT){
       gS.translate_Player(2);}
 }
-void kinectSpidey(){
-  if(flagSpidey){
-    tracker.track();
-    //println("KINECTSPIDEY");
-  PVector v3 = tracker.getClosest();
-  PVector v4 = tracker.getPos();
 
-   float xEscalada;
-    float yEscalada;
-    float posX;
-    float posY;
-    try {
-    xEscalada=v3.x*2;
-   yEscalada=v3.y*2;
-   
-  } catch (Exception e) {
-     xEscalada=0;
-   yEscalada=0;
-  }
-      try {
-   posX=v4.x*2;
-   posY=v4.y*2;
-   
-  } catch (Exception e) {
-     posX=0;
-   posY=0;
-  }
-  int dif=recordX-(int)xEscalada;
-  recordX=(int)xEscalada;
-  println(dif);
-  if(dif>45&&xEscalada<400&&xEscalada!=-20){
-    println("RIGHT");
-    gS.translate_Player(4);
-    
-  }
-  else if(dif>45&&xEscalada>=400&&xEscalada<=800&&xEscalada!=-20){
-   gS.translate_Player(1);
-   println("MIDDLE");
-  
-  }
-  else if(dif>45&&xEscalada<800&&xEscalada!=-20){
-    gS.translate_Player(2);
-       println("LEFT");
-
-  }
-  }
-  
-
-
-}
-
-//void keyPressed(){
-//  //gS.keyPressed();
-//}
-
-//void foo(){
-//  background(0);
-//  text("menu",100,100);
-//}
-
-import org.openkinect.freenect.*;
-import org.openkinect.processing.*;
-import java.io.*;
-
-KinectController tracker;
-Kinect kinect;
-
-
-/*
-VARIABLES NECESARIAS PARA EL FUNCIONAMIENTO DEL JUEGO COMO CLASES
-*/
- gameFlags gf;
- gameObject gO;
- gameSpidey gS;
- gameBalloon gB;
-
- //gameSpidey gS;
- //  gf.toString();
- 
-ArrayList<Eye> eyes = new ArrayList<Eye>();
-int numEyes = 2;
-static boolean inicio=true;
-boolean calibracion=false,dis=false,der=false,izq=false,downR=false,downI=false,pies=false,juegoObjetivo=false,ballon=false,flagSpidey=false;
-color fondoColor = #e25822;
-int tempo=0;
-int mode=0;
-int cx=200, cy=200,opcionPiesX=1000,opcionPiesY=200,opcionTelaX=1000,opcionTelaY=850,opcionObjetivoX=200,opcionObjetivoY=850, r=50, i=0,c=0;
-String  instrucciones= "Apunte  con su mano \n  al punto verde\npara hacer al mounstro feliz";
-PImage fondo;
-PImage background;
-int recordX=0;
+/* ---------------------------
+ *        SETUP + DRAW
+ * --------------------------*/
 
 void setup() {
   
@@ -179,10 +99,12 @@ void setup() {
   kinect = new Kinect(this);
   tracker = new KinectController();
   
+  fontOpenSansBold = createFont("fonts/open-sans/OpenSans-ExtraBold.ttf",16);
+  
   noStroke();
   smooth();
   frameRate(30);
-  fondo = loadImage("img/monster.jpg");
+  fondo = loadImage("img/imgGameSuite.png");
   
   AddEye(510,340,220);
   AddEye(720,340,220);
@@ -197,21 +119,298 @@ void setup() {
   gS.toString();
 }
 
-boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
-  if ( dist(x, y, cx, cy) < r) return true;
-  else return false;
+
+void draw() {
+  
+  juegoSpidey(flagSpidey);
+  juegoBallon(ballon);
+  juegoPies(pies);
+  juegoObjetivo(juegoObjetivo);
+  pantallaInicio(flagInicio);
+  
 }
+
+/* ---------------------------
+ *      GAME SUITE MENU
+ * --------------------------*/
+
+
+boolean pantallaInicio(boolean inicio){
+
+  if(inicio){
+    tracker.modeHands();
+    dis=false;
+    der=false;
+    izq=false;
+    downR=false;
+    downI=false;
+    
+    boolean termine = true;
+    calibracion=false;
+
+    background(32);  
+    fondo.resize(1280,1040);
+    
+    tracker.track();
+    image(fondo, 0, 0);
+
+    PVector v3 = tracker.getClosest();
+
+    float xEscalada;
+    float yEscalada;
+    
+    try {
+      xEscalada=v3.x*2;
+      yEscalada=v3.y*2;
+    } 
+    catch (Exception e) {
+      xEscalada=0;
+      yEscalada=0;
+    }
+    
+    
+    fill(100, 10, 150, 200);
+    noStroke();
+    if(keyPressed && key == '+') ;
+    if(keyPressed && key == '-') DelEye();
+    
+    for(int i=0;i<eyes.size();i++){
+      Eye eye = eyes.get(i);
+
+      if(kinectOn){
+        eye.update((int)xEscalada,(int)yEscalada);
+      } else {
+        eye.update(mouseX,mouseY);
+      }
+      
+      eye.display();
+    }
+    
+    DrawStats();
+    
+    ellipse(200, 200, r/2, r/2);
+    textSize(35);
+    fill(#23374d);
+    rect(45,100,300,150,14);
+    
+    // Aqui lo que que ponemos es los titulos de las muchas ventanas de juegos que existen
+    textFont(fontOpenSansBold);
+    textSize(35);
+    fill(#ff215c);
+    textAlign(50, 150);
+    text("Balloon Game",70,150);
+    ellipse(cx, cy, r/2, r/2);
+    
+    
+    fill(#23374d);
+    rect(875,100,300,150,14);
+    fill(#ffb52b);
+    text("Flags Game",930,150);
+    ellipse(opcionPiesX, opcionPiesY, r/2, r/2);
+
+    fill(#23374d);
+    rect(875,750,300,150,14);
+    fill(#40bcff);
+    text("Spidey Game",910,800);
+    ellipse(opcionTelaX, opcionTelaY, r/2, r/2);
+
+    
+    fill(#23374d);
+    rect(45,750,400,150,14);
+    fill(#2edb68);
+    text("Reaching the object",70,800);
+    ellipse(opcionObjetivoX, opcionObjetivoY, r/2, r/2);
+    
+    boolean opcion1,opcion2,opcion3,opcion4;
+    //For kinect: (int)xEscalada,(int)yEscalada
+    if(kinectOn){
+      opcion1 = HoverTimer((int)xEscalada,(int)yEscalada, cx, cy, r);
+      opcion2 = HoverTimer((int)xEscalada,(int)yEscalada, opcionPiesX, opcionPiesY, r);
+      opcion3 = HoverTimer((int)xEscalada,(int)yEscalada,opcionTelaX, opcionTelaY, r);
+      opcion4 = HoverTimer((int)xEscalada,(int)yEscalada,opcionObjetivoX, opcionObjetivoY, r);
+    }
+    else{
+      opcion1 = HoverTimer(mouseX,mouseY, cx, cy, r);
+      opcion2 = HoverTimer(mouseX,mouseY, opcionPiesX, opcionPiesY, r);
+      opcion3 = HoverTimer(mouseX,mouseY,opcionTelaX, opcionTelaY, r);
+      opcion4 = HoverTimer(mouseX,mouseY,opcionObjetivoX, opcionObjetivoY, r);
+    }
+    if (opcion1) {
+      mode=1;
+      cargarArcoOpcion(cx,cy);
+    }
+    else if(opcion2){
+      cargarArcoOpcion(opcionPiesX,opcionPiesY);
+      mode=2;
+    }
+    else if(opcion3){
+      mode=2;
+      cargarArcoOpcion(opcionTelaX,opcionTelaY);
+    }
+    else if(opcion4){
+      mode=1;
+      println("OPCION 4");
+      cargarArcoOpcion(opcionObjetivoX,opcionObjetivoY);
+    }
+  
+    else {
+      i=0;
+    }
+    
+    //aqui evaluamos el tiempor en el que el mouse permanece en un radio permitido 
+    if (i>90) {
+      println("primer if");
+      fill(#ffedbc);
+      if(opcion1){
+        flagInicio=false;
+        termine=false;
+        
+        
+        fondoColor=#23374d;
+        
+        ballon=true;
+        tracker.modeHands();
+
+        tempo=millis();
+        
+      }
+      else if(opcion2){
+        flagInicio=false;
+        termine=false;
+        fondoColor=#e25822;
+        pies=true;
+        tracker.modeFeets();
+        tempo=millis();
+      }
+      else if(opcion3){
+        flagInicio=false;
+        termine=false;
+        
+        fondoColor=#55ae95;
+        flagSpidey=true;
+        tracker.modeFeets();
+        background = loadImage("img/imgSpideyGame.png");
+        background(background);
+        tempo=millis();
+      }
+      else if (opcion4){
+        flagInicio=false;
+        termine=false;
+        fondoColor=#8186d5;
+        juegoObjetivo=true;
+        tracker.modeHands();
+        tempo=millis();
+      }
+      
+      opcion1=!opcion1;
+      
+      opcion2=!opcion2;
+
+      opcion3=!opcion3;
+
+      opcion4=!opcion4;
+
+    }
+    //aqui evaluamos el tiempor en el que el mouse permanece en un radio permitido 
+
+    else {
+      fill(#68BF4B);
+    }
+    
+    ellipse(xEscalada, yEscalada, 20, 20);
+
+    return termine;
+  }
+  else{
+    return false;
+  }
+  
+}
+
+
+//Draw an arc that shows the loading time in the chosen option
+void cargarArcoOpcion(int opX,int opY){
+    pushStyle();
+    stroke(-1);
+    noFill();
+    strokeWeight(6);
+    arc(opX, opY, 50, 50, 0, radians(i*4));
+    popStyle();
+    i++;
+}
+
+
+/* ---------------------------
+ *        KINECT / GAMES
+ * --------------------------*/
+
+void kinectSpidey(){
+  
+  if(flagSpidey){
+    tracker.track();
+    
+    PVector v3 = tracker.getClosest();
+    PVector v4 = tracker.getPos();
+
+    float xEscalada;
+    float yEscalada;
+    float posX;
+    float posY;
+    
+    try {
+      xEscalada=v3.x*2;
+      yEscalada=v3.y*2;
+    } catch (Exception e) {
+      xEscalada=0;
+      yEscalada=0;
+    }
+    
+    try {
+      posX=v4.x*2;
+      posY=v4.y*2;
+    } catch (Exception e) {
+      posX=0;
+      posY=0;
+    }
+
+    int dif=recordX-(int)xEscalada;
+    recordX=(int)xEscalada;
+    println(dif);
+
+    if(dif>45&&xEscalada<400&&xEscalada!=-20){
+      println("RIGHT");
+      gS.translate_Player(4);
+    }
+    else if(dif>45&&xEscalada>=400&&xEscalada<=800&&xEscalada!=-20){
+      gS.translate_Player(1);
+      println("MIDDLE");
+  
+    }
+    else if(dif>45&&xEscalada<800&&xEscalada!=-20){
+      gS.translate_Player(2);
+      println("LEFT");
+
+    }
+  }
+}
+
+
+
+/* ---------------------------
+ *      GAMES MANAGER
+ * --------------------------*/
+
+// launches and play object game
 void juegoObjetivo(boolean iniciarObjetivo){
   if(iniciarObjetivo){
     flagInicio=false;
     gO.startGame();
     gO.draw();
     tracker.display(640,900,3);
-
-    
   }
 }
 
+// launches and play flags game
 void juegoPies(boolean iniciarPies){
   
   if(iniciarPies){
@@ -225,344 +424,44 @@ void juegoPies(boolean iniciarPies){
     }
   }
 }
- void juegoBallon(boolean iniciarBallon){
-   if(iniciarBallon){
-     flagInicio=false;
-     gB.draw();
-   }
-   
- }
- 
-  void juegoSpidey(boolean iniciarSpidey){
-   if(iniciarSpidey){
+
+// launches and play balloon game
+void juegoBallon(boolean iniciarBallon){
+  if(iniciarBallon){
+    flagInicio=false;
+    gB.draw();
+  } 
+}
+
+// launches and play Spidey game
+void juegoSpidey(boolean iniciarSpidey){
+  if(iniciarSpidey){
      
-     flagInicio=false;
+    flagInicio=false;
 
-     gS.init();
-     kinectSpidey();
-     tracker.display(800,200,3);
-   }
-   
- }
-
-boolean flagInicio=true;
-
-void draw() {
-
-
-  //gS.init(); 
-  juegoSpidey(flagSpidey);
-  juegoBallon(ballon);
-  juegoPies(pies);
-  juegoObjetivo(juegoObjetivo);
-  pantallaInicio(flagInicio);
-  
+    gS.init();
+    kinectSpidey();
+    tracker.display(800,200,3);
+  } 
 }
 
 
-
-
-void pantallaConfig( color fondo,boolean calibracion,int mode){
-  //flagInicio=false;
-  
-  if (calibracion){
-    if (mode==1){
-      tracker.modeHands();
-    }
-    else if(mode==2){
-      tracker.modeFeets();
-    
-    }
-    tracker.track();
-    PVector loc = tracker.getPos();
-    PVector v3 = tracker.getClosest();
-    loop();
-    background(fondo);
-    
-    if(millis()/1000-tempo/1000<3){
-      textSize(100);
-      text("Hola",110,500);
-
-    }
-    else if(millis()/1000-tempo/1000<6){
-      textSize(80);
-      text("Ya casi vamos a jugar",110,500);
-
-    }
-    else if(millis()/1000-tempo/1000<9){
-      textSize(80);
-      text("Solo queremos Asegurarnos \n que todo esta bien \nconfigurado",100,500);
-
-    }
-    
-    else if(tracker.calibracion(loc,mode)!="AHI ESTAS PERFECTO"&& !dis){
-      textSize(70);
-      text(tracker.calibracion(loc,mode),100,500);
-      //tempo=millis();
-     
-      
-    }
-    else if(c<120){
-      text("La distancia entre vos y \n el kinect esta perfecto porfa \n no te muevas  de ahi",300,100);
-      c++;
-      dis=true;
-    
-    }
-    else if(c<200){
-      text("Ahora vamos a probar unas \n cosas",100,500);
-      c++;
-      
-    }
-    else if(!(v3.x>320 && v3.y<520/2)&& !der&&mode!=2){
-      dis=true;
-      text("LEVANTA LA MANO DERECHA",100,500);
-    
-    }
-    else if(!(0<v3.x&&v3.x<320 && v3.y<520/2)&& !izq&&mode!=2){
-      
-      text("LEVANTA LA MANO IZQUIERDA",100,500);
-      der=true;
-    }
-    else if(!(0<v3.x&&v3.x>320 && v3.y>520/2)&& !downR&&mode!=1){
-      izq=true;
-      text("DA UN PASO CON EL PIE \n DERECHO",100,500);
-    
-    }
-    else if(!(0<v3.x&&v3.x<320 && v3.y>520/2)&& !downI&&mode!=1){
-      downR=true;
-      text("DA UN PASO CON EL PIE \n IZQUIERDO",100,500);
-    
-    }
-    else if(!(0<v3.x&&v3.x<320 && v3.y>520/2)){
-      downI=true;
-      izq=true;
-      text("Listo ya estas listo para jugar",100,500); 
-    
-    }
-    
-
-
-    else{
-      c=0;
-
+/* ---------------------------
+ *      UTIL FUNCTIONS
+ * --------------------------*/
  
-    //flagInicio=true;
-    pies=true;
-    
-    calibracion=false;
-
-    
-    }
-    //c++;
-    println("aqui estas ejecutando la pantalla de calibracion");
-  
-
-}
+boolean  HoverTimer(int x, int y, int cx, int cy, int r) {
+  if ( dist(x, y, cx, cy) < r) return true;
+  else return false;
 }
 
-
-
-
-
-boolean pantallaInicio(boolean inicio){
-  if(inicio){
-    tracker.modeHands();
-     dis=false;
-  der=false;
-  izq=false;
-  downR=false;
-  downI=false;
-  
-  boolean termine = true;
-  calibracion=false;
-
-  background(32);  
-  fondo.resize(1280,1040);
-  
-  tracker.track();
-  image(fondo, 0, 0);
-
-  PVector v3 = tracker.getClosest();
-
-   float xEscalada;
-    float yEscalada;
-    try {
-    xEscalada=v3.x*2;
-   yEscalada=v3.y*2;
-  } catch (Exception e) {
-     xEscalada=0;
-   yEscalada=0;
-  }
-  
-  
-  fill(100, 10, 150, 200);
-  noStroke();
-  if(keyPressed && key == '+') ;
-  if(keyPressed && key == '-') DelEye();
-  
-  for(int i=0;i<eyes.size();i++){
-    Eye eye = eyes.get(i);
-    //eye.update(mouseX,mouseY);
-    eye.update((int)xEscalada,(int)yEscalada);
-    eye.display();
-  }
-   DrawStats();
-   
-   //boolean b = HoverTimer((int)xEscalada, (int)yEscalada, cx, cy, r);
-
-  ellipse(200, 200, r/2, r/2);
-  textSize(35);
-  fill(#23374d);
-  rect(45,100,300,150,14);
-  
-  // Aqui lo que que ponemos es los titulos de las muchas ventanas de juegos que existen
-  fill(#f6f6f6);
-  textAlign(50, 150);
-  text("Raqueta Globo",50,150);
-  ellipse(200, 200, r/2, r/2);
-  
-  
-  fill(#e25822);
-  rect(875,100,300,150,14);
-   fill(#f6f6f6);
-  text("Usando Los Pies",900,150);
-  ellipse(1000, 200, r/2, r/2);
-
-  fill(#55ae95);
-  rect(875,750,300,150,14);
-   fill(#f6f6f6);
-  text("Telarañana",900,800);
-  ellipse(1000, 850, r/2, r/2);
-
-  
-  fill(#8186d5);
-  rect(45,750,400,150,14);
-  fill(#f6f6f6);
-  text("Alcanzando el objetivo",50,800);
-  ellipse(200, 850, r/2, r/2);
-  boolean opcion1 = HoverTimer((int)xEscalada,(int)yEscalada, cx, cy, r);
-  //boolean opcion1 = HoverTimer(mouseX,mouseY, cx, cy, r);
-  boolean opcion2 = HoverTimer((int)xEscalada,(int)yEscalada, opcionPiesX, opcionPiesY, r);
-  //boolean opcion2 = HoverTimer(mouseX,mouseY, opcionPiesX, opcionPiesY, r);
-
-  //boolean opcion3 = HoverTimer((int)xEscalada,(int)yEscalada,opcionTelaX, opcionTelaY, r);
-  boolean opcion3 = HoverTimer(mouseX,mouseY,opcionTelaX, opcionTelaY, r);
-  boolean opcion4 = HoverTimer((int)xEscalada,(int)yEscalada,opcionObjetivoX, opcionObjetivoY, r);
-  //boolean opcion4 = HoverTimer(mouseX,mouseY,opcionObjetivoX, opcionObjetivoY, r);
-    if (opcion1) {
-      mode=1;
-    cargarArcoOpcion(cx,cy);
-  }
-  else if(opcion2){
-    
-    cargarArcoOpcion(opcionPiesX,opcionPiesY);
-    mode=2;
-  }
-  else if(opcion3){
-    mode=2;
-    cargarArcoOpcion(opcionTelaX,opcionTelaY);
-  }
-  else if(opcion4){
-    mode=1;
-    println("OPCION 4");
-    cargarArcoOpcion(opcionObjetivoX,opcionObjetivoY);
-  }
- 
-  else {
-    i=0;
-  }
-  
-  //aqui evaluamos el tiempor en el que el mouse permanece en un radio permitido 
-  if (i>90) {
-    println("primer if");
-    fill(#ffedbc);
-    if(opcion1){
-      flagInicio=false;
-      termine=false;
-      
-     
-      //stop();
-      fondoColor=#23374d;
-      //calibracion=true;
-      //pies=true;
-      ballon=true;
-      tracker.modeHands();
-
-      tempo=millis();
-      
-    }
-    else if(opcion2){
-      flagInicio=false;
-      termine=false;
-      fondoColor=#e25822;
-      pies=true;
-      tracker.modeFeets();
-      //calibracion=true;
-      tempo=millis();
-    }
-    else if(opcion3){
-      flagInicio=false;
-      termine=false;
-      
-      fondoColor=#55ae95;
-      flagSpidey=true;
-      tracker.modeFeets();
-     // calibracion=true;
-      background = loadImage("img/imgSpideyGame.png");
-      background(background);
-      tempo=millis();
-    }
-    else if (opcion4){
-      flagInicio=false;
-      termine=false;
-      fondoColor=#8186d5;
-     // calibracion=true;
-     juegoObjetivo=true;
-     tracker.modeHands();
-      tempo=millis();
-    }
-    
-    opcion1=!opcion1;
-    
-    opcion2=!opcion2;
-
-    opcion3=!opcion3;
-
-    opcion4=!opcion4;
-
-  }
-    //aqui evaluamos el tiempor en el que el mouse permanece en un radio permitido 
-
-  else {
-        println("segundo if");
-
-    fill(#68BF4B);
-  }
-    ellipse(xEscalada, yEscalada, 20, 20);
-
-  return termine;
-  }
-  else{
-  return false;
+void DrawStats(){
+  fill(255,100);  
+  fill(0,200);
+  fill(255);
+  fill(255,80);  
 }
-  
-  }
-  
-  
- 
 
-//ESTE METODO LO QUE HACE ES GENERAR EL ARCO QUE SE VA AUMENTANDO EN LA OPCION ESCOGIDA
-void cargarArcoOpcion(int opX,int opY){
-    pushStyle();
-    stroke(-1);
-    noFill();
-    strokeWeight(6);
-    arc(opX, opY, 50, 50, 0, radians(i*4));
-    popStyle();
-    i++;
-
-
-}
 void AddEye(int x, int y,int size){
   eyes.add(new Eye(x,y,size));
 }
@@ -571,11 +470,9 @@ void DelEye(){
   if(eyes.size()>0)eyes.remove(0);  
 }
 
-
-
-
-
-
+/* ---------------------------
+ *    COOKIE MOSNTER EYES
+ * --------------------------*/
 class Eye {
   float x, y;
   float xs = random(-2,2);
@@ -587,15 +484,13 @@ class Eye {
     x = tx;
     y = ty;
     size = ts;
- }
+  }
 
   void update(float mx, float my) {
     angle = atan2(my-y, mx-x);
   }
   
   void display() {
-    //x+=xs;
-    //y+=ys;
     if((x>width-(size/2)&&xs>0)||(x<0+(size/2)&&xs<0))xs*=-1; //bounce X
     if((y>height-(size/2)&&ys>0)||(y<0+(size/2)&&ys<0))ys*=-1; // bounce Y
     pushMatrix();
@@ -609,18 +504,4 @@ class Eye {
     ellipse(size/4, 0, size/2, size/2);
     popMatrix();
   }
-}
-
-void DrawStats(){
-  fill(255,100);  
-  //rect(0,0,70,20);
-  fill(0,200);
- // text("Eyes: "+eyes.size(),4,15);
-  fill(255);
-  //text("Eyes: "+eyes.size(),3,14);
-  
-
-  fill(255,80);  
-  //text("-Drumstin",width-55,height-5);
-  //text("'+' to add, '-' to remove",3,height-5);  
 }
