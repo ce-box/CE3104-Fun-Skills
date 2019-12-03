@@ -45,25 +45,18 @@ To connect the real world with the software, we have implemented the microsoft <
 In addition, a <b>command language</b> has been created to configure the game.This language is interpreted by a "small compiler" that we have developed with the knowledge acquired throughout the course. <i>Python</i> and its <i>PLY</i> library have been used to make the compiler.
 </p>
 
-## Getting Started 🚀
-
-<p align=justify>Prerequisites:You must have <a href="https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Instalaci%C3%B3n-de-Git">Git</a>
- installed on your console.</p>
-
-1. On **GitHub**, go to the main page of the [repository](https://github.com/estalvgs1999/CE3104-Fun-Skills).
-2. Under the name of the repository, click **Clone or download**.
-3. In the Clone with HTTPs section, click to copy the repository cloning URL.
-4. Open **Git Bash**.
-5. Change the current working directory to the location where you want the cloned directory to be made.
-6. Type 'git clone', and then paste the URL that you copied in _Step 2_.
-
-   ```$ git clone https://github.com/estalvgs1999/CE3104-Fun-Skills```
-
-7. Press Enter. Your local clone will be created for [CE3104-Fun-Skills](https://github.com/estalvgs1999/CE3104-Fun-Skills).
-8. Now you can access the examples contained in this repository.
-
 ### Fun Skills Game Suite
-#### 
+<table>
+  <tr>
+    <td>
+      <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1575320708/CE3104/Fun%20Skills/Captura_de_pantalla_de_2019-12-02_12-38-15_cdi8h2.png" width="400">
+    </td>
+    <td>
+      <img src="https://res.cloudinary.com/estalvgs1999/image/upload/v1575320708/CE3104/Fun%20Skills/Captura_de_pantalla_de_2019-12-02_12-42-03_kyz5re.png" width="400">
+    </td>
+  </tr>
+</table>
+
 
 ---
 ### Fun Skills Playground
@@ -87,6 +80,24 @@ You can find the source code of this IDE in the Compiler folder.
   </tr>
 </table>
 
+---
+## Getting Started 🚀
+
+<p align=justify>Prerequisites:You must have <a href="https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Instalaci%C3%B3n-de-Git">Git</a>
+ installed on your console.</p>
+
+1. On **GitHub**, go to the main page of the [repository](https://github.com/estalvgs1999/CE3104-Fun-Skills).
+2. Under the name of the repository, click **Clone or download**.
+3. In the Clone with HTTPs section, click to copy the repository cloning URL.
+4. Open **Git Bash**.
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type 'git clone', and then paste the URL that you copied in _Step 2_.
+
+   ```$ git clone https://github.com/estalvgs1999/CE3104-Fun-Skills```
+
+7. Press Enter. Your local clone will be created for [CE3104-Fun-Skills](https://github.com/estalvgs1999/CE3104-Fun-Skills).
+8. Now you can access the examples contained in this repository.
+
 ### Prerequisites 📋
 
 _Que cosas necesitas para instalar el software y como instalarlas_
@@ -99,10 +110,42 @@ Da un ejemplo
 
 For the development of this project we use the following resources
 
-* [Python Lex Yacc](https://www.dabeaz.com/ply/) - The Lexical Compiler Analyzer
-* [PyQt5](https://www.qt.io/) - UI IDE FunSkills Playground (Qscintilla for Syntax Highligth)
-* [Processing](https://processing.org/) - Graphic Interface Development
-* [Python](https://www.python.org/) - Business Logic Development
+<table>
+  <tr>
+    <td>
+      <p align=center><img src="https://pypi.org/static/images/logo-small.6eef541e.svg" width="100"></p>
+    </td>
+    <td>
+      <p align=center><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPulCp1_2X95McIbF8PzbWQGzI1r9-eYUZZDfIgxpSLpt4zGoP&s" width="100"></p>
+    </td>
+    <td>
+      <p align=center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Processing_3_logo.png/600px-Processing_3_logo.png" width="100"></p>
+    </td>
+    <td>
+      <p align=center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1024px-Python-logo-notext.svg.png" width="100"></p>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>
+      <p align=center><a href="https://www.dabeaz.com/ply/"><b>Python Lex Yacc</b></a>
+        </br>The Lexical Compiler Analyzer</p>
+    </td>
+    <td>
+      <p align=center><a href="https://www.qt.io/"><b>PyQt5</b></a>
+</br>UI IDE FunSkills Playground</p>
+    </td>
+    <td>
+      <p align=center>
+        <a href="https://processing.org/"><b>Processing</b></a>
+</br>Graphic Interface Development</p>
+    </td>
+    <td>
+      <p align=center> <a href="https://www.python.org//"><b>Python</b></a>
+        </br>Business Logic Development</p>
+    </td>
+  </tr>
+</table>
 
 
 ## Docs 📖
