@@ -100,10 +100,18 @@ You can find the source code of this IDE in the Compiler folder.
 
 ### Prerequisites 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+_To run this program you must have the following dependencies installed_
 
 ```
-Da un ejemplo
++ Processing 3
++ Python 3.6
+
+Python dependencies:
+
+$pip install ply==3.11
+$pip installPyQt5==5.13.2
+$pip installPyQt5-sip==12.7.0
+$pip installQScintilla==2.11.3
 ```
 
 ## Built With
@@ -172,8 +180,8 @@ This project is under License (GNU General Public License) - see the file [LICEN
 
 ---
 <p align="center">
-<img src="https://cutt.ly/ieulNTo" width="80"/>
-  <br/>
-<img src="https://licensebuttons.net/l/by-nc/3.0/88x31.png" width="60"/>
-  
+
+  <img src="https://img2.freepng.es/20180420/ubq/kisspng-open-source-software-open-source-model-open-source-5ad9ba90da5134.5431202915242185128942.jpg" width="40"/>
+  <img src="https://cutt.ly/ieulNTo" width="50"/>
+<img src="https://amin-ahmadi.com/wp-content/uploads/2016/12/Built_with_Qt_RGB_logo_vertical.png" width="40"/>
 </p>
