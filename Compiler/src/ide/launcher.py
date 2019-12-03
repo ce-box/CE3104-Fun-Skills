@@ -44,11 +44,9 @@ class launcher_window(QWgt.QWidget):
         super().__init__(parent)
         self.width = 640
         self.height = 480
-        self.left = 400
-        self.top = 300
 
         self.setWindowFlags(QCore.Qt.FramelessWindowHint)
-        self.setGeometry(self.left, self.top, self.width, self.height)
+        self.setGeometry(600,350,self.width, self.height)
 
         # Create widget
         label = QWgt.QLabel(self)
@@ -64,7 +62,7 @@ class launcher_window(QWgt.QWidget):
         self.progress.setStyleSheet(BAR_STYLE)
 
 
-# @brief - progress counter of the progress bar, runs in a separate thread
+        # @brief - progress counter of the progress bar, runs in a separate thread
 def count(app,window):
     count = 0
     while count < TIME_LIMIT:

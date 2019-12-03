@@ -114,7 +114,7 @@ class CustomMainWindow(QMainWindow):
 
         # 1. Define the geometry of the main window
         # ------------------------------------------
-        self.setGeometry(250, 100, 800, 800)
+        self.setGeometry(450, 100, 800, 800)
         self.setWindowTitle("FunSkills - Playground")
 
         # 2. Create frame and layout
