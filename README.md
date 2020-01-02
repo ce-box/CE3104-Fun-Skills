@@ -165,7 +165,7 @@ You can find much more about how to use this project in our [documentation secti
 This project has an excellent development group formed by ITCR computer engineering students
 
 * **Esteban Alvarado** - *Software/Hardware Developer* - [@estalvgs1999](https://github.com/estalvgs1999)
-* **Sahid Rojas** - *Software/Hardware Developer* - [@reds98](https://github.com/estalvgs1999)
+* **Sahid Rojas** - *Software/Hardware Developer* - [@reds98](https://github.com/reds98)
 * **Erick Barrantes** - *Software Developer* - [@ErickCR12](https://github.com/ErickCR12)
 * **María José Zamora** - *Software Developer* - [@mjosezam](https://github.com/mjosezam)
 * **Jessica Espinoza** - *Software Developer* - [@jespinoza1703](https://github.com/jespinoza1703)
